@@ -45,7 +45,8 @@ jobs:
         run: pip3 install online-judge-verify-helper
       - name: Verify code
         run: oj-verify run
-      - name: oj-verify docs
+      - name: Build docs
+        run: oj-verify docs
 
 
   build-html:
