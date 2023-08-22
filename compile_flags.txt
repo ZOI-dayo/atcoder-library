@@ -1,0 +1,5 @@
+-std=c++17
+-O2
+-I/opt/homebrew/Cellar/gcc/13.1.0/include/c++/13/
+-I/opt/homebrew/Cellar/gcc/13.1.0/include/c++/13/aarch64-apple-darwin22
+-lm
