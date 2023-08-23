@@ -48,8 +48,6 @@ public:
     }
   }
   T get(int i) { return _data[i + _n - 1]; }
-  T query(int l, int r) {
-    return _query(l, r, 0, 0, _n);
-  }
+  T query(int l, int r) { return _query(l, r, 0, 0, _n); }
 };
 template <typename T> using Segtree = SegmentTree<T>;
