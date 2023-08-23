@@ -48,7 +48,7 @@ jobs:
         uses: DoozyX/clang-format-lint-action@v0.16.2
         with:
           source: '.'
-          extensions: 'h,cpp,c'
+          extensions: 'hpp,cpp'
           clangFormatVersion: 16
           inplace: True
           style: Google
