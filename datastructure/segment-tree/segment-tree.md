@@ -15,7 +15,7 @@ documentation_of: ./segment-tree.hpp
   $O(\log(n))$  
   セグ木に`seg[i] = a`を書き込む  
 - `T get(int i)`  
-  $O(1)$ NoVerify  
+  $O(1)$  
   `seg[i]`を取得する  
 - `T query(int l, int r)`  
   $O(\alpha(n))$  
