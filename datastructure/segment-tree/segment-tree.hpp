@@ -2,7 +2,6 @@
 
 #include "../../common/template.hpp"
 
-#define _GLIBCXX_DEBUG
 // Range Min Query
 template <typename T> struct SegmentTree {
 private:
@@ -23,7 +22,6 @@ private:
       return _data[k];
     T l_val = _query(l, r, k * 2 + 1, a, (a + b) / 2);
     T r_val = _query(l, r, k * 2 + 2, (a + b) / 2, b);
-    cerr << __LINE__;
     return op(l_val, r_val);
   }
 
@@ -36,7 +34,7 @@ public:
     _n = 1;
     while (_n < n)
       _n *= 2;
-    _data = vec<T>(2 * n, e);
+    _data = vec<T>(2 * _n, e);
   }
 
   void set(int i, T a) {
@@ -51,7 +49,6 @@ public:
   }
   T get(int i) { return _data[i + _n - 1]; }
   T query(int l, int r) {
-    cerr << __LINE__;
     return _query(l, r, 0, 0, _n);
   }
 };
