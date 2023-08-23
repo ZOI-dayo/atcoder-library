@@ -51,7 +51,7 @@ jobs:
           extensions: 'hpp,cpp'
           clangFormatVersion: 16
           inplace: True
-          style: Chromium
+          style: LLVM
       - name: Commit files
         run: |
           git add .
