@@ -16,8 +16,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Lint
+        uses: deep5050/cppcheck-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN}}
+          std: c++17
+      - name: publish report
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${GITHUB_REF#refs/heads/}
   format:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,6 +44,11 @@ jobs:
           extensions: 'h,cpp,c'
           clangFormatVersion: 16
           inplace: True
+      - name: push formatted file
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${GITHUB_REF#refs/heads/}
 
   build:
     runs-on: ubuntu-latest
