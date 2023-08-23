@@ -1,2 +1,5 @@
+datastructure/segment-tree/segment-tree.hpp:46:5: style:inconclusive: Technically the member function 'SegmentTree < int >::get' can be const. [functionConst]
+  T get(int i) {
+    ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
