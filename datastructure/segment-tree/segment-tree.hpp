@@ -44,7 +44,6 @@ public:
     // より、iの最下段はi+n-1
     i += _n - 1;
     _data[i] = a;
-    cerr << __LINE__;
     while (i > 0) {
       i = (i - 1) / 2;
       _data[i] = op(_data[i * 2 + 1], _data[i * 2 + 2]);
