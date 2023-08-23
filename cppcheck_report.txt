@@ -1,5 +1,2 @@
-datastructure/unionfind/unionfind.hpp:9:3: style: Struct 'UnionFind' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  UnionFind(int n): parents(n) {
-  ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
