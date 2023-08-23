@@ -28,11 +28,11 @@ jobs:
           std: c++17
       - name: Commit files
         run: |
-          git pull --rebase
           git add .
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Lint report" || echo "No changes to commit"
+          git pull --rebase
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -53,11 +53,11 @@ jobs:
           inplace: True
       - name: Commit files
         run: |
-          git pull --rebase
           git add .
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Format files" || echo "No changes to commit"
+          git pull --rebase
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
