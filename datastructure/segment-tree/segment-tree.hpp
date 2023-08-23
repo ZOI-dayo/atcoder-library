@@ -26,13 +26,13 @@ private:
   }
 
 public:
-  explicit SegmentTree(int n) : SegmentTree(n, numeric_limits<T>::max(), min) {}
+  explicit SegmentTree(int n) : SegmentTree(n, numeric_limits<T>::max(), [](T a, T b){return min(a, b);}) {}
 
   SegmentTree(int n, T e, function<T(T, T)> op) : e(e), op(op) {
     _n = 1;
     while (_n < n)
       _n *= 2;
-    data = vec<T>(2 * n, e);
+    _data = vec<T>(2 * n, e);
   }
 
   void set(int i, T a) {
