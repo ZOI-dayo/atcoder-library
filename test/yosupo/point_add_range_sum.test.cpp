@@ -16,7 +16,7 @@ int main() {
   rep(i, Q) {
     int type;
     cin >> type;
-    if(type == 0) {
+    if (type == 0) {
       int p, x;
       cin >> p >> x;
       seg.set(p, seg.get(p) + x);
