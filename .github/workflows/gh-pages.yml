@@ -32,7 +32,7 @@ jobs:
           git add .
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "Lint report"
+          git commit -a -m "Lint report" || echo "No changes to commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -57,7 +57,7 @@ jobs:
           git add .
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "Format files"
+          git commit -a -m "Format files" || echo "No changes to commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
