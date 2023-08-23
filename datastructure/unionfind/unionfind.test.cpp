@@ -17,5 +17,4 @@ int main() {
       cout << uf.same(u, v) << endl;
     }
   }
-
 }
