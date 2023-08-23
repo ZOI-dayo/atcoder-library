@@ -26,7 +26,9 @@ private:
   }
 
 public:
-  explicit SegmentTree(int n) : SegmentTree(n, numeric_limits<T>::max(), [](T a, T b){return min(a, b);}) {}
+  explicit SegmentTree(int n)
+      : SegmentTree(n, numeric_limits<T>::max(),
+                    [](T a, T b) { return min(a, b); }) {}
 
   SegmentTree(int n, T e, function<T(T, T)> op) : e(e), op(op) {
     _n = 1;
