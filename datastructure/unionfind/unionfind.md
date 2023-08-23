@@ -5,7 +5,8 @@ documentation_of: ./unionfind.hpp
 
 ## Method
 
-### constructor(int n)
-
-計算量 $O(n)$
+- `constructor(int n)` : $O(n)$
+- `find(int a)` : $O(\alpha(n))$
+- `merge(int a)` : $O(\alpha(n))$
+- `same(int a)` : $O(\alpha(n))$
 

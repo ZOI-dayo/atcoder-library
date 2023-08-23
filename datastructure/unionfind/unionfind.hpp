@@ -4,9 +4,9 @@
 
 struct UnionFind {
 private:
-  vec<int> parents, rank;
+  vec<int> parents;
 public:
-  UnionFind(int n): parents(n), rank(n, 0) {
+  UnionFind(int n): parents(n) {
     iota(all(parents), 0);
   }
   int find(int a) {
@@ -17,8 +17,6 @@ public:
     a = find(a);
     b = find(b);
     if(a == b) return a;
-    if(rank[a] < rank[b]) swap(a, b);
-    if(rank[a] == rank[b]) ++rank[a];
     return parents[b] = a;
   }
   bool same(int a, int b) {
