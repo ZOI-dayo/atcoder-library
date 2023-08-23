@@ -51,6 +51,7 @@ jobs:
           extensions: 'h,cpp,c'
           clangFormatVersion: 16
           inplace: True
+          style: Google
       - name: Commit files
         run: |
           git add .
