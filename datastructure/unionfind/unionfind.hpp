@@ -3,12 +3,15 @@
 #include "../../common/template.hpp"
 
 struct UnionFind {
-private:
+ private:
   int _n;
   vec<int> _parents;
   vec<int> _size;
-public:
-  explicit UnionFind(int n) : _n(n), _parents(n), _size(n, 1) { iota(all(_parents), 0); }
+
+ public:
+  explicit UnionFind(int n) : _n(n), _parents(n), _size(n, 1) {
+    iota(all(_parents), 0);
+  }
   int find(int a) {
     if (_parents[a] == a)
       return a;
@@ -20,7 +23,8 @@ public:
     b = find(b);
     if (a != b) {
       // merge後の親はa
-      if(_size[a] < _size[b]) swap(a, b);
+      if (_size[a] < _size[b])
+        swap(a, b);
       _size[a] += _size[b];
       _size[b] = 0;
       _parents[b] = a;
