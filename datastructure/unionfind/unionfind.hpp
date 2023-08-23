@@ -4,27 +4,31 @@
 
 struct UnionFind {
 private:
-  vec<int> parents;
+  vec<int> _parents, _size;
 public:
-  UnionFind(int n): parents(n) {
-    iota(all(parents), 0);
+  explicit UnionFind(int n): _parents(n), _size(n, 1) {
+    iota(all(_parents), 0);
   }
   int find(int a) {
-    if(parents[a] == a) return a;
-    else return parents[a] = find(parents[a]);
+    if(_parents[a] == a) return a;
+    else return _parents[a] = find(_parents[a]);
   }
-  int merge(int a, int b) {
+  void merge(int a, int b) {
     a = find(a);
     b = find(b);
-    if(a == b) return a;
-    return parents[b] = a;
+    if(a != b) {
+      // merge後の親はa
+      if(_size[a] < _size[b]) swap(a, b);
+      _size[a] += _size[b];
+      _parents[b] = a;
+    }
   }
   bool same(int a, int b) {
     return find(a) == find(b);
   }
-  // int size(int a) {
-    // return count(all(parents), find(a));
-  // }
+  int size(int a) {
+    return _size[find(a)];
+  }
   // vec<vec<int>> groups() {}
 };
 using UF = UnionFind;
