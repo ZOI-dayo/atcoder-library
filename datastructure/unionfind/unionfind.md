@@ -17,6 +17,9 @@ documentation_of: ./unionfind.hpp
 - `bool same(int a, int b)`
   $O(\alpha(n))$
   頂点`a`、頂点`b`が連結かどうかを判定する
+- `int size(int a)`
+  $O(\alpha(n))$
+  頂点`a`の含まれるグループの要素数を出力する
 - `vec<vec<int>> groups()`
   $O(n)$ NoVerify
   各連結成分の情報を出力する
