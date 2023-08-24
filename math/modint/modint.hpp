@@ -3,10 +3,10 @@
 #include "../../common/template.hpp"
 #include "../pow/pow.hpp"
 
-template <int MOD>
-struct modint {
+template <int MOD> struct modint {
 private:
   int _val;
+
 public:
   modint() : modint(0) {}
   modint(int val) : _val(val) {}
@@ -21,18 +21,25 @@ public:
       swap(u -= t * v, v);
     }
     u %= MOD;
-    if (u < 0) u += MOD;
+    if (u < 0)
+      u += MOD;
     return u;
   }
-  modint pow(int n) {
-    return modint(mod_pow(_val, n, MOD));
-  }
+  modint pow(int n) { return modint(mod_pow(_val, n, MOD)); }
 
   // op
-  modint& operator++() { return *this += 1; }
-  modint& operator--() { return *this -= 1; }
-  modint operator++(int) { modint tmp = *this; ++*this; return tmp; }
-  modint operator--(int) { modint tmp = *this; --*this; return tmp; }
+  modint &operator++() { return *this += 1; }
+  modint &operator--() { return *this -= 1; }
+  modint operator++(int) {
+    modint tmp = *this;
+    ++*this;
+    return tmp;
+  }
+  modint operator--(int) {
+    modint tmp = *this;
+    --*this;
+    return tmp;
+  }
   modint operator+(const modint &a) { return *this += a; }
   modint operator-(const modint &a) { return *this -= a; }
   modint operator*(const modint &a) { return *this *= a; }
@@ -41,12 +48,14 @@ public:
   bool operator!=(const modint &a) { return _val != a._val; }
   modint &operator+=(const modint &a) {
     _val += a._val;
-    if (_val >= MOD) _val -= MOD;
+    if (_val >= MOD)
+      _val -= MOD;
     return *this;
   }
   modint &operator-=(const modint &a) {
     _val -= a._val;
-    if (_val < 0) _val += MOD;
+    if (_val < 0)
+      _val += MOD;
     return *this;
   }
   modint &operator*=(const modint &a) {
