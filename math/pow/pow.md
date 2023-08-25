@@ -8,7 +8,7 @@ documentation_of: ./pow.hpp
 ## Method
 
 - `ll mod_pow(ll a, int n, ll mod)`  
-  $O(\log(n))$ NoVerify  
+  $O(\log(n))$  
   $a^n$をmod付きで計算する  
 - `ll pow(ll a, int n)`  
   $O(\log(n))$ NoVerify  
