@@ -1,7 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/5/ALDS1_5_D"
 
-#include "../../datastructure/bit/bit.hpp"
+#include "../../datastructure/bit.hpp"
 
 // 転倒数
 int main() {

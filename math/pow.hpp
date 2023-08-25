@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../common/template.hpp"
+#include "../common/template.hpp"
 
 ll mod_pow(ll a, int n, ll mod) {
   int ans = 1;

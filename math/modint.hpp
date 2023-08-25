@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../common/template.hpp"
-#include "../pow/pow.hpp"
+#include "../common/template.hpp"
+#include "../pow.hpp"
 
 template <int MOD> struct modint {
 private:

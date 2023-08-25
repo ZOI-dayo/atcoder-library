@@ -1,7 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_A"
 
-#include "../../math/pow/pow.hpp"
+#include "../../math/pow.hpp"
 
 int main() {
   int n, k;

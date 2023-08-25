@@ -1,7 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B"
 
-#include "../../math/pow/pow.hpp"
+#include "../../math/pow.hpp"
 
 int main() {
   int m, n;

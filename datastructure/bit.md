@@ -13,7 +13,7 @@ documentation_of: ./bit.hpp
   指定された値を加算する  
 - `T sum(int i)`  
   $O(\log(n))$  
-  [0, i)の総和を計算する  
+  `[0, i]`の総和を計算する  
 
 ## Warning
 
