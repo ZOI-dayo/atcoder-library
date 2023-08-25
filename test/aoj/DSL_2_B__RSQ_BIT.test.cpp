@@ -15,7 +15,7 @@ int main() {
       bit.add(x, y);
     } else {
       y--;
-      cout << bit.sum(y) - bit.sum(x-1) << endl;
+      cout << bit.sum(y) - bit.sum(x - 1) << endl;
     }
   }
 }
