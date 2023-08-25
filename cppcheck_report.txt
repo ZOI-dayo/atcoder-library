@@ -1,3 +1,15 @@
+datastructure/bit/bit.hpp:18:7: style:inconclusive: Technically the member function 'BIT < long long >::sum' can be const. [functionConst]
+  int sum(int i) {
+      ^
+datastructure/bit/bit.hpp:10:3: style: Struct 'BIT < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  BIT(T n) : _n(n), _data(n+1, 0) {}
+  ^
+datastructure/bit/bit.hpp:15:14: style: Opposite expression on both sides of '&'. [oppositeExpression]
+      i += i & -i;
+             ^
+datastructure/bit/bit.hpp:23:14: style: Opposite expression on both sides of '&'. [oppositeExpression]
+      i -= i & -i;
+             ^
 datastructure/segment-tree/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
