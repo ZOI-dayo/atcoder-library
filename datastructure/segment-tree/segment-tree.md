@@ -18,6 +18,6 @@ documentation_of: ./segment-tree.hpp
   $O(1)$  
   `seg[i]`を取得する  
 - `T query(int l, int r)`  
-  $O(\alpha(n))$  
+  $O(\log(n))$  
   [l, r)の範囲に対して`op`を実行する  
 
