@@ -10,7 +10,8 @@ vec<ll> dijkstra(WGraph &graph, int start) {
     q.pop();
     for (auto next : graph[current.location]) {
       ll next_cost = current.used_cost + next.cost;
-      if (way[next.id] <= next_cost) continue;
+      if (way[next.id] <= next_cost)
+        continue;
       way[next.id] = next_cost;
       q.push(WeightState(next.id, way[next.id]));
     }
