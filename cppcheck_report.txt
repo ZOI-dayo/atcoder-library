@@ -19,6 +19,12 @@ datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 
 datastructure/bit.hpp:11:3: style: Struct 'BIT < int >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   BIT(T n) : _n(n), _data(n + 1, 0) {}
   ^
+graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
+  bool contains(Point p) {
+       ^
+graph/template.hpp:59:3: style: Class 'Field' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  Field(vec<vec<char>> field) : field(field) {
+  ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
