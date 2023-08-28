@@ -16,3 +16,6 @@ template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 
 // --- 定数 ---
 constexpr ll INF = 1LL << 60;
+
+// --- デバッグ ---
+#define printd(x) cerr << #x << ": " << x << endl;
