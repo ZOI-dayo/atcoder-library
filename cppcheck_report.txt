@@ -34,6 +34,15 @@ graph/cycle.hpp:9:19: note: Assuming condition 'finished[next]' is false
 graph/cycle.hpp:11:25: note: Condition '!finished[next]' is always true
       if (seen[next] && !finished[next])
                         ^
+graph/lca.hpp:12:5: performance: Variable 'depth_data' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+    depth_data = depth(graph, root);
+    ^
+graph/lca.hpp:29:7: style:inconclusive: Technically the member function 'LCA::query' can be const. [functionConst]
+  int query(int u, int v){
+      ^
+graph/lca.hpp:11:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
+  ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
