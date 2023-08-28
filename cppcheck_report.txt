@@ -25,14 +25,14 @@ graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Fi
 graph/template.hpp:59:3: style: Class 'Field' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   Field(vec<vec<char>> field) : field(field) {
   ^
-graph/cycle.hpp:10:25: style: Condition '!finished[next]' is always true [knownConditionTrueFalse]
-      if (seen[next] && !finished[next]) return true;
+graph/cycle.hpp:11:25: style: Condition '!finished[next]' is always true [knownConditionTrueFalse]
+      if (seen[next] && !finished[next])
                         ^
-graph/cycle.hpp:9:18: note: Assuming condition 'finished[next]' is false
-      if(finished[next]) continue;
-                 ^
-graph/cycle.hpp:10:25: note: Condition '!finished[next]' is always true
-      if (seen[next] && !finished[next]) return true;
+graph/cycle.hpp:9:19: note: Assuming condition 'finished[next]' is false
+      if (finished[next])
+                  ^
+graph/cycle.hpp:11:25: note: Condition '!finished[next]' is always true
+      if (seen[next] && !finished[next])
                         ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
