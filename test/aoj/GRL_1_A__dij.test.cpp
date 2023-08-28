@@ -12,7 +12,7 @@ int main() {
     cin >> s >> t >> d;
     graph[s].emplace_back(WeightedNode(t, d));
   }
-  auto result = priority_bfs(graph, r);
+  auto result = dijkstra(graph, r);
   for (auto cost : result) {
     if (cost == INF) {
       cout << "INF" << endl;
