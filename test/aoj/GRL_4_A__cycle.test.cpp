@@ -13,8 +13,6 @@ int main() {
     graph[s].emplace_back(t);
   }
   bool result = false;
-  rep(i, V) {
-    result |= has_cycle(graph, i);
-  }
+  rep(i, V) { result |= has_cycle(graph, i); }
   cout << result << endl;
 }
