@@ -22,7 +22,7 @@ datastructure/bit.hpp:11:3: style: Struct 'BIT < int >' has a constructor with 1
 graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
   bool contains(Point p) { return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H; }
        ^
-graph/template.hpp:59:3: style: Class 'Field' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+graph/template.hpp:59:3: style: Struct 'Field' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   Field(vec<vec<char>> field) : field(field) {
   ^
 graph/cycle.hpp:11:25: style: Condition '!finished[next]' is always true [knownConditionTrueFalse]
@@ -34,13 +34,13 @@ graph/cycle.hpp:9:19: note: Assuming condition 'finished[next]' is false
 graph/cycle.hpp:11:25: note: Condition '!finished[next]' is always true
       if (seen[next] && !finished[next])
                         ^
-graph/lca.hpp:12:5: performance: Variable 'depth_data' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+graph/lca.hpp:13:5: performance: Variable 'depth_data' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     depth_data = depth(graph, root);
     ^
-graph/lca.hpp:29:7: style:inconclusive: Technically the member function 'LCA::query' can be const. [functionConst]
-  int query(int u, int v){
+graph/lca.hpp:32:7: style:inconclusive: Technically the member function 'LCA::query' can be const. [functionConst]
+  int query(int u, int v) {
       ^
-graph/lca.hpp:11:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+graph/lca.hpp:12:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
   ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
