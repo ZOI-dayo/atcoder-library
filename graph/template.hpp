@@ -52,7 +52,7 @@ public:
   Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
 };
 
-class Field {
+struct Field {
 public:
   vec<vec<char>> field;
   int H, W;

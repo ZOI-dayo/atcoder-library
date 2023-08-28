@@ -21,16 +21,3 @@ vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
   return result;
 }
 
-vec<TreeNodeInfo> depth(WGraph &graph, int root = 0) {
-  vec<TreeNodeInfo> result(graph.size(), TreeNodeInfo(-1, -1));
-  auto dfs = [&](auto fn, int index, int parent, int cost) -> void {
-    result[index] = TreeNodeInfo(parent, result[parent].depth + cost);
-    for (auto next : graph[index]) {
-      if (result[next.id].depth != -1)
-        continue;
-      fn(fn, next.id, index, next.cost);
-    }
-  };
-  dfs(dfs, root, 0, -1);
-  return result;
-}
