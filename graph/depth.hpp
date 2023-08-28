@@ -20,4 +20,3 @@ vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
   dfs(dfs, root, 0);
   return result;
 }
-
