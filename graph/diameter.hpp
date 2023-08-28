@@ -9,7 +9,8 @@ int diameter(Graph &graph, int start = 0) {
     seen[index] = 1;
 
     for (auto next : graph[index]) {
-      if (seen[next]) continue;
+      if (seen[next])
+        continue;
       auto next_result = fn(fn, next);
       next_result.first += 1;
       result = max(result, next_result);
@@ -31,7 +32,8 @@ int diameter(WGraph &graph, int start = 0) {
     seen[index] = 1;
 
     for (auto next : graph[index]) {
-      if (seen[next.id]) continue;
+      if (seen[next.id])
+        continue;
       auto next_result = fn(fn, next.id);
       next_result.first += next.cost;
       result = max(result, next_result);
