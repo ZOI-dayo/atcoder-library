@@ -1,9 +1,9 @@
-datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT::sum' can be const. [functionConst]
+datastructure/bit.hpp:5:23: style: The struct 'BIT < int64_t >' does not have a constructor although it has private member variables. [noConstructor]
+template <typename T> struct BIT {
+                      ^
+datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT < int64_t >::sum' can be const. [functionConst]
   int sum(int i) {
       ^
-datastructure/bit.hpp:11:3: style: Struct 'BIT' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  BIT(T n) : _n(n), _data(n + 1, 0) {}
-  ^
 datastructure/segment-tree.hpp:34:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     _n = 1;
     ^
