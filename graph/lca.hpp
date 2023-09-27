@@ -15,7 +15,7 @@ public:
     int logn = 1;
     while ((1 << logn) < n)
       logn++;
-    parent = vector(logn, vector(n, -1));
+    parent = vector(logn, vector(n, -1LL));
     for (int i = 0; i < n; i++)
       parent[0][i] = depth_data[i].parent;
     // ダブリング

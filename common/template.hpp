@@ -19,7 +19,7 @@ template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 // --- 制御マクロ ---
 #define rep(i, n) for (ll i = 0; i < n; ++i)
 #define all(v) begin(v), end(v)
-#define bit(n) (1LL << (n))
+#define BIT(n) (1LL << (n))
 #define MAX(type) numeric_limits<type>::max()
 #define MIN(type) numeric_limits<type>::min()
 #define yes cout << "Yes" << endl
