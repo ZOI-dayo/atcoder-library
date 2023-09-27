@@ -72,3 +72,19 @@ public:
     return os << a._val;
   }
 };
+
+using modint998 = modint<998244353>;
+
+template <int MOD>
+ostream &operator<<(ostream &os, const modint<MOD> &i) {
+  os << i.val();
+  return os;
+}
+
+template <int MOD>
+ostream &operator<<(ostream &os, const vector<modint<MOD>> &v) {
+  for (int i = 0; i < (int)v.size(); i++) {
+    os << v[i].val() << (i + 1 != (int)v.size() ? " " : "");
+  }
+  return os;
+}

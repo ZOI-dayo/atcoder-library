@@ -2,6 +2,18 @@
 
 #include "../common/template.hpp"
 
+// 繰り返し2乗法
+ll pow(ll a, int n) {
+  ll ans = 1;
+  while(n > 0) {
+    if(n & 1)
+      ans *= a;
+    a *= a;
+    n >>= 1;
+  }
+  return ans;
+}
+
 ll mod_pow(ll a, int n, ll mod) {
   int ans = 1;
   while (n > 0) {
@@ -13,4 +25,3 @@ ll mod_pow(ll a, int n, ll mod) {
   return ans;
 }
 
-ll pow(ll a, int n) { return mod_pow(a, n, numeric_limits<ll>::max()); }
