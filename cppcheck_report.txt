@@ -1,39 +1,21 @@
-datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT < long long >::sum' can be const. [functionConst]
+datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT::sum' can be const. [functionConst]
   int sum(int i) {
       ^
-datastructure/bit.hpp:11:3: style: Struct 'BIT < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+datastructure/bit.hpp:11:3: style: Struct 'BIT' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   BIT(T n) : _n(n), _data(n + 1, 0) {}
   ^
-datastructure/bit.hpp:16:14: style: Opposite expression on both sides of '&'. [oppositeExpression]
-      i += i & -i;
-             ^
-datastructure/bit.hpp:24:14: style: Opposite expression on both sides of '&'. [oppositeExpression]
-      i -= i & -i;
-             ^
-datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int >::get' can be const. [functionConst]
+datastructure/segment-tree.hpp:34:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+    _n = 1;
+    ^
+datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int64_t >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
-datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT < int >::sum' can be const. [functionConst]
-  int sum(int i) {
-      ^
-datastructure/bit.hpp:11:3: style: Struct 'BIT < int >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  BIT(T n) : _n(n), _data(n + 1, 0) {}
-  ^
 graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
   bool contains(Point p) { return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H; }
        ^
 graph/template.hpp:59:3: style: Struct 'Field' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   Field(vec<vec<char>> field) : field(field) {
   ^
-graph/cycle.hpp:11:25: style: Condition '!finished[next]' is always true [knownConditionTrueFalse]
-      if (seen[next] && !finished[next])
-                        ^
-graph/cycle.hpp:9:19: note: Assuming condition 'finished[next]' is false
-      if (finished[next])
-                  ^
-graph/cycle.hpp:11:25: note: Condition '!finished[next]' is always true
-      if (seen[next] && !finished[next])
-                        ^
 graph/lca.hpp:13:5: performance: Variable 'depth_data' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     depth_data = depth(graph, root);
     ^
@@ -43,8 +25,5 @@ graph/lca.hpp:32:7: style:inconclusive: Technically the member function 'LCA::qu
 graph/lca.hpp:12:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
   ^
-datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
-  T get(int i) { return _data[i + _n - 1]; }
-    ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
