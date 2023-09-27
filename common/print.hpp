@@ -5,28 +5,36 @@ using namespace std;
 
 // ---------------
 // ----- TOC -----
-template <typename T1, typename T2> ostream &operator<<(ostream &os, const pair<T1, T2> &p);
-template <typename T1, typename T2> istream &operator>>(istream &is, pair<T1, T2> &p);
+template <typename T1, typename T2>
+ostream &operator<<(ostream &os, const pair<T1, T2> &p);
+template <typename T1, typename T2>
+istream &operator>>(istream &is, pair<T1, T2> &p);
 template <typename T> ostream &operator<<(ostream &os, const vector<T> &v);
-template <typename T> ostream &operator<<(ostream &os, const vector<vector<T>> &v);
-template <typename T> ostream &operator<<(ostream &os, const vector<vector<vector<T>>> &v);
+template <typename T>
+ostream &operator<<(ostream &os, const vector<vector<T>> &v);
+template <typename T>
+ostream &operator<<(ostream &os, const vector<vector<vector<T>>> &v);
 template <typename T> istream &operator>>(istream &is, vector<T> &v);
-template <typename T, typename S> ostream &operator<<(ostream &os, const map<T, S> &mp);
+template <typename T, typename S>
+ostream &operator<<(ostream &os, const map<T, S> &mp);
 template <typename T> ostream &operator<<(ostream &os, const set<T> &st);
 template <typename T> ostream &operator<<(ostream &os, const multiset<T> &st);
 template <typename T> ostream &operator<<(ostream &os, queue<T> q);
 template <typename T> ostream &operator<<(ostream &os, deque<T> q);
 template <typename T> ostream &operator<<(ostream &os, stack<T> st);
-template <class T, class Container, class Compare> ostream &operator<<(ostream &os, priority_queue<T, Container, Compare> pq);
+template <class T, class Container, class Compare>
+ostream &operator<<(ostream &os, priority_queue<T, Container, Compare> pq);
 // --- END TOC ---
 // ---------------
 
-template <typename T1, typename T2> ostream &operator<<(ostream &os, const pair<T1, T2> &p) {
+template <typename T1, typename T2>
+ostream &operator<<(ostream &os, const pair<T1, T2> &p) {
   os << "(" << p.first << "," << p.second << ")";
   return os;
 }
 
-template <typename T1, typename T2> istream &operator>>(istream &is, pair<T1, T2> &p) {
+template <typename T1, typename T2>
+istream &operator>>(istream &is, pair<T1, T2> &p) {
   is >> p.first >> p.second;
   return is;
 }
@@ -39,14 +47,16 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
   return os;
 }
 
-template <typename T> ostream &operator<<(ostream &os, const vector<vector<T>> &v) {
+template <typename T>
+ostream &operator<<(ostream &os, const vector<vector<T>> &v) {
   for (int i = 0; i < (int)v.size(); i++) {
     os << v[i] << endl;
   }
   return os;
 }
 
-template <typename T> ostream &operator<<(ostream &os, const vector<vector<vector<T>>> &v) {
+template <typename T>
+ostream &operator<<(ostream &os, const vector<vector<vector<T>>> &v) {
   for (int i = 0; i < (int)v.size(); i++) {
     os << "i = " << i << endl;
     os << v[i];
@@ -55,11 +65,13 @@ template <typename T> ostream &operator<<(ostream &os, const vector<vector<vecto
 }
 
 template <typename T> istream &operator>>(istream &is, vector<T> &v) {
-  for (T &in : v) is >> in;
+  for (T &in : v)
+    is >> in;
   return is;
 }
 
-template <typename T, typename S> ostream &operator<<(ostream &os, const map<T, S> &mp) {
+template <typename T, typename S>
+ostream &operator<<(ostream &os, const map<T, S> &mp) {
   for (auto &[key, val] : mp) {
     os << key << ":" << val << " ";
   }
@@ -109,7 +121,8 @@ template <typename T> ostream &operator<<(ostream &os, stack<T> st) {
   return os;
 }
 
-template <class T, class Container, class Compare> ostream &operator<<(ostream &os, priority_queue<T, Container, Compare> pq) {
+template <class T, class Container, class Compare>
+ostream &operator<<(ostream &os, priority_queue<T, Container, Compare> pq) {
   while (pq.size()) {
     os << pq.top() << " ";
     pq.pop();

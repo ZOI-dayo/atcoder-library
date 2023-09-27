@@ -7,19 +7,18 @@ public:
   Point() {}
   Point(int x, int y) : x(x), y(y) {}
 
-  const Point operator+(const Point& rhs) const {
+  const Point operator+(const Point &rhs) const {
     return Point(x + rhs.x, y + rhs.y);
   }
-  const Point operator-(const Point& rhs) const {
+  const Point operator-(const Point &rhs) const {
     return Point(x - rhs.x, y - rhs.y);
   }
 };
-ostream& operator<<(ostream& os, const Point &p) {
+ostream &operator<<(ostream &os, const Point &p) {
   os << p.x << p.y;
   return os;
 }
-istream& operator>>(istream &is, Point &p) {
+istream &operator>>(istream &is, Point &p) {
   is >> p.x >> p.y;
   return is;
 }
-

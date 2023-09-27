@@ -5,8 +5,8 @@
 // 繰り返し2乗法
 ll pow(ll a, int n) {
   ll ans = 1;
-  while(n > 0) {
-    if(n & 1)
+  while (n > 0) {
+    if (n & 1)
       ans *= a;
     a *= a;
     n >>= 1;
@@ -24,4 +24,3 @@ ll mod_pow(ll a, int n, ll mod) {
   }
   return ans;
 }
-

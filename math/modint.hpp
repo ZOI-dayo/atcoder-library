@@ -75,8 +75,7 @@ public:
 
 using modint998 = modint<998244353>;
 
-template <int MOD>
-ostream &operator<<(ostream &os, const modint<MOD> &i) {
+template <int MOD> ostream &operator<<(ostream &os, const modint<MOD> &i) {
   os << i.val();
   return os;
 }
