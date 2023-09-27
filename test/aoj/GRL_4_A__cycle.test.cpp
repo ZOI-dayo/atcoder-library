@@ -3,7 +3,7 @@
 
 #include "../../graph/cycle.hpp"
 
-int main() {
+signed main() {
   int V, E;
   cin >> V >> E;
   Graph graph(V);

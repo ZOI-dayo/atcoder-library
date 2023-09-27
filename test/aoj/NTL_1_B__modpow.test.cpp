@@ -3,7 +3,7 @@
 
 #include "../../math/pow.hpp"
 
-int main() {
+signed main() {
   int m, n;
   cin >> m >> n;
   cout << mod_pow(m, n, 1'000'000'007) << endl;

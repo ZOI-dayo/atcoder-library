@@ -4,7 +4,7 @@
 #include "../../datastructure/bit.hpp"
 
 // 転倒数
-int main() {
+signed main() {
   int n;
   cin >> n;
   vec<int> a(n);

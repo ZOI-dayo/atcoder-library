@@ -3,7 +3,7 @@
 
 #include "../../graph/lca.hpp"
 
-int main() {
+signed main() {
   int n;
   cin >> n;
   Graph graph(n);

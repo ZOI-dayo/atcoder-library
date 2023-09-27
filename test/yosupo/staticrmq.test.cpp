@@ -2,7 +2,7 @@
 
 #include "../../datastructure/segment-tree.hpp"
 
-int main() {
+signed main() {
   int N, Q;
   cin >> N >> Q;
 

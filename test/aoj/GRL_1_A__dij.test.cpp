@@ -3,7 +3,7 @@
 
 #include "../../graph/dijkstra.hpp"
 
-int main() {
+signed main() {
   int V, E, r;
   cin >> V >> E >> r;
   WGraph graph(V);

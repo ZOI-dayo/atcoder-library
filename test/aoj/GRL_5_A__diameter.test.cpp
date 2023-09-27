@@ -3,7 +3,7 @@
 
 #include "../../graph/diameter.hpp"
 
-int main() {
+signed main() {
   int n;
   cin >> n;
   WGraph graph(n);

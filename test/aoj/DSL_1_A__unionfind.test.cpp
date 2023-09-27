@@ -3,7 +3,7 @@
 
 #include "../../datastructure/union-find.hpp"
 
-int main() {
+signed main() {
   int n, q;
   cin >> n >> q;
   UF uf(n);

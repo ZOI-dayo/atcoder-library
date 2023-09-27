@@ -3,7 +3,7 @@
 
 #include "../../datastructure/bit.hpp"
 
-int main() {
+signed main() {
   int n, q;
   cin >> n >> q;
   BIT<int> bit(n);

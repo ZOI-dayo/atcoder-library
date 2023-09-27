@@ -2,7 +2,7 @@
 
 #include "../../datastructure/union-find.hpp"
 
-int main() {
+signed main() {
   int N, Q;
   cin >> N >> Q;
 
