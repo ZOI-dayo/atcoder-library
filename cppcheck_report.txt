@@ -7,6 +7,9 @@ datastructure/bit.hpp:11:3: style: Struct 'BIT' has a constructor with 1 argumen
 datastructure/segment-tree.hpp:34:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     _n = 1;
     ^
+datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int32_t >::get' can be const. [functionConst]
+  T get(int i) { return _data[i + _n - 1]; }
+    ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int64_t >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
