@@ -1,16 +1,16 @@
-datastructure/bit.hpp:5:23: style: The struct 'BIT < int64_t >' does not have a constructor although it has private member variables. [noConstructor]
-template <typename T> struct BIT {
-                      ^
-datastructure/bit.hpp:19:7: style:inconclusive: Technically the member function 'BIT < int64_t >::sum' can be const. [functionConst]
+datastructure/fenwick-tree.hpp:19:7: style:inconclusive: Technically the member function 'FenwickTree < long long >::sum' can be const. [functionConst]
   int sum(int i) {
       ^
+datastructure/fenwick-tree.hpp:11:3: style: Struct 'FenwickTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
+  ^
 datastructure/segment-tree.hpp:34:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     _n = 1;
     ^
 datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int32_t >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
-datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < int64_t >::get' can be const. [functionConst]
+datastructure/segment-tree.hpp:50:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n - 1]; }
     ^
 graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
