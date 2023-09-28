@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../common/template.hpp"
+#include "pow.hpp"
 
 // ミラーラビン素数判定法
 // O(k log^3 n)
@@ -26,7 +27,7 @@ bool is_prime(const uint64_t &N) {
     if (w % N == 0)
       continue;
     uint64_t t = d;
-    uint64_t y = pow_mod(w, t, N);
+    uint64_t y = mod_pow(w, t, N);
     while (t != N - 1 && y != e && y != rev)
       y = y * y % N, t *= 2;
     if (y != rev && t % 2 == 0)

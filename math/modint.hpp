@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../common/template.hpp"
-#include "../pow.hpp"
+#include "./pow.hpp"
 
 template <int MOD> struct modint {
 private:
@@ -30,12 +30,12 @@ public:
   // op
   modint &operator++() { return *this += 1; }
   modint &operator--() { return *this -= 1; }
-  modint operator++(int) {
+  modint operator++(int32_t) {
     modint tmp = *this;
     ++*this;
     return tmp;
   }
-  modint operator--(int) {
+  modint operator--(int32_t) {
     modint tmp = *this;
     --*this;
     return tmp;
