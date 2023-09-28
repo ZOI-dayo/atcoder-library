@@ -2,13 +2,13 @@
 
 #include "../common/template.hpp"
 
-template <typename T> struct BIT {
+template <typename T> struct FenwickTree {
 private:
   T _n;
   vec<T> _data;
 
 public:
-  BIT(T n) : _n(n), _data(n + 1, 0) {}
+  FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
   void add(int i, T val) {
     i++;
     while (i <= _n) {

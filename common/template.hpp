@@ -7,7 +7,7 @@
 using namespace std;
 
 // --- 型エイリアス ---
-using ll = int64_t;
+using ll = long long;
 template <typename T> using vec = vector<T>;
 template <typename T> using vvec = vector<vector<T>>;
 template <typename T> using p_queue = priority_queue<T>;

@@ -1,6 +1,6 @@
 ---
-title: BIT
-documentation_of: ./bit.hpp
+title: Fenwick Tree
+documentation_of: ./fenwick-tree.hpp
 ---
 
 ## Method

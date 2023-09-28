@@ -1,12 +1,12 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B"
 
-#include "../../datastructure/bit.hpp"
+#include "../../datastructure/fenwick-tree.hpp"
 
 signed main() {
   int n, q;
   cin >> n >> q;
-  BIT<int> bit(n);
+  FenwickTree<int> bit(n);
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;
