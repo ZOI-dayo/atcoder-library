@@ -33,6 +33,7 @@ template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 constexpr ll INF = 1LL << 60;
 
 // --- デバッグ ---
+#ifndef ONLINE_JUDGE
 // #define printd(x) cerr << #x << ": " << x << endl;
 const string _TERM_ESC = "\033";
 const string _TERM_BOLD = _TERM_ESC + "[1m";
@@ -43,10 +44,18 @@ const string _TERM_BACK_RED = _TERM_ESC + "[41m";
 const string _TERM_BACK_RESET = _TERM_ESC + "[49m";
 
 #define line_debug() cerr << "line: " << __LINE__ << endl;
-#define coutd cerr << "[debug] "
+#define coutd(x) cerr << "[debug] " << x;
 #define printd(x)                                                              \
   cerr << _TERM_BOLD << _TERM_BACK_RED << "[debug] " << #x << " = " << x       \
        << _TERM_BACK_RESET << _TERM_DECO_RESET << endl;
+
+#else
+
+#define line_debug() ;
+#define coutd(x) ;
+#define printd(x) ;
+
+#endif
 
 // --- Utils ---
 
@@ -87,5 +96,5 @@ bool is_contained(int x, int y, int z) { return x <= y && y < z; }
 
 // 頂点(x, y)が範囲に含まれるか
 bool is_contained(int H, int W, int x, int y) {
-  return is_increasing(0, x, H) && is_increasing(0, y, W);
+  return is_contained(0, x, H) && is_contained(0, y, W);
 }
