@@ -47,8 +47,7 @@ public:
 };
 template <typename T> using Segtree = SegmentTree<T>;
 
-template <typename T>
-Segtree<T> RMQSeg(int n) {
+template <typename T> Segtree<T> RMQSeg(int n) {
   return SegmentTree<T>(n, numeric_limits<T>::max(),
                         [](T a, T b) { return min(a, b); });
 }

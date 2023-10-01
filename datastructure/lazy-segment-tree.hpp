@@ -24,8 +24,8 @@ private:
       return e;
     if (l <= a && b <= r)
       return _data[k];
-    T l_val = _query(l, r, (k<<1) + 1, a, (a + b)>>1);
-    T r_val = _query(l, r, (k<<1) + 2, (a + b)>>1, b);
+    T l_val = _query(l, r, (k << 1) + 1, a, (a + b) >> 1);
+    T r_val = _query(l, r, (k << 1) + 2, (a + b) >> 1, b);
     return op(l_val, r_val);
   }
 
@@ -35,26 +35,31 @@ private:
       _lazy[k] = merge(f, _lazy[k]);
       eval(k);
     } else if (a < r && l < b) { // 一部区間が被る
-      _set(l, r, f, (k<<1) + 1, a, (a + b)>>1);
-      _set(l, r, f, (k<<1) + 2, (a + b)>>1, b);
-      _data[k] = op(_data[(k<<1) + 1], _data[(k<<1) + 2]);
+      _set(l, r, f, (k << 1) + 1, a, (a + b) >> 1);
+      _set(l, r, f, (k << 1) + 2, (a + b) >> 1, b);
+      _data[k] = op(_data[(k << 1) + 1], _data[(k << 1) + 2]);
     }
   }
 
 public:
-  // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update: ノードの更新(fn,val->val), merge: 操作aを、操作bがすでに行われている状態に適用したときの操作
-  LazySegmentTree(int n, T e, F id, function<T(T, T)> op, function<T(F, T)> update, function<F(F, F)> merge) : e(e), id(id), op(op), update(update), merge(merge) {
+  // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
+  // ノードの更新(fn,val->val), merge:
+  // 操作aを、操作bがすでに行われている状態に適用したときの操作
+  LazySegmentTree(int n, T e, F id, function<T(T, T)> op,
+                  function<T(F, T)> update, function<F(F, F)> merge)
+      : e(e), id(id), op(op), update(update), merge(merge) {
     _n = 1;
     while (_n < n)
-      _n<<=1;
-    _data = vec<T>(_n<<1, e);
-    _lazy = vec<T>(_n<<1, id);
+      _n <<= 1;
+    _data = vec<T>(_n << 1, e);
+    _lazy = vec<T>(_n << 1, id);
   }
 
   // 自分の遅延を解消して子に伝搬する
   inline void eval(int k) {
-    if (_lazy[k] == id) return;
-    if(k < _n-1) {
+    if (_lazy[k] == id)
+      return;
+    if (k < _n - 1) {
       _lazy[(k << 1) + 1] = merge(_lazy[k], _lazy[(k << 1) + 1]);
       _lazy[(k << 1) + 2] = merge(_lazy[k], _lazy[(k << 1) + 2]);
     }
@@ -77,10 +82,8 @@ public:
 };
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
 
-template <typename T, typename F>
-LazySegtree<T, F> RMQLazySeg(int n) {
-  return LazySegmentTree<T,F>(n, numeric_limits<T>::max(), 0,
-                        [](T a, T b) { return min(a, b); },
-                              [](F a, T b) { return b+a; },
-                              [](F a, F b) { return b+a; });
+template <typename T, typename F> LazySegtree<T, F> RMQLazySeg(int n) {
+  return LazySegmentTree<T, F>(
+      n, numeric_limits<T>::max(), 0, [](T a, T b) { return min(a, b); },
+      [](F a, T b) { return b + a; }, [](F a, F b) { return b + a; });
 }
