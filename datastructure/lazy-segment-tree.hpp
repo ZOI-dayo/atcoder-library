@@ -2,6 +2,8 @@
 
 #include "../common/template.hpp"
 
+// 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
+
 // T : Nodeの型, F : 操作情報
 template <typename T, typename F> struct LazySegmentTree {
 private:
@@ -69,15 +71,9 @@ public:
 
   inline void set(int l, int r, F f) {
     _set(l, r, f, 0, 0, _n);
-    // printd(_data);
-    // printd(_lazy);
   }
-  // T get(int i) { return _data[i + _n - 1]; }
   inline T query(int l, int r) {
     return _query(l, r, 0, 0, _n);
-    // line_debug();
-    // printd(_data);
-    // printd(_lazy);
   }
 };
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
