@@ -65,7 +65,8 @@ public:
     // また、i==0となってしまうなら、i==1(頂点)であるので、終了
     // i<<1は、(更新後の)iの左の子
     // i<<1|1は、(更新後の)iの右の子 (+1を|1で表現)
-    while (i >>= 1) _data[i] = op(_data[i<<1], _data[i<<1|1]);
+    while (i >>= 1)
+      _data[i] = op(_data[i << 1], _data[i << 1 | 1]);
   }
   T get(int i) { return _data[i + _n]; }
   T query(int l, int r) { return _query(l, r, 1); }
