@@ -2,7 +2,6 @@
 
 #include "../common/template.hpp"
 
-// Range Min Query
 template <typename T> struct SegmentTree {
 private:
   // 単位元 デフォルトでは、min(a, e) = min(e, a) = a
@@ -26,10 +25,6 @@ private:
   }
 
 public:
-  explicit SegmentTree(int n)
-      : SegmentTree(n, numeric_limits<T>::max(),
-                    [](T a, T b) { return min(a, b); }) {}
-
   SegmentTree(int n, T e, function<T(T, T)> op) : e(e), op(op) {
     _n = 1;
     while (_n < n)
@@ -51,3 +46,9 @@ public:
   T query(int l, int r) { return _query(l, r, 0, 0, _n); }
 };
 template <typename T> using Segtree = SegmentTree<T>;
+
+template <typename T>
+Segtree<T> RMQSeg(int n) {
+  return SegmentTree<T>(n, numeric_limits<T>::max(),
+                        [](T a, T b) { return min(a, b); });
+}
