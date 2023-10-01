@@ -6,7 +6,7 @@ signed main() {
   int N, Q;
   cin >> N >> Q;
 
-  Segtree<int> seg(N);
+  Segtree<int> seg = RMQSeg<int>(N);
   rep(i, N) {
     int a;
     cin >> a;

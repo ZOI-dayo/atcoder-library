@@ -89,10 +89,6 @@ public:
     }
   }
 
-<<<<<<< HEAD
-  inline void set(int l, int r, F f) { _set(l, r, f, 0, 0, _n); }
-  inline T query(int l, int r) { return _query(l, r, 0, 0, _n); }
-=======
   // [l, r)の区間に対するクエリを処理する
   // kはSegTree上のindex
   inline T query(int l, int r) {
@@ -127,7 +123,6 @@ public:
     // line_debug();
     return op(vl, vr);
   }
->>>>>>> b180d65 (LazySegTreeを非再帰に変更)
 };
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
 
