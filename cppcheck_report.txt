@@ -1,8 +1,8 @@
 datastructure/fenwick-tree.hpp:19:7: style:inconclusive: Technically the member function 'FenwickTree < long long >::sum' can be const. [functionConst]
   int sum(int i) {
       ^
-common/template.hpp:106:3: style: Class 'AccumulateVec' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  AccumulateVec(vec<T> &v) : data(v.size()) {
+common/template.hpp:106:3: style: Struct 'vec_accumulate' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  vec_accumulate(vec<T> &v) : data(v.size()) {
   ^
 datastructure/fenwick-tree.hpp:11:3: style: Struct 'FenwickTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
@@ -15,12 +15,6 @@ datastructure/segment-tree.hpp:71:5: style:inconclusive: Technically the member 
     ^
 datastructure/segment-tree.hpp:71:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n]; }
-    ^
-datastructure/lazy-segment-tree.hpp:30:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
-    _n = 1;
-    ^
-datastructure/lazy-segment-tree.hpp:31:5: performance: Variable '_height' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
-    _height = 1;
     ^
 graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
   bool contains(Point p) { return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H; }
