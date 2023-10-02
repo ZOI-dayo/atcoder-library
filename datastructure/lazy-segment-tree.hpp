@@ -15,8 +15,8 @@ private:
   const function<T(F, T)> update;
   const function<F(F, F)> merge;
   // 要素数
-  int _n;
-  int _height;
+  int32_t _n;
+  int32_t _height;
   // SefTreeのデータ
   vec<T> _data, _lazy;
 
@@ -24,8 +24,8 @@ public:
   // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
   // ノードの更新(fn,val->val), merge:
   // 操作aを、操作bがすでに行われている状態に適用したときの操作
-  LazySegmentTree(int n, T e, F id, function<T(T, T)> op,
-                  function<T(F, T)> update, function<F(F, F)> merge)
+  inline LazySegmentTree(const int32_t n, const T e, const F id, const function<T(T, T)> op,
+                  const function<T(F, T)> update, const function<F(F, F)> merge)
       : e(e), id(id), op(op), update(update), merge(merge) {
     _n = 1;
     _height = 1;
@@ -36,7 +36,7 @@ public:
   }
 
   // 自分の遅延を解消して子に伝搬する
-  inline void eval(int k) {
+  inline void eval(int32_t k) {
     if (_lazy[k] == id)
       return;
     _data[k] = update(_lazy[k], _data[k]);
@@ -47,7 +47,7 @@ public:
     _lazy[k] = id;
   }
 
-  inline void set(int l, int r, F f) {
+  inline void set(int32_t l, int32_t r, F f) {
     /*
     eval(k);
     if (l <= a && b <= r) { // 完全に内側
@@ -60,10 +60,10 @@ public:
     }
     */
     // a, bはseg-index [a,b]
-    int a = l + _n, b = r + _n - 1;
+    int32_t a = l + _n, b = r + _n - 1;
 
     // 上から下へとlazyを伝搬させる
-    for (int i = _height; 0 < i; --i)
+    for (int32_t i = _height; 0 < i; --i)
       eval(a >> i), eval(b >> i);
     // bを [a, b]から[a, b)にする
     for (b++; a < b; a >>= 1, b >>= 1) {
@@ -91,7 +91,7 @@ public:
 
   // [l, r)の区間に対するクエリを処理する
   // kはSegTree上のindex
-  inline T query(int l, int r) {
+  inline T query(int32_t l, int32_t r) {
     // ↓再帰
     /*
     eval(k);
@@ -105,14 +105,14 @@ public:
     */
 
     // a, bはseg-index [a,b]
-    int a = l + _n, b = r + _n - 1;
+    int32_t a = l + _n, b = r + _n - 1;
     // 上から下へとlazyを伝搬させる
-    for (int i = _height; 0 <= i; --i)
+    for (int32_t i = _height; 0 <= i; --i)
       eval(a >> i), eval(b >> i);
     // line_debug();
     // printd(_data);
     // printd(_lazy);
-    int vl = e, vr = e;
+    T vl = e, vr = e;
     // bを [a, b]から[a, b)にする
     for (b++; a < b; a >>= 1, b >>= 1) {
       if (a & 1)
@@ -126,7 +126,7 @@ public:
 };
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
 
-template <typename T, typename F> LazySegtree<T, F> RMQLazySeg(int n) {
+template <typename T, typename F> inline LazySegtree<T, F> RMQLazySeg(int n)  {
   return LazySegmentTree<T, F>(
       n, numeric_limits<T>::max(), 0, [](T a, T b) { return min(a, b); },
       [](F a, T b) { return b + a; }, [](F a, F b) { return b + a; });
