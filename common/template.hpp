@@ -98,3 +98,20 @@ bool is_contained(int x, int y, int z) { return x <= y && y < z; }
 bool is_contained(int H, int W, int x, int y) {
   return is_contained(0, x, H) && is_contained(0, y, W);
 }
+
+// vector継承にする?
+template <typename T>
+class AccumulateVec {
+  vec<T> data;
+  AccumulateVec(vec<T> &v) : data(v.size()) {
+    assert(v.size() > 0);
+    data[0] = v[0];
+    for(int i=1; i<v.size(); ++i) data[i] = data[i-1] + v[i];
+  }
+
+  T &operator[](int i) {
+    assert(-1 <= i && i < data.size());
+    if(i == -1) return T();
+    return data[i];
+  }
+};
