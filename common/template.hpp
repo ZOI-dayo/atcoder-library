@@ -100,8 +100,7 @@ bool is_contained(int H, int W, int x, int y) {
 }
 
 // vector継承にする?
-template <typename T>
-struct vec_accumulate : vec<T> {
+template <typename T> struct vec_accumulate : vec<T> {
   vec<T> data;
   vec_accumulate(vec<T> &v) : data(v.size()) {
     assert(v.size() > 0);
@@ -112,8 +111,8 @@ struct vec_accumulate : vec<T> {
 
   T &operator[](int i) {
     assert(is_contained(-1, i, data.size()));
-    if(i == -1) return T();
+    if (i == -1)
+      return T();
     return data[i];
   }
 };
-

@@ -24,8 +24,10 @@ public:
   // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
   // ノードの更新(fn,val->val), merge:
   // 操作aを、操作bがすでに行われている状態に適用したときの操作
-  inline LazySegmentTree(const int32_t n, const T e, const F id, const function<T(T, T)> op,
-                  const function<T(F, T)> update, const function<F(F, F)> merge)
+  inline LazySegmentTree(const int32_t n, const T e, const F id,
+                         const function<T(T, T)> op,
+                         const function<T(F, T)> update,
+                         const function<F(F, F)> merge)
       : e(e), id(id), op(op), update(update), merge(merge) {
     _n = 1;
     _height = 1;
@@ -126,7 +128,7 @@ public:
 };
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
 
-template <typename T, typename F> inline LazySegtree<T, F> RMQLazySeg(int n)  {
+template <typename T, typename F> inline LazySegtree<T, F> RMQLazySeg(int n) {
   return LazySegmentTree<T, F>(
       n, numeric_limits<T>::max(), 0, [](T a, T b) { return min(a, b); },
       [](F a, T b) { return b + a; }, [](F a, F b) { return b + a; });
