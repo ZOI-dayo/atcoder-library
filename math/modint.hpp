@@ -12,7 +12,7 @@ public:
   modint(int val) : _val(val) {}
 
   // logic
-  int val() { return _val; }
+  int val() const { return _val; }
   int inv() {
     int a = _val, b = MOD, u = 1, v = 0, t;
     while (b > 0) {
@@ -70,6 +70,9 @@ public:
   // io
   friend ostream &operator<<(ostream &os, const modint &a) {
     return os << a._val;
+  }
+  friend istream &operator>>(istream &os, modint &a) {
+    return os >> a._val;
   }
 };
 

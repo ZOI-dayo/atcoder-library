@@ -116,3 +116,10 @@ template <typename T> struct vec_accumulate : vec<T> {
     return data[i];
   }
 };
+
+void io_setup() {
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  cout << std::fixed << std::setprecision(15);
+}
+

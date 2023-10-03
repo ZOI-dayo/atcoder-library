@@ -18,12 +18,14 @@ private:
   int32_t _n;
   int32_t _height;
   // SefTreeのデータ
-  vec<T> _data, _lazy;
+  vec<T> _data;
+  vec<F> _lazy;
 
 public:
   // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
   // ノードの更新(fn,val->val), merge:
   // 操作aを、操作bがすでに行われている状態に適用したときの操作
+  // TODO: 2つの実装が別れているのをどうにかする
   inline LazySegmentTree(const int32_t n, const T e, const F id,
                          const function<T(T, T)> op,
                          const function<T(F, T)> update,
@@ -34,8 +36,24 @@ public:
     while (_n < n)
       _n <<= 1, _height++;
     _data = vec<T>(_n << 1, e);
-    _lazy = vec<T>(_n << 1, id);
+    _lazy = vec<F>(_n << 1, id);
   }
+  /*
+  inline LazySegmentTree(const T e, const F id,
+                         const function<T(T, T)> op,
+                         const function<T(F, T)> update,
+                         const function<F(F, F)> merge,
+                         vec<T> &v)
+      : e(e), id(id), op(op), update(update), merge(merge) {
+    _n = 1;
+    _height = 1;
+    while (_n < v.size())
+      _n <<= 1, _height++;
+    _data.resize(_n << 1, e);
+    for(int i=0; i<v.size(); ++i) _data[i + _n] = v[i];
+    _lazy = vec<F>(_n << 1, id);
+  }
+  */
 
   // 自分の遅延を解消して子に伝搬する
   inline void eval(int32_t k) {
@@ -122,7 +140,6 @@ public:
       if (b & 1)
         b--, vr = op(_data[b] = update(_lazy[b], _data[b]), vr);
     }
-    // line_debug();
     return op(vl, vr);
   }
 };
