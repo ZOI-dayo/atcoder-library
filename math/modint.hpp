@@ -71,9 +71,7 @@ public:
   friend ostream &operator<<(ostream &os, const modint &a) {
     return os << a._val;
   }
-  friend istream &operator>>(istream &os, modint &a) {
-    return os >> a._val;
-  }
+  friend istream &operator>>(istream &os, modint &a) { return os >> a._val; }
 };
 
 using modint998 = modint<998244353>;

@@ -122,4 +122,3 @@ void io_setup() {
   ios::sync_with_stdio(false);
   cout << std::fixed << std::setprecision(15);
 }
-
