@@ -9,7 +9,7 @@ signed main() {
   LazySegtree<int, int> seg = LazySegmentTree<int, int>(
       n, (1LL << 31) - 1, -1, [](int a, int b) { return min(a, b); },
       [](int fn, int val) { return fn >= 0 ? fn : val; },
-      [](int next, int current) { return next >= 0 ? next : current; });
+      [](int current, int next) { return next >= 0 ? next : current; });
   rep(i, q) {
     int com;
     cin >> com;

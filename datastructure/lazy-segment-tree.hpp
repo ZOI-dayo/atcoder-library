@@ -24,7 +24,7 @@ private:
 public:
   // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
   // ノードの更新(fn,val->val), merge:
-  // 操作aを、操作bがすでに行われている状態に適用したときの操作
+  // 操作aがすでに行われている状態に操作bを適用したときの操作
   // TODO: 2つの実装が別れているのをどうにかする
   inline LazySegmentTree(const int32_t n, const T e, const F id,
                          const function<T(T, T)> op,
@@ -61,8 +61,8 @@ public:
       return;
     _data[k] = update(_lazy[k], _data[k]);
     if (k < _n) {
-      _lazy[k << 1 | 0] = merge(_lazy[k], _lazy[k << 1 | 0]);
-      _lazy[k << 1 | 1] = merge(_lazy[k], _lazy[k << 1 | 1]);
+      _lazy[k << 1 | 0] = merge(_lazy[k << 1 | 0], _lazy[k]);
+      _lazy[k << 1 | 1] = merge(_lazy[k << 1 | 1], _lazy[k]);
     }
     _lazy[k] = id;
   }
@@ -88,9 +88,9 @@ public:
     // bを [a, b]から[a, b)にする
     for (b++; a < b; a >>= 1, b >>= 1) {
       if (a & 1)
-        _lazy[a] = merge(f, _lazy[a]), eval(a), a++;
+        _lazy[a] = merge(_lazy[a], f), eval(a), a++;
       if (b & 1)
-        --b, _lazy[b] = merge(f, _lazy[b]), eval(b);
+        --b, _lazy[b] = merge(_lazy[b], f), eval(b);
     }
     // a, bをseg-index [a,b]に戻す
     a = l + _n, b = r + _n - 1;
