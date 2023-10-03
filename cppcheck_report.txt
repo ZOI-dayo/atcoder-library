@@ -1,7 +1,7 @@
 datastructure/fenwick-tree.hpp:19:7: style:inconclusive: Technically the member function 'FenwickTree < long long >::sum' can be const. [functionConst]
   int sum(int i) {
       ^
-common/template.hpp:106:3: style: Struct 'vec_accumulate' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+common/template.hpp:105:3: style: Struct 'vec_accumulate' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   vec_accumulate(vec<T> &v) : data(v.size()) {
   ^
 datastructure/fenwick-tree.hpp:11:3: style: Struct 'FenwickTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
