@@ -5,12 +5,8 @@
 
 struct RMQMonoid32 {
   using T = int32_t;
-  static T e() {
-    return numeric_limits<T>::max();
-  }
-  static T op(T a, T b) {
-    return min(a, b);
-  }
+  static T e() { return numeric_limits<T>::max(); }
+  static T op(T a, T b) { return min(a, b); }
 };
 
 signed main() {

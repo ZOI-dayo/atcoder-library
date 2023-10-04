@@ -9,12 +9,8 @@ signed main() {
 
   struct Monoid {
     using T = int;
-    static T e() {
-      return 0;
-    }
-    static T op(T a, T b) {
-      return a+b;
-    }
+    static T e() { return 0; }
+    static T op(T a, T b) { return a + b; }
   };
 
   Segtree<Monoid> seg(n);

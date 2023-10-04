@@ -3,7 +3,7 @@
 #include "../common/template.hpp"
 
 template <class M>
-concept Monoid = requires (M& x, M::T a, M::T b) {
+concept Monoid = requires(M &x, M::T a, M::T b) {
   typename M::T;
   { M::e() } -> std::same_as<typename M::T>;
   { M::op(a, b) } -> std::same_as<typename M::T>;
@@ -13,6 +13,7 @@ concept Monoid = requires (M& x, M::T a, M::T b) {
 
 template <Monoid M> struct SegmentTree {
   using T = typename M::T;
+
 private:
   // 単位元 デフォルトでは、min(a, e) = min(e, a) = a
   // T e;
@@ -84,14 +85,8 @@ template <Monoid M> using Segtree = SegmentTree<M>;
 
 struct RMQMonoid {
   using T = int;
-  static T e() {
-    return numeric_limits<T>::max();
-  }
-  static T op(T a, T b) {
-    return min(a, b);
-  }
+  static T e() { return numeric_limits<T>::max(); }
+  static T op(T a, T b) { return min(a, b); }
 };
 
-Segtree<RMQMonoid> RMQSeg(int n) {
-  return Segtree<RMQMonoid>(n);
-}
+Segtree<RMQMonoid> RMQSeg(int n) { return Segtree<RMQMonoid>(n); }
