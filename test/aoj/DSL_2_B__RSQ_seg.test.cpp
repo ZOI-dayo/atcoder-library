@@ -6,7 +6,18 @@
 signed main() {
   int n, q;
   cin >> n >> q;
-  Segtree<int> seg(n, 0, [](int a, int b) { return a + b; });
+
+  struct Monoid {
+    using T = int;
+    static T e() {
+      return 0;
+    }
+    static T op(T a, T b) {
+      return a+b;
+    }
+  };
+
+  Segtree<Monoid> seg(n);
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;

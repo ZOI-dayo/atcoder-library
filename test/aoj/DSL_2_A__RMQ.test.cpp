@@ -3,10 +3,20 @@
 
 #include "../../datastructure/segment-tree.hpp"
 
+struct RMQMonoid32 {
+  using T = int32_t;
+  static T e() {
+    return numeric_limits<T>::max();
+  }
+  static T op(T a, T b) {
+    return min(a, b);
+  }
+};
+
 signed main() {
   int n, q;
   cin >> n >> q;
-  Segtree<int32_t> seg = RMQSeg<int32_t>(n);
+  auto seg = Segtree<RMQMonoid32>(n);
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;
