@@ -2,6 +2,7 @@
 
 #include "../common/template.hpp"
 
+#if __cplusplus >= 202002L
 template <class M>
 concept Monoid = requires(M &x, M::T a, M::T b) {
   typename M::T;
@@ -9,9 +10,16 @@ concept Monoid = requires(M &x, M::T a, M::T b) {
   { M::op(a, b) } -> std::same_as<typename M::T>;
 };
 
+#endif
+
 // 参考: https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
-template <Monoid M> struct SegmentTree {
+#if __cplusplus >= 202002L
+template <Monoid M>
+#else
+template <class M>
+#endif
+struct SegmentTree {
   using T = typename M::T;
 
 private:
@@ -81,7 +89,12 @@ public:
   T query(int l, int r) { return _query(l, r, 1); }
 };
 
-template <Monoid M> using Segtree = SegmentTree<M>;
+#if __cplusplus >= 202002L
+template <Monoid M>
+#else
+template <class M>
+#endif
+using Segtree = SegmentTree<M>;
 
 struct RMQMonoid {
   using T = int;
