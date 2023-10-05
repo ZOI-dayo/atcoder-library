@@ -6,7 +6,13 @@ signed main() {
   int N, Q;
   cin >> N >> Q;
 
-  Segtree<ll> seg(N, 0, [](ll a, ll b) { return a + b; });
+  struct Monoid {
+    using T = ll;
+    static T e() { return 0; }
+    static T op(T a, T b) { return a + b; }
+  };
+
+  Segtree<Monoid> seg(N);
   rep(i, N) {
     int a;
     cin >> a;
