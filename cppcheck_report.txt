@@ -37,11 +37,5 @@ graph/lca.hpp:32:7: style:inconclusive: Technically the member function 'LCA::qu
 graph/lca.hpp:12:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
   ^
-datastructure/segment-tree.hpp:88:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
-  T get(int i) { return _data[i + _n]; }
-    ^
-datastructure/segment-tree.hpp:69:3: style: Struct 'SegmentTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  SegmentTree(int n) {
-  ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
