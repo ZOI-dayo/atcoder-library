@@ -7,19 +7,19 @@ common/template.hpp:105:3: style: Struct 'vec_accumulate' has a constructor with
 datastructure/fenwick-tree.hpp:11:3: style: Struct 'FenwickTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
   ^
-datastructure/segment-tree.hpp:61:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+datastructure/segment-tree.hpp:70:5: performance: Variable '_n' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
     _n = 1;
     ^
-datastructure/segment-tree.hpp:79:5: style:inconclusive: Technically the member function 'SegmentTree < RMQMonoid >::get' can be const. [functionConst]
+datastructure/segment-tree.hpp:88:5: style:inconclusive: Technically the member function 'SegmentTree < RMQMonoid >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n]; }
     ^
-datastructure/segment-tree.hpp:60:3: style: Struct 'SegmentTree < RMQMonoid >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+datastructure/segment-tree.hpp:69:3: style: Struct 'SegmentTree < RMQMonoid >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   SegmentTree(int n) {
   ^
-datastructure/segment-tree.hpp:79:5: style:inconclusive: Technically the member function 'SegmentTree < Monoid >::get' can be const. [functionConst]
+datastructure/segment-tree.hpp:88:5: style:inconclusive: Technically the member function 'SegmentTree < Monoid >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n]; }
     ^
-datastructure/segment-tree.hpp:60:3: style: Struct 'SegmentTree < Monoid >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+datastructure/segment-tree.hpp:69:3: style: Struct 'SegmentTree < Monoid >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   SegmentTree(int n) {
   ^
 graph/template.hpp:63:8: style:inconclusive: Technically the member function 'Field::contains' can be const. [functionConst]
@@ -37,10 +37,10 @@ graph/lca.hpp:32:7: style:inconclusive: Technically the member function 'LCA::qu
 graph/lca.hpp:12:3: style: Struct 'LCA' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
   ^
-datastructure/segment-tree.hpp:79:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
+datastructure/segment-tree.hpp:88:5: style:inconclusive: Technically the member function 'SegmentTree < long long >::get' can be const. [functionConst]
   T get(int i) { return _data[i + _n]; }
     ^
-datastructure/segment-tree.hpp:60:3: style: Struct 'SegmentTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+datastructure/segment-tree.hpp:69:3: style: Struct 'SegmentTree < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   SegmentTree(int n) {
   ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
