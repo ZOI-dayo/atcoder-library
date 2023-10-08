@@ -9,28 +9,25 @@ private:
 
 public:
   modint() : modint(0) {}
-  modint(int val) : _val(val) {}
+  modint(int val) : _val((val % MOD + MOD) % MOD) {}
 
   // logic
   int val() const { return _val; }
-  int inv() {
+  modint inv() const {
     int a = _val, b = MOD, u = 1, v = 0, t;
     while (b > 0) {
       t = a / b;
       swap(a -= t * b, b);
       swap(u -= t * v, v);
     }
-    u %= MOD;
-    if (u < 0)
-      u += MOD;
-    return u;
+    return modint(u);
   }
-  modint pow(int n) { return modint(mod_pow(_val, n, MOD)); }
+  modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
 
   // op
-  modint &operator++() { return *this += 1; }
-  modint &operator--() { return *this -= 1; }
-  modint operator++(int32_t) {
+  modint &operator++() const { return *this += 1; }
+  modint &operator--() const { return *this -= 1; }
+  modint operator++(int32_t) const {
     modint tmp = *this;
     ++*this;
     return tmp;
@@ -40,10 +37,10 @@ public:
     --*this;
     return tmp;
   }
-  modint operator+(const modint &a) { return *this += a; }
-  modint operator-(const modint &a) { return *this -= a; }
-  modint operator*(const modint &a) { return *this *= a; }
-  modint operator/(const modint &a) { return *this /= a; }
+  modint operator+(const modint &a) { return modint(_val) += a; }
+  modint operator-(const modint &a) { return modint(_val) -= a; }
+  modint operator*(const modint &a) { return modint(_val) *= a; }
+  modint operator/(const modint &a) { return modint(_val) /= a; }
   bool operator==(const modint &a) { return _val == a._val; }
   bool operator!=(const modint &a) { return _val != a._val; }
   modint &operator+=(const modint &a) {
@@ -59,11 +56,11 @@ public:
     return *this;
   }
   modint &operator*=(const modint &a) {
-    _val = (int)((long long)_val * a._val % MOD);
+    _val = _val * a._val % MOD;
     return *this;
   }
   modint &operator/=(const modint &a) {
-    _val = (int)((long long)_val * a.inv()._val % MOD);
+    *this *= a.inv();
     return *this;
   }
 

@@ -7,6 +7,8 @@ public:
   Point() {}
   Point(int x, int y) : x(x), y(y) {}
 
+  int manhattan() const { return std::abs(x) + std::abs(y); }
+
   const Point operator+(const Point &rhs) const {
     return Point(x + rhs.x, y + rhs.y);
   }

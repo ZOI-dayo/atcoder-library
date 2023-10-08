@@ -3,7 +3,7 @@
 #include "../common/template.hpp"
 
 // 繰り返し2乗法
-ll pow(ll a, int n) {
+constexpr ll pow(ll a, int n) {
   ll ans = 1;
   while (n > 0) {
     if (n & 1)
@@ -14,7 +14,7 @@ ll pow(ll a, int n) {
   return ans;
 }
 
-ll mod_pow(ll a, int n, ll mod) {
+constexpr ll mod_pow(ll a, int n, const ll mod) {
   int ans = 1;
   while (n > 0) {
     if (n & 1)
