@@ -60,5 +60,7 @@ public:
     H = field.size();
     W = field[0].size();
   }
-  bool contains(Point p) const { return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H; }
+  bool contains(Point p) const {
+    return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H;
+  }
 };

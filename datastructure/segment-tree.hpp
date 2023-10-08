@@ -66,7 +66,7 @@ private:
   }
 
 public:
-  explicit SegmentTree(int n): _n(1) {
+  explicit SegmentTree(int n) : _n(1) {
     while (_n < n)
       _n *= 2;
     _data = vec<T>(2 * _n, M::e());
