@@ -102,7 +102,7 @@ bool is_contained(int H, int W, int x, int y) {
 // vector継承にする?
 template <typename T> struct vec_accumulate : vec<T> {
   vec<T> data;
-  vec_accumulate(vec<T> &v) : data(v.size()) {
+  explicit vec_accumulate(vec<T> &v) : data(v.size()) {
     assert(v.size() > 0);
     data[0] = v[0];
     for (int i = 1; i < v.size(); ++i)

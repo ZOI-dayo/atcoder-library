@@ -8,7 +8,7 @@ private:
   vec<T> _data;
 
 public:
-  FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
+  explicit FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
   void add(int i, T val) {
     i++;
     while (i <= _n) {
@@ -16,7 +16,7 @@ public:
       i += i & -i;
     }
   }
-  int sum(int i) {
+  int sum(int i) const {
     i++;
     T ans = 0;
     while (i > 0) {

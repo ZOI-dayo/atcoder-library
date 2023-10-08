@@ -9,8 +9,7 @@ private:
   vec<TreeNodeInfo> depth_data;
 
 public:
-  LCA(Graph &graph, int root = 0) : graph(graph), root(root) {
-    depth_data = depth(graph, root);
+  explicit LCA(Graph &graph, int root = 0) : graph(graph), root(root), depth_data(depth(graph, root)) {
     int n = graph.size();
     int logn = 1;
     while ((1 << logn) < n)
@@ -29,7 +28,7 @@ public:
     }
   }
 
-  int query(int u, int v) {
+  int query(int u, int v) const {
     if (depth_data[u].depth > depth_data[v].depth)
       swap(u, v);
     int logn = parent.size();

@@ -66,8 +66,7 @@ private:
   }
 
 public:
-  SegmentTree(int n) {
-    _n = 1;
+  explicit SegmentTree(int n): _n(1) {
     while (_n < n)
       _n *= 2;
     _data = vec<T>(2 * _n, M::e());
@@ -85,8 +84,8 @@ public:
     while (i >>= 1)
       _data[i] = M::op(_data[i << 1], _data[i << 1 | 1]);
   }
-  T get(int i) { return _data[i + _n]; }
-  T query(int l, int r) { return _query(l, r, 1); }
+  T get(int i) const { return _data[i + _n]; }
+  T query(int l, int r) const { return _query(l, r, 1); }
 };
 
 #if __cplusplus >= 202002L
