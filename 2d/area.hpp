@@ -1,5 +1,6 @@
 #pragma once
 #include "../common/template.hpp"
+#include "point.hpp"
 
 class Area {
 public:
@@ -40,6 +41,13 @@ public:
     }
   }
 
+  bool contains(int x, int y) const {
+    return is_contained(H, W, x, y);
+  }
+  bool contains(Point p) const {
+    return is_contained(H, W, p.x, p.y);
+  }
+
 private:
   vec<string> data;
 };
@@ -51,3 +59,4 @@ istream &operator>>(istream &is, Area &a) {
   rep(i, a.H) is >> a[i];
   return is;
 }
+

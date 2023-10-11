@@ -22,18 +22,3 @@ using Graph = vec<vec<int>>;
 
 using WeightedGraph = vec<vec<WeightedNode>>;
 using WGraph = WeightedGraph;
-
-// Field
-// 2dに移動?
-struct Field {
-public:
-  vec<vec<char>> field;
-  int H, W;
-  explicit Field(vec<vec<char>> field) : field(field) {
-    H = field.size();
-    W = field[0].size();
-  }
-  bool contains(Point p) const {
-    return 0 <= p.x && p.x < W && 0 <= p.y && p.y < H;
-  }
-};
