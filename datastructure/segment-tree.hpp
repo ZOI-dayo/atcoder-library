@@ -85,7 +85,7 @@ public:
       _data[i] = M::op(_data[i << 1], _data[i << 1 | 1]);
   }
   T get(int i) const { return _data[i + _n]; }
-  T query(int l, int r) const { return _query(l, r, 1); }
+  T query(int l, int r) { return _query(l, r, 1); }
 };
 
 #if __cplusplus >= 202002L
