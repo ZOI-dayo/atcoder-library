@@ -31,12 +31,8 @@ public:
     y -= p.y;
   }
 
-  Point operator+(const Point &p) const {
-    return Point(x + p.x, y + p.y);
-  }
-  Point operator-(const Point &p) const {
-    return Point(x - p.x, y - p.y);
-  }
+  Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
+  Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
 };
 ostream &operator<<(ostream &os, const Point &p) {
   os << p.x << p.y;
