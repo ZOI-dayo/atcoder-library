@@ -99,6 +99,9 @@ bool is_contained(int H, int W, int x, int y) {
   return is_contained(0, x, H) && is_contained(0, y, W);
 }
 
+// rootに対し、aとbが同じ側にあるか (=は含まない)
+bool is_same_side(int root, int a, int b) { return (root < a) == (root < b); }
+
 // vector継承にする?
 template <typename T> struct vec_accumulate : vec<T> {
   vec<T> data;
