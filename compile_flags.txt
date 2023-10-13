@@ -2,4 +2,8 @@
 -O2
 -I/opt/homebrew/Cellar/gcc/13.2.0/include/c++/13/
 -I/opt/homebrew/Cellar/gcc/13.2.0/include/c++/13/aarch64-apple-darwin22
+-I/opt/homebrew/include
+-L/opt/homebrew/lib
 -lm
+-lgmp
+-lgmpxx

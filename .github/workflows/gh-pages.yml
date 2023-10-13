@@ -78,6 +78,15 @@ jobs:
         run: python -m pip install --upgrade pip
       - name: Install oj-verify-helper
         run: pip3 install online-judge-verify-helper
+      - name: Install GMP
+        run: |
+          sudo apt install g++ m4 zlib1g-dev make p7zip \
+          wget https://gmplib.org/download/gmp/gmp-6.2.1.tar.xz \
+          tar -xvf gmp-6.1.2.tar.xz \
+          ./configure --enable-cxx \
+          make \
+          make check \
+          sudo make install
       - name: Cache testcases
         uses: actions/cache@v1
         with:

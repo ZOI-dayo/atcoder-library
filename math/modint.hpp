@@ -64,6 +64,8 @@ public:
     return *this;
   }
 
+  operator int() const { return _val; }
+
   // io
   friend ostream &operator<<(ostream &os, const modint &a) {
     return os << a._val;

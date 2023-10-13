@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bits/stdc++.h>
+#include <gmpxx.h>
 
 #include "print.hpp"
 
