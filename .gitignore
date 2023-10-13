@@ -1,2 +1,2 @@
-.verify-helper
+.verify-helper/*
 !.verify-helper/config.toml
