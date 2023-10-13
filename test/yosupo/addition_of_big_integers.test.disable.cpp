@@ -6,7 +6,7 @@ signed main() {
   int T;
   cin >> T;
   rep(i, T) {
-    mpz_class a, b;
+    cpp_int a, b;
     cin >> a >> b;
     cout << a + b << endl;
   }
