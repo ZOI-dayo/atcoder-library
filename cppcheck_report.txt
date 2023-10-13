@@ -1,2 +1,11 @@
+math/prime.hpp:18:14: warning: Identical inner 'return' condition is always true. [identicalInnerCondition]
+    return N == 2;
+             ^
+math/prime.hpp:17:9: note: outer condition: N==2
+  if (N == 2)
+        ^
+math/prime.hpp:18:14: note: identical inner condition: N==2
+    return N == 2;
+             ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
