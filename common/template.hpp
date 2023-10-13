@@ -2,12 +2,12 @@
 
 #include <bits/stdc++.h>
 // #include <gmpxx.h>
-#include <boost/multiprecision/cpp_int.hpp>
+// #include <boost/multiprecision/cpp_int.hpp>
 
 #include "print.hpp"
 
 using namespace std;
-using namespace boost::multiprecision;
+// using namespace boost::multiprecision;
 
 // --- 型エイリアス ---
 using ll = long long;
