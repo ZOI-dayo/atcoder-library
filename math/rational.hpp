@@ -41,4 +41,6 @@ template <typename T = ll> struct Rational {
   }
 
   double val() const { return (double)num / den; }
+  operator double() const { return val(); }
+  operator string() const { return to_string(num) + "/" + to_string(den); }
 };
