@@ -83,10 +83,12 @@ jobs:
           sudo apt install g++ m4 zlib1g-dev make p7zip
           wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz
           tar -xvf gmp-6.2.1.tar.xz
+          cd gmp-6.2.1
           ./configure --enable-cxx
           make
           make check
           sudo make install
+          cd ../
       - name: Cache testcases
         uses: actions/cache@v1
         with:
