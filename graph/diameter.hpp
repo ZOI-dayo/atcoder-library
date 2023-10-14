@@ -1,3 +1,5 @@
+#pragma once
+
 #include "template.hpp"
 
 int diameter(Graph &graph, int start = 0) {
@@ -23,11 +25,12 @@ int diameter(Graph &graph, int start = 0) {
   return result.first;
 }
 
-int diameter(WGraph &graph, int start = 0) {
+template <typename T = ll>
+int diameter(WGraph<T> &graph, int start = 0) {
   vec<int> seen(graph.size(), 0);
-  auto dfs = [&](auto fn, int index) -> pair<int, int> {
+  auto dfs = [&](auto fn, int index) -> pair<T, int> {
     // max-cost, index
-    pair<int, int> result = {0, index};
+    pair<T, int> result = {0, index};
 
     seen[index] = 1;
 

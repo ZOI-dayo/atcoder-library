@@ -1,10 +1,13 @@
+#pragma once
+
 #include "../common/template.hpp"
 
 // Node
+template <typename T = ll>
 struct WeightedNode {
   int id;
-  int cost;
-  WeightedNode(int id, int cost) : id(id), cost(cost) {}
+  T cost;
+  WeightedNode(int id, T cost) : id(id), cost(cost) {}
 };
 
 struct WeightState {
@@ -18,7 +21,22 @@ public:
 };
 
 // Graph
-using Graph = vec<vec<int>>;
+struct Graph {
+private:
+  int n;
+  vec<vec<int>> edges;
+public:
+  Graph(int n) : n(n), edges(n) {}
+  void add_edge(int u, int v, bool directed = false) {
+    edges[u].emplace_back(v);
+    if(directed) edges[v].emplace_back(u);
+  }
+  vec<int>& operator[](int i) { return edges[i]; }
+  int size() { return n; }
+};
 
-using WeightedGraph = vec<vec<WeightedNode>>;
-using WGraph = WeightedGraph;
+template <typename T = ll>
+using WeightedGraph = vec<vec<WeightedNode<T>>>;
+
+template <typename T = ll>
+using WGraph = WeightedGraph<T>;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "template.hpp"
 
 vec<int> topological_sort(Graph &graph) {
