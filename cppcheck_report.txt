@@ -1,4 +1,4 @@
-graph/template.hpp:35:7: style:inconclusive: Technically the member function 'Graph::size' can be const. [functionConst]
+graph/template.hpp:36:7: style:inconclusive: Technically the member function 'Graph::size' can be const. [functionConst]
   int size() { return n; }
       ^
 graph/template.hpp:29:3: style: Struct 'Graph' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
