@@ -1,3 +1,5 @@
+#pragma once
+
 #include "template.hpp"
 
 bool has_cycle(Graph &g, int start = 0) {
