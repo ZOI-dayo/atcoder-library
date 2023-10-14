@@ -6,7 +6,7 @@
 signed main() {
   int n;
   cin >> n;
-  WGraph graph(n);
+  WGraph<> graph(n);
   rep(i, n - 1) {
     int s, t, w;
     cin >> s >> t >> w;
