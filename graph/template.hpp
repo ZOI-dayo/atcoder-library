@@ -3,8 +3,7 @@
 #include "../common/template.hpp"
 
 // Node
-template <typename T = ll>
-struct WeightedNode {
+template <typename T = ll> struct WeightedNode {
   int id;
   T cost;
   WeightedNode(int id, T cost) : id(id), cost(cost) {}
@@ -25,18 +24,18 @@ struct Graph {
 private:
   int n;
   vec<vec<int>> edges;
+
 public:
   Graph(int n) : n(n), edges(n) {}
   void add_edge(int u, int v, bool directed = false) {
     edges[u].emplace_back(v);
-    if(directed) edges[v].emplace_back(u);
+    if (directed)
+      edges[v].emplace_back(u);
   }
-  vec<int>& operator[](int i) { return edges[i]; }
+  vec<int> &operator[](int i) { return edges[i]; }
   int size() { return n; }
 };
 
-template <typename T = ll>
-using WeightedGraph = vec<vec<WeightedNode<T>>>;
+template <typename T = ll> using WeightedGraph = vec<vec<WeightedNode<T>>>;
 
-template <typename T = ll>
-using WGraph = WeightedGraph<T>;
+template <typename T = ll> using WGraph = WeightedGraph<T>;

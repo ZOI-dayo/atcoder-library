@@ -25,8 +25,7 @@ int diameter(Graph &graph, int start = 0) {
   return result.first;
 }
 
-template <typename T = ll>
-int diameter(WGraph<T> &graph, int start = 0) {
+template <typename T = ll> int diameter(WGraph<T> &graph, int start = 0) {
   vec<int> seen(graph.size(), 0);
   auto dfs = [&](auto fn, int index) -> pair<T, int> {
     // max-cost, index
