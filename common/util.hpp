@@ -1,9 +1,23 @@
 #pragma once
 
 #include "alias.hpp"
-#include "debug.hpp"
-#include "util.hpp"
+
 // --- Utils ---
+
+// 二分探索
+template <typename T>
+inline T bin_search(T ok, T ng, const function<bool(T)> is_ok) {
+  assert(is_ok(ok) && !is_ok(ng));
+  assert(ok < ng);
+  while (abs(ok - ng) > 1) {
+    T mid = (ok + ng) / 2;
+    if (is_ok(mid))
+      ok = mid;
+    else
+      ng = mid;
+  }
+  return ok;
+}
 
 // 合計値を求める
 ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
