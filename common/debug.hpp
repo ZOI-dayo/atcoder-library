@@ -26,4 +26,3 @@ const string _TERM_BACK_RESET = _TERM_ESC + "[49m";
 #define printd(x) ;
 
 #endif
-
