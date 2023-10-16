@@ -9,13 +9,11 @@ private:
 
 public:
   modint() : modint(0) {}
-  modint(int val) : _val(val) {normalize();}
+  modint(int val) : _val(val) { normalize(); }
 
   // logic
   int val() const { return _val; }
-  void normalize() {
-    _val = (_val % MOD + MOD) % MOD;
-  };
+  void normalize() { _val = (_val % MOD + MOD) % MOD; };
   modint inv() const {
     int a = _val, b = MOD, u = 1, v = 0, t;
     while (b > 0) {
@@ -26,7 +24,9 @@ public:
     return modint(u);
   }
   // modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
-  static modint pow(const modint &a, const int n) { return modint(mod_pow(a._val, n, a.MOD)); }
+  static modint pow(const modint &a, const int n) {
+    return modint(mod_pow(a._val, n, a.MOD));
+  }
 
   // op
   inline modint &operator++() { return *this += 1; }

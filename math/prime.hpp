@@ -89,7 +89,8 @@ struct PrimeFactor {
 vec<PrimeFactor> prime_factorize_factorset(uint64_t N) {
   vec<PrimeFactor> ans;
   for (int p = 2; p * p <= N; ++p) {
-    if (N % p != 0) continue;
+    if (N % p != 0)
+      continue;
     int e = 0;
     while (N % p == 0) {
       ++e;
@@ -97,6 +98,7 @@ vec<PrimeFactor> prime_factorize_factorset(uint64_t N) {
     }
     ans.emplace_back(PrimeFactor{p, e});
   }
-  if (N != 1) ans.emplace_back(N, 1);
+  if (N != 1)
+    ans.emplace_back(N, 1);
   return ans;
 }
