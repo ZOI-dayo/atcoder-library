@@ -80,3 +80,23 @@ vector<uint64_t> prime_factorize(uint64_t N) {
   sort(left.begin(), left.end());
   return left;
 }
+
+// 素因数分解(A^B)
+struct PrimeFactor {
+  int prime;
+  int exp;
+};
+vec<PrimeFactor> prime_factorize_factorset(uint64_t N) {
+  vec<PrimeFactor> ans;
+  for (int p = 2; p * p <= N; ++p) {
+    if (N % p != 0) continue;
+    int e = 0;
+    while (N % p == 0) {
+      ++e;
+      N /= p;
+    }
+    ans.emplace_back(PrimeFactor{p, e});
+  }
+  if (N != 1) ans.emplace_back(N, 1);
+  return ans;
+}

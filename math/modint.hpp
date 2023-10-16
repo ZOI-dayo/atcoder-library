@@ -9,10 +9,13 @@ private:
 
 public:
   modint() : modint(0) {}
-  modint(int val) : _val((val % MOD + MOD) % MOD) {}
+  modint(int val) : _val(val) {normalize();}
 
   // logic
   int val() const { return _val; }
+  void normalize() {
+    _val = (_val % MOD + MOD) % MOD;
+  };
   modint inv() const {
     int a = _val, b = MOD, u = 1, v = 0, t;
     while (b > 0) {
@@ -22,11 +25,12 @@ public:
     }
     return modint(u);
   }
-  modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
+  // modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
+  static modint pow(const modint &a, const int n) { return modint(mod_pow(a._val, n, a.MOD)); }
 
   // op
-  modint &operator++() const { return *this += 1; }
-  modint &operator--() const { return *this -= 1; }
+  inline modint &operator++() { return *this += 1; }
+  inline modint &operator--() { return *this -= 1; }
   modint operator++(int32_t) const {
     modint tmp = *this;
     ++*this;
@@ -64,13 +68,17 @@ public:
     return *this;
   }
 
-  operator int() const { return _val; }
+  explicit operator int() const { return _val; }
 
   // io
   friend ostream &operator<<(ostream &os, const modint &a) {
     return os << a._val;
   }
-  friend istream &operator>>(istream &os, modint &a) { return os >> a._val; }
+  friend istream &operator>>(istream &os, modint &a) {
+    os >> a._val;
+    a.normalize();
+    return os;
+  }
 };
 
 using modint998 = modint<998244353>;
