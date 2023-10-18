@@ -92,7 +92,7 @@ jobs:
       - name: Cache testcases
         uses: actions/cache@v1
         with:
-          path: ~/.verify-helper/cache/*/test
+          path: .verify-helper/cache/*/test
           key: testcases-cache
           restore-keys: testcases-cache
       - name: Verify code
