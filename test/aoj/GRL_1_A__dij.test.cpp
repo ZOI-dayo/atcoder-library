@@ -4,6 +4,7 @@
 #include "../../graph/dijkstra.hpp"
 
 signed main() {
+  io_setup();
   int V, E, r;
   cin >> V >> E >> r;
   WGraph<> graph(V);

@@ -4,6 +4,7 @@
 #include "../../graph/cycle.hpp"
 
 signed main() {
+  io_setup();
   int V, E;
   cin >> V >> E;
   Graph graph(V);

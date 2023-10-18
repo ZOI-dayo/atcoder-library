@@ -4,6 +4,7 @@
 #include "../../graph/diameter.hpp"
 
 signed main() {
+  io_setup();
   int n;
   cin >> n;
   WGraph<> graph(n);

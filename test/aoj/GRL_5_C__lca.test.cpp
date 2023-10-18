@@ -4,6 +4,7 @@
 #include "../../graph/lca.hpp"
 
 signed main() {
+  io_setup();
   int n;
   cin >> n;
   Graph graph(n);

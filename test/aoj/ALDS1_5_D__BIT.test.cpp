@@ -5,6 +5,7 @@
 
 // 転倒数
 signed main() {
+  io_setup();
   int n;
   cin >> n;
   vec<int> a(n);

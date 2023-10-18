@@ -4,6 +4,7 @@
 #include "../../datastructure/union-find.hpp"
 
 signed main() {
+  io_setup();
   int n, q;
   cin >> n >> q;
   UF uf(n);

@@ -10,6 +10,7 @@ struct RMQMonoid32 {
 };
 
 signed main() {
+  io_setup();
   int n, q;
   cin >> n >> q;
   auto seg = Segtree<RMQMonoid32>(n);
