@@ -81,9 +81,10 @@ vec<PrimeFactor> prime_factorize(uint64_t N) {
   auto left = prime_factorize(p);
   auto right = prime_factorize(N / p);
   left.insert(left.end(), right.begin(), right.end());
-  sort(left.begin(), left.end(), [](const PrimeFactor &a, const PrimeFactor &b) {
-    return a.prime < b.prime;
-  });
+  sort(left.begin(), left.end(),
+       [](const PrimeFactor &a, const PrimeFactor &b) {
+         return a.prime < b.prime;
+       });
   vec<PrimeFactor> ans;
   rep(i, left.size()) {
     if (i == 0 || left[i].prime != left[i - 1].prime)
