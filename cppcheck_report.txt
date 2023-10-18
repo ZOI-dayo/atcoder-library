@@ -1,23 +1,8 @@
-graph/template.hpp:36:7: style:inconclusive: Technically the member function 'Graph::size' can be const. [functionConst]
-  int size() { return n; }
-      ^
-graph/template.hpp:29:3: style: Struct 'Graph' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  Graph(int n) : n(n), edges(n) {}
-  ^
-math/prime.hpp:18:14: warning: Identical inner 'return' condition is always true. [identicalInnerCondition]
-    return N == 2;
-             ^
-math/prime.hpp:17:9: note: outer condition: N==2
-  if (N == 2)
-        ^
-math/prime.hpp:18:14: note: identical inner condition: N==2
-    return N == 2;
-             ^
-datastructure/imos.hpp:12:3: style: Struct 'imos < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  imos(int n) : _n(n), _data(_n + 1, 0) {}
-  ^
-datastructure/imos.hpp:13:3: style: Struct 'imos < long long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  imos(vec<T> src) : _n(src.size()), _data(_n + 1, 0) {
-  ^
+graph/template.hpp:36:20: style:inconclusive: Technically the member function 'Graph::size' can be const. [functionConst]
+  const inline int size() { return n; }
+                   ^
+datastructure/imos.hpp:16:20: style:inconclusive: Technically the member function 'imos < long long >::size' can be const. [functionConst]
+  const inline int size() { return _n; }
+                   ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
