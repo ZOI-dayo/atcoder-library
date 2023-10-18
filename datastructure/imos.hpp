@@ -13,7 +13,7 @@ public:
   explicit imos(vec<T> src) : _n(src.size()), _data(_n + 1, 0) {
     rep(i, _n) add(i, src[i]);
   }
-  const inline int size() { return _n; }
+  inline int size() const { return _n; }
   inline void add(int l, int r, T x) {
     assert(!_is_build);
     assert(l < r);

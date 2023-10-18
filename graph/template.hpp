@@ -33,7 +33,7 @@ public:
       edges[v].emplace_back(u);
   }
   inline vec<int> &operator[](int i) { return edges[i]; }
-  const inline int size() { return n; }
+  inline int size() const { return n; }
 };
 
 template <class T = ll> using WeightedGraph = vec<vec<WeightedNode<T>>>;
