@@ -1,8 +1,2 @@
-graph/template.hpp:36:20: style:inconclusive: Technically the member function 'Graph::size' can be const. [functionConst]
-  const inline int size() { return n; }
-                   ^
-datastructure/imos.hpp:16:20: style:inconclusive: Technically the member function 'imos < long long >::size' can be const. [functionConst]
-  const inline int size() { return _n; }
-                   ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
