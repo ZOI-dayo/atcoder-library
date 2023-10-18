@@ -4,15 +4,16 @@
 
 template <typename T> struct imos {
 private:
-  int _n;
+  const int _n;
   vec<T> _data;
   bool _is_build = false;
 
 public:
-  imos(int n) : _n(n), _data(_n + 1, 0) {}
-  imos(vec<T> src) : _n(src.size()), _data(_n + 1, 0) {
+  explicit imos(int n) : _n(n), _data(_n + 1, 0) {}
+  explicit imos(vec<T> src) : _n(src.size()), _data(_n + 1, 0) {
     rep(i, _n) add(i, src[i]);
   }
+  const inline int size() { return _n; }
   inline void add(int l, int r, T x) {
     assert(!_is_build);
     assert(l < r);

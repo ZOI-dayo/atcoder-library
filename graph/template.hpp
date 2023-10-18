@@ -22,18 +22,18 @@ public:
 // Graph
 struct Graph {
 private:
-  int n;
+  const int n;
   vec<vec<int>> edges;
 
 public:
-  Graph(int n) : n(n), edges(n) {}
-  void add_edge(int u, int v, bool directed = false) {
+  explicit Graph(int n) : n(n), edges(n) {}
+  inline void add_edge(int u, int v, bool directed = false) {
     edges[u].emplace_back(v);
     if (directed)
       edges[v].emplace_back(u);
   }
-  vec<int> &operator[](int i) { return edges[i]; }
-  int size() { return n; }
+  inline vec<int> &operator[](int i) { return edges[i]; }
+  const inline int size() { return n; }
 };
 
 template <class T = ll> using WeightedGraph = vec<vec<WeightedNode<T>>>;

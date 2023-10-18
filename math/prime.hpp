@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 #include "pow.hpp"
 
 // ミラーラビン素数判定法
@@ -15,7 +15,7 @@ bool is_prime(const uint64_t &N) {
           : vec<uint64_t>{2, 325, 9375, 28178, 450775, 9780504, 1795265022ULL};
 
   if (N == 2)
-    return N == 2;
+    return true;
   if (~N & 1)
     return false;
 
@@ -68,37 +68,28 @@ uint64_t pollard_rho(uint64_t N) {
 
 // 素因数分解
 // https://algo-method.com/tasks/553/editorial
-vector<uint64_t> prime_factorize(uint64_t N) {
+struct PrimeFactor {
+  uint64_t prime;
+  uint64_t exp;
+};
+vec<PrimeFactor> prime_factorize(uint64_t N) {
   if (N == 1)
     return {};
   uint64_t p = pollard_rho(N);
   if (p == N)
-    return {p};
-  vector<uint64_t> left = prime_factorize(p);
-  vector<uint64_t> right = prime_factorize(N / p);
+    return {{p, 1}};
+  auto left = prime_factorize(p);
+  auto right = prime_factorize(N / p);
   left.insert(left.end(), right.begin(), right.end());
-  sort(left.begin(), left.end());
-  return left;
-}
-
-// 素因数分解(A^B)
-struct PrimeFactor {
-  int prime;
-  int exp;
-};
-vec<PrimeFactor> prime_factorize_factorset(uint64_t N) {
+  sort(left.begin(), left.end(), [](const PrimeFactor &a, const PrimeFactor &b) {
+    return a.prime < b.prime;
+  });
   vec<PrimeFactor> ans;
-  for (int p = 2; p * p <= N; ++p) {
-    if (N % p != 0)
-      continue;
-    int e = 0;
-    while (N % p == 0) {
-      ++e;
-      N /= p;
-    }
-    ans.emplace_back(PrimeFactor{p, e});
+  rep(i, left.size()) {
+    if (i == 0 || left[i].prime != left[i - 1].prime)
+      ans.emplace_back(left[i]);
+    else
+      ans.back().exp += left[i].exp;
   }
-  if (N != 1)
-    ans.emplace_back(N, 1);
   return ans;
 }

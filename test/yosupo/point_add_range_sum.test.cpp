@@ -3,6 +3,7 @@
 #include "../../datastructure/segment-tree.hpp"
 
 signed main() {
+  io_setup();
   int N, Q;
   cin >> N >> Q;
 

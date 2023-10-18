@@ -4,12 +4,13 @@
 #include "../../math/prime.hpp"
 
 signed main() {
+  io_setup();
   int n;
   cin >> n;
   cout << n << ":";
   auto primes = prime_factorize(n);
   for (auto p : primes) {
-    cout << " " << p;
+    rep(i, p.exp) cout << " " << p.prime;
   }
   cout << endl;
 }
