@@ -98,7 +98,7 @@ jobs:
       - name: Verify code
         run: oj-verify run
         env:
-          YUKICODER_TOKEN: ${ {secrets.YUKICODER_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
       - name: Build docs
         run: oj-verify docs
       - name: Setup Pages
