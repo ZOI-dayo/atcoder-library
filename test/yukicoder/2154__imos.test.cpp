@@ -12,10 +12,8 @@ signed main() {
   rep(i, M) {
     int l, r;
     cin >> l >> r;
-    imos.add(N-l, N-r+1, 1);
+    imos.add(N - l, N - r + 1, 1);
   }
   imos.build();
-  rep(i, N) {
-    cout << imos.get(i) << endl;
-  }
+  rep(i, N) { cout << imos.get(i) << endl; }
 }
