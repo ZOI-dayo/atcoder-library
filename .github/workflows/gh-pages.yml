@@ -91,16 +91,22 @@ jobs:
           # cd ../
       - name: Create cache dir
         run: mkdir -p .verify-helper/cache/_/test
-      - name: Cache testcases
-        uses: actions/cache@v1
+      - name: Restore testcases
+        uses: actions/cache/restore@v3
         with:
-          path: .verify-helper/cache/*/test
+          path: .verify-helper/cache/**/test
           key: testcases-cache
           restore-keys: testcases-cache
       - name: Verify code
         run: oj-verify run
         env:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+      - name: Cache testcases
+        uses: actions/cache/save@v3
+        with:
+          path: .verify-helper/cache/**/test
+          key: testcases-cache
+          restore-keys: testcases-cache
       - name: Build docs
         run: oj-verify docs
       - name: Setup Pages
