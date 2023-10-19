@@ -14,12 +14,14 @@ public:
   string &operator[](int i) { return data[i]; }
   // 時計回りで90度回転
   Area rotate90() const {
-    assert(H == W);
     Area ret(W, H);
     rep(i, H) rep(j, W) ret[j][H - i - 1] = data[i][j];
     return ret;
   }
-  Area rotated90() { data = rotate90().data; }
+  Area rotated90() {
+    assert(H == W);
+    data = rotate90().data;
+  }
   char at(int x, int y) {
     if (is_contained(H, W, x, y))
       return data[x][y];
