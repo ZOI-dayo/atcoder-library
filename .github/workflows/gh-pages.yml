@@ -120,7 +120,7 @@ jobs:
       - name: Build HTML
         working-directory: .verify-helper/markdown
         run: |
-          bundle install --path .vendor/bundle
+          bundle install
           bundle exec jekyll build -I -d ../../_site --baseurl /${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
