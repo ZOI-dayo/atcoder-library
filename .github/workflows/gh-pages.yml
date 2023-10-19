@@ -112,9 +112,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Setup Ruby
-        run: |
-          sudo apt install ruby-all-dev
-          sudo apt install ruby-bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
       - name: Build HTML
         run: |
           cd .verify-helper/markdown
