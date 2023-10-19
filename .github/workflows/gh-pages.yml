@@ -89,6 +89,8 @@ jobs:
           # make check
           # sudo make install
           # cd ../
+      - name: Create cache dir
+        run: mkdir -p .verify-helper/cache/_/test
       - name: Cache testcases
         uses: actions/cache@v1
         with:
