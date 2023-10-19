@@ -113,12 +113,13 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        working-directory: .verify-helper/markdown
         with:
           ruby-version: '3.1'
           bundler-cache: true
       - name: Build HTML
+        working-directory: .verify-helper/markdown
         run: |
-          cd .verify-helper/markdown
           bundle install --path .vendor/bundle
           bundle exec jekyll build -I -d ../../_site --baseurl /${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}/
       - name: Upload artifact
