@@ -49,18 +49,18 @@ template <class T> bool chmin(T &a, const T &b) {
 
 // 3項間不等式
 // 広義単調増加
-bool is_increasing(int x, int y, int z) { return x <= y && y <= z; }
+inline bool is_increasing(int x, int y, int z) { return x <= y && y <= z; }
 
 // 半開区間[x, z)にyが含まれるか?
-bool is_contained(int x, int y, int z) { return x <= y && y < z; }
+inline bool is_contained(int x, int y, int z) { return x <= y && y < z; }
 
 // 頂点(x, y)が範囲に含まれるか
-bool is_contained(int H, int W, int x, int y) {
+inline bool is_contained(int H, int W, int x, int y) {
   return is_contained(0, x, H) && is_contained(0, y, W);
 }
 
 // rootに対し、aとbが同じ側にあるか (=は含まない)
-bool is_same_side(int root, int a, int b) { return (root < a) == (root < b); }
+inline bool is_same_side(int root, int a, int b) { return (root < a) == (root < b); }
 
 // vector継承にする?
 template <typename T> struct vec_accumulate : vec<T> {
