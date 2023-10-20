@@ -7,15 +7,14 @@ public:
   Point() {}
   Point(int x, int y) : x(x), y(y) {}
 
-  Point up() { return Point(x-1, y); }
-  Point down() { return Point(x+1, y); }
-  Point left() { return Point(x, y-1); }
-  Point right() { return Point(x, y+1); }
-  Point upper_left() { return Point(x-1, y-1); }
-  Point upper_right() { return Point(x-1, y+1); }
-  Point lower_left() { return Point(x+1, y-1); }
-  Point lower_right() { return Point(x+1, y+1); }
-
+  Point up() { return Point(x - 1, y); }
+  Point down() { return Point(x + 1, y); }
+  Point left() { return Point(x, y - 1); }
+  Point right() { return Point(x, y + 1); }
+  Point upper_left() { return Point(x - 1, y - 1); }
+  Point upper_right() { return Point(x - 1, y + 1); }
+  Point lower_left() { return Point(x + 1, y - 1); }
+  Point lower_right() { return Point(x + 1, y + 1); }
 
   vec<Point> around4() { return {up(), down(), left(), right()}; }
   vec<Point> around8() {
