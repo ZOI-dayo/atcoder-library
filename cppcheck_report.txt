@@ -1,2 +1,20 @@
+datastructure/imos2d.hpp:22:62: warning: Assert statement calls a function which may have desired side effects: 'upper_left'. [assertWithSideEffect]
+    assert(is_contained(_H, _W, a) && is_contained(_H, _W, b.upper_left()));
+                                                             ^
+2d/point.hpp:7:3: warning:inconclusive: Member variable 'Point::x' is not initialized in the constructor. [uninitMemberVar]
+  Point() {}
+  ^
+2d/point.hpp:7:3: warning:inconclusive: Member variable 'Point::y' is not initialized in the constructor. [uninitMemberVar]
+  Point() {}
+  ^
+datastructure/comp.hpp:10:7: style:inconclusive: Member variable 'comp < long long >::_cmp_n' is in the wrong place in the initializer list. [initializerList]
+  int _cmp_n;
+      ^
+datastructure/comp.hpp:14:79: note: Member variable 'comp < long long >::_cmp_n' is in the wrong place in the initializer list.
+  explicit comp(const vec<T> &src) : _n(src.size()), _raw(src), _comp(_n, 0), _cmp_n(0) {
+                                                                              ^
+datastructure/comp.hpp:10:7: note: Member variable 'comp < long long >::_cmp_n' is in the wrong place in the initializer list.
+  int _cmp_n;
+      ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
