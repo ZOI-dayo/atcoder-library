@@ -7,17 +7,17 @@ public:
   Point() {}
   Point(int x, int y) : x(x), y(y) {}
 
-  Point up() { return Point(x - 1, y); }
-  Point down() { return Point(x + 1, y); }
-  Point left() { return Point(x, y - 1); }
-  Point right() { return Point(x, y + 1); }
-  Point upper_left() { return Point(x - 1, y - 1); }
-  Point upper_right() { return Point(x - 1, y + 1); }
-  Point lower_left() { return Point(x + 1, y - 1); }
-  Point lower_right() { return Point(x + 1, y + 1); }
+  Point up() const { return Point(x - 1, y); }
+  Point down() const { return Point(x + 1, y); }
+  Point left() const { return Point(x, y - 1); }
+  Point right() const { return Point(x, y + 1); }
+  Point upper_left() const { return Point(x - 1, y - 1); }
+  Point upper_right() const { return Point(x - 1, y + 1); }
+  Point lower_left() const { return Point(x + 1, y - 1); }
+  Point lower_right() const { return Point(x + 1, y + 1); }
 
-  vec<Point> around4() { return {up(), down(), left(), right()}; }
-  vec<Point> around8() {
+  vec<Point> around4() const { return {up(), down(), left(), right()}; }
+  vec<Point> around8() const {
     return {up(),   up().right(),  right(), right().down(),
             down(), down().left(), left(),  left().up()};
   }
