@@ -7,6 +7,7 @@
 #include "print.hpp"
 
 using namespace std;
+// using namespace std::views;
 // using namespace boost::multiprecision;
 
 // --- 型エイリアス ---

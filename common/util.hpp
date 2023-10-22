@@ -19,6 +19,35 @@ inline T bin_search(T ok, T ng, const function<bool(T)> is_ok) {
   return ok;
 }
 
+// 順列全探索
+inline void rep_perm(int n, const function<void(vec<int> &)> f) {
+  vec<int> v(n);
+  iota(v.begin(), v.end(), 0);
+  do {
+    f(v);
+  } while (next_permutation(v.begin(), v.end()));
+}
+
+inline void rep_bit(int n, const function<void(int)> f) {
+  rep(i, BIT(n)) f(i);
+}
+
+// 配列 to string
+template <typename T> inline string join(const vec<T> &v, string sep = " ") {
+  string res = "";
+  rep(i, v.size()) res += to_string(v[i]) + (i == v.size() - 1 ? "" : sep);
+  return res;
+}
+template <typename T> inline void join_out(ostream &os, const vec<T> &v, string sep = " ", string end = "\n") {
+  int n = v.size();
+  rep(i, n) os << v[i] << (i == n - 1 ? end : sep);
+}
+
+template <typename T>
+inline void transform(vec<T> &src, function<void(T&)> f) {
+  for (auto &val : src) f(val);
+}
+
 // 合計値を求める
 ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
 
