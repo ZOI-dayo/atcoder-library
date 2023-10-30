@@ -10,16 +10,15 @@ vec<modint998> convolution(vec<modint998> f, vec<modint998> g) {
 
   vec<mint> nf, ng;
   size_t size = bit_ceil(f.size() + g.size() - 1);
-  nf.resize(size); ng.resize(size);
+  nf.resize(size);
+  ng.resize(size);
   rep(i, f.size()) {
     nf[i] = f[i];
     ng[i] = g[i];
   }
   // ntt::translate(nf);
   // ntt::translate(ng);
-  rep(i, size) {
-    nf[i] *= ng[i];
-  }
+  rep(i, size) { nf[i] *= ng[i]; }
   dft(nf, true);
   vec<mint> res;
   res.reserve(size);
@@ -28,4 +27,3 @@ vec<modint998> convolution(vec<modint998> f, vec<modint998> g) {
 }
 
 // TODO: https://sen-comp.hatenablog.com/entry/2021/02/06/180310
-

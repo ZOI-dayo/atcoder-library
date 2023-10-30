@@ -8,26 +8,22 @@
 
 class ntt {
 private:
-  static ntt* instance;
-  ntt(): ws(DIVIDE_LIMIT+1), iws(DIVIDE_LIMIT+1) {
-    generate_zeta();
-  };
+  static ntt *instance;
+  ntt() : ws(DIVIDE_LIMIT + 1), iws(DIVIDE_LIMIT + 1) { generate_zeta(); };
   void generate_zeta() {
-    rep(i, DIVIDE_LIMIT+1) {
-      ws[i] = mod_pow(ROOT, 1LL << (DIVIDE_LIMIT-i), MOD);
-      iws[i] = mod_pow(ws[i], MOD-2, MOD);
+    rep(i, DIVIDE_LIMIT + 1) {
+      ws[i] = mod_pow(ROOT, 1LL << (DIVIDE_LIMIT - i), MOD);
+      iws[i] = mod_pow(ws[i], MOD - 2, MOD);
     }
     /*
-    ws[DIVIDE_LIMIT] = mod_pow(PRIMITIVE_ROOT, (MOD - 1) / mod_pow(2, 23, 998244353), 998244353);//99..なら119乗
-    iws[DIVIDE_LIMIT] = 1 / ws[DIVIDE_LIMIT];
-    for (int i = DIVIDE_LIMIT - 1; i >= 0; i--) {
-      ws[i] = ws[i + 1] * ws[i + 1];
-      iws[i] = iws[i + 1] * iws[i + 1];
+    ws[DIVIDE_LIMIT] = mod_pow(PRIMITIVE_ROOT, (MOD - 1) / mod_pow(2, 23,
+    998244353), 998244353);//99..なら119乗 iws[DIVIDE_LIMIT] = 1 /
+    ws[DIVIDE_LIMIT]; for (int i = DIVIDE_LIMIT - 1; i >= 0; i--) { ws[i] = ws[i
+    + 1] * ws[i + 1]; iws[i] = iws[i + 1] * iws[i + 1];
     }
     */
   }
-  template <typename T>
-  constexpr T powMod(T p, T n, T m) {
+  template <typename T> constexpr T powMod(T p, T n, T m) {
     T res = 1;
     while (n) {
       if (n & 1)
@@ -38,8 +34,7 @@ private:
     return (res + m) % m;
   }
 
-  template <typename T>
-  const int bitLength(T i) {
+  template <typename T> const int bitLength(T i) {
     int res = 0;
     while (i) {
       i >>= 1;
@@ -47,20 +42,21 @@ private:
     }
     return res;
   }
+
 public:
   // using mint = modint998;
   static const int MOD = 998244353;
   static const int PRIMITIVE_ROOT = 3;
-  static const int ROOT = 31; // Q
+  static const int ROOT = 31;         // Q
   static const int DIVIDE_LIMIT = 23; // M
   vec<int> ws, iws;
-  static ntt& get_instance() {
+  static ntt &get_instance() {
     if (!instance) {
       instance = new ntt;
     }
     return *instance;
   }
-  void calc(vec<ll>& A) {
+  void calc(vec<ll> &A) {
     if (A.size() == 1)
       return;
     int n = A.size();
@@ -79,7 +75,7 @@ public:
       r >>= 1;
     }
   }
-  void intt(std::vector<ll>& A) {
+  void intt(std::vector<ll> &A) {
     if (A.size() == 1)
       return;
     ll n = A.size();
@@ -102,7 +98,7 @@ public:
       A[i] = A[i] * ni % MOD;
     }
   }
-  void polymul(std::vector<ll>& f, std::vector<ll>& g) {
+  void polymul(std::vector<ll> &f, std::vector<ll> &g) {
     int m = f.size() + g.size() - 1;
     int n = 1 << bitLength(m - 1);
     for (int i = 0; i < f.size(); i++) {
@@ -125,16 +121,11 @@ public:
     f.resize(m);
   }
   /*
-  vec<mint> translate(const vec<mint>& f, const int inverse, const int log2_f, const int divide_cnt = DEVIDE_LIMIT) {
-    vec<mint> ret;
-    if (f.size() == 1 || divide_cnt == 0) {
-      ret.resize(f.size());
-      mint zeta = 1;
-      for (int i = 0; i < ret.size(); i++) {
-        mint now = zeta;
-        for (int j = 0; j < f.size(); j++) {
-          ret[i] += f[j] * now;
-          now *= zeta;
+  vec<mint> translate(const vec<mint>& f, const int inverse, const int log2_f,
+const int divide_cnt = DEVIDE_LIMIT) { vec<mint> ret; if (f.size() == 1 ||
+divide_cnt == 0) { ret.resize(f.size()); mint zeta = 1; for (int i = 0; i <
+ret.size(); i++) { mint now = zeta; for (int j = 0; j < f.size(); j++) { ret[i]
++= f[j] * now; now *= zeta;
         }
         zeta *= ((inverse == 1) ? z[0] : iz[0]);
       }
@@ -148,7 +139,8 @@ public:
       f2[i] = f[i * 2 + 1];
     }
 
-    vec<mint> f1_dft = translate(f1, inverse, log2_f - 1, divide_cnt  -1), f2_dft = translate(f2, inverse, log2_f - 1, divide_cnt - 1);
+    vec<mint> f1_dft = translate(f1, inverse, log2_f - 1, divide_cnt  -1),
+f2_dft = translate(f2, inverse, log2_f - 1, divide_cnt - 1);
     ret.resize(f.size());
     mint now = 1;
 
@@ -167,7 +159,8 @@ public:
     while (f.size() + g.size() > max_dim) max_dim <<= 1, log2_max_dim++;
     f.resize(max_dim), g.resize(max_dim);
     //多項式fとgのDFT結果を求める。 O(n log n)
-    auto f_dft = translate(f, 1, log2_max_dim), g_dft = translate(g, 1, log2_max_dim);
+    auto f_dft = translate(f, 1, log2_max_dim), g_dft = translate(g, 1,
+log2_max_dim);
 
     //f*gのDFT結果は各f_dftとg_ftの係数の積。O(n)
     vec<mint> fg_dft(max_dim);
@@ -189,4 +182,4 @@ public:
 */
 };
 
-ntt* ntt::instance = nullptr;
+ntt *ntt::instance = nullptr;

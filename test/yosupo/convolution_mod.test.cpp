@@ -11,7 +11,9 @@ signed main() {
   int N, M;
   cin >> N >> M;
   vec<ll> a(N), b(M);
-  cin >> a >> b;;
+  cin >> a >> b;
+  ;
   ntt::get_instance().polymul(a, b);
-  for(auto x : a) cout << x << " ";
+  for (auto x : a)
+    cout << x << " ";
 }
