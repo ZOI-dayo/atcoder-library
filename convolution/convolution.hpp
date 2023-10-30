@@ -9,13 +9,16 @@
 class Convolution {
 private:
   static Convolution *instance;
-  Convolution() : ws(DIVIDE_LIMIT + 1), iws(DIVIDE_LIMIT + 1) { generate_zeta(); }
+  Convolution() : ws(DIVIDE_LIMIT + 1), iws(DIVIDE_LIMIT + 1) {
+    generate_zeta();
+  }
   void generate_zeta() {
     rep(i, DIVIDE_LIMIT + 1) {
       ws[i] = mod_pow(ROOT, 1LL << (DIVIDE_LIMIT - i), MOD);
       iws[i] = mod_pow(ws[i], MOD - 2, MOD);
     }
   }
+
 public:
   using mint = mint998;
   static const int MOD = 998244353;

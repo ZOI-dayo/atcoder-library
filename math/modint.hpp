@@ -102,11 +102,13 @@ private:
   int _val;
 
 public:
-  constexpr inline modint998(int val = 0) noexcept: _val(val) {normalize();}
+  constexpr inline modint998(int val = 0) noexcept : _val(val) { normalize(); }
 
   // logic
   constexpr uint32_t val() const noexcept { return _val; }
-  constexpr inline void normalize() noexcept { _val = (_val % MOD + MOD) % MOD; }
+  constexpr inline void normalize() noexcept {
+    _val = (_val % MOD + MOD) % MOD;
+  }
   constexpr inline modint998 inv() const noexcept {
     uint32_t a = _val, b = MOD, u = 1, v = 0, t;
     while (b > 0) {
@@ -117,7 +119,8 @@ public:
     return modint998(u);
   }
   // modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
-  constexpr inline static modint998 pow(const modint998 &a, const int n) noexcept {
+  constexpr inline static modint998 pow(const modint998 &a,
+                                        const int n) noexcept {
     return modint998(mod_pow(a._val, n, a.MOD));
   }
 
@@ -134,12 +137,24 @@ public:
     --*this;
     return tmp;
   }
-  constexpr inline modint998 operator+(const modint998 &a) const noexcept { return modint998(_val) += a; }
-  constexpr inline modint998 operator-(const modint998 &a) const noexcept { return modint998(_val) -= a; }
-  constexpr inline modint998 operator*(const modint998 &a) const noexcept { return modint998(_val) *= a; }
-  constexpr inline modint998 operator/(const modint998 &a) const noexcept { return modint998(_val) /= a; }
-  constexpr inline bool operator==(const modint998 &a) noexcept { return _val == a._val; }
-  constexpr inline bool operator!=(const modint998 &a) noexcept { return _val != a._val; }
+  constexpr inline modint998 operator+(const modint998 &a) const noexcept {
+    return modint998(_val) += a;
+  }
+  constexpr inline modint998 operator-(const modint998 &a) const noexcept {
+    return modint998(_val) -= a;
+  }
+  constexpr inline modint998 operator*(const modint998 &a) const noexcept {
+    return modint998(_val) *= a;
+  }
+  constexpr inline modint998 operator/(const modint998 &a) const noexcept {
+    return modint998(_val) /= a;
+  }
+  constexpr inline bool operator==(const modint998 &a) noexcept {
+    return _val == a._val;
+  }
+  constexpr inline bool operator!=(const modint998 &a) noexcept {
+    return _val != a._val;
+  }
   constexpr inline modint998 &operator+=(const modint998 &a) noexcept {
     _val += a._val;
     if (_val >= MOD)

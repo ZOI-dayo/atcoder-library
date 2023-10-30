@@ -37,9 +37,5 @@ template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 // --- 定数 ---
 constexpr ll INF = 1LL << 60;
 
-inline signed bit_width(ll x) {
-  return bit_width((ull)x);
-}
-inline ull bit_ceil(ll x) {
-  return bit_ceil((ull)x);
-}
+inline signed bit_width(ll x) { return bit_width((ull)x); }
+inline ull bit_ceil(ll x) { return bit_ceil((ull)x); }
