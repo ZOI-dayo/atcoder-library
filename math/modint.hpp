@@ -41,10 +41,10 @@ public:
     --*this;
     return tmp;
   }
-  modint operator+(const modint &a) { return modint(_val) += a; }
-  modint operator-(const modint &a) { return modint(_val) -= a; }
-  modint operator*(const modint &a) { return modint(_val) *= a; }
-  modint operator/(const modint &a) { return modint(_val) /= a; }
+  modint operator+(const modint &a) const { return modint(_val) += a; }
+  modint operator-(const modint &a) const { return modint(_val) -= a; }
+  modint operator*(const modint &a) const { return modint(_val) *= a; }
+  modint operator/(const modint &a) const { return modint(_val) /= a; }
   bool operator==(const modint &a) { return _val == a._val; }
   bool operator!=(const modint &a) { return _val != a._val; }
   modint &operator+=(const modint &a) {
