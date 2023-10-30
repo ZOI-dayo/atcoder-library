@@ -12,6 +12,7 @@ using namespace std;
 
 // --- 型エイリアス ---
 using ll = long long;
+using ull = unsigned long long;
 template <typename T> using vec = vector<T>;
 template <typename T> using vvec = vector<vector<T>>;
 template <typename T> using p_queue = priority_queue<T>;
@@ -35,3 +36,10 @@ template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 
 // --- 定数 ---
 constexpr ll INF = 1LL << 60;
+
+inline signed bit_width(ll x) {
+  return bit_width((ull)x);
+}
+inline ull bit_ceil(ll x) {
+  return bit_ceil((ull)x);
+}
