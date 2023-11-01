@@ -1,3 +1,4 @@
 .verify-helper/*
 !.verify-helper/config.toml
 pdf/
+tmp.html
