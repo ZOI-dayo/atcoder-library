@@ -9,6 +9,8 @@ mkdir pdf
 for file in `ls **/*.hpp`; do
   mkdir -p pdf/`dirname ${file}`
 
+  nvim -v
+  nvim -V1 -v
   nvim ${file} -c 'qa!'
   nvim ${file} -c 'set runtimepath+=~/.config/nvim/nightfox.nvim | qa!'
   nvim ${file} -c 'set runtimepath+=~/.config/nvim/nightfox.nvim | colorscheme dayfox | qa!'
