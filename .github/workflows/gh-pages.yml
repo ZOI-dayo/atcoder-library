@@ -82,7 +82,11 @@ jobs:
       - name: Install nvim-config
         run: |
           mkdir -p ~/.config/nvim
-          git clone https://github.com/ZOI-dayo/nvim-config.git ~/.config/nvim
+          cd ~/.config/nvim
+          git clone https://github.com/EdenEast/nightfox.nvim.git
+          mkdir colors
+          mv nightfox.nvim/colors/dayfox.vim colors
+          rm -rf nightfox.nvim
       - name: Install Cica font
         run: |
           cd /tmp

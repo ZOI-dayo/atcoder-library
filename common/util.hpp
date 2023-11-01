@@ -20,7 +20,7 @@ inline T bin_search(T ok, T ng, const function<bool(T)> is_ok) {
 }
 
 // 順列全探索
-inline void rep_perm(int n, const void (*f)(vec<int> &)) {
+inline void rep_perm(int n, function<void(vec<int> &)> f) {
   vec<int> v(n);
   iota(v.begin(), v.end(), 0);
   do {
@@ -28,7 +28,7 @@ inline void rep_perm(int n, const void (*f)(vec<int> &)) {
   } while (next_permutation(v.begin(), v.end()));
 }
 
-inline void rep_bit(int n, const void (*f)(int)) { rep(i, BIT(n)) f(i); }
+inline void rep_bit(int n, function<void(int)> f) { rep(i, BIT(n)) f(i); }
 
 // 配列 to string
 template <typename T> inline string join(const vec<T> &v, string sep = " ") {
