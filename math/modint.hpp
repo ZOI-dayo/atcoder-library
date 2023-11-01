@@ -23,8 +23,8 @@ public:
     }
     return modint(u);
   }
-  // modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
-  static modint pow(const modint &a, const int n) {
+  modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
+  static constexpr modint pow(const modint &a, const int n) {
     return modint(mod_pow(a._val, n, a.MOD));
   }
 
@@ -103,6 +103,7 @@ private:
 
 public:
   constexpr inline modint998(int val = 0) noexcept : _val(val) { normalize(); }
+  constexpr inline modint998(modint998 const &val) noexcept : _val(val._val) {}
 
   // logic
   constexpr uint32_t val() const noexcept { return _val; }
@@ -118,7 +119,7 @@ public:
     }
     return modint998(u);
   }
-  // modint pow(const int n) const { return modint(mod_pow(_val, n, MOD)); }
+  constexpr modint998 pow(const int n) const { return modint998(mod_pow(_val, n, MOD)); }
   constexpr inline static modint998 pow(const modint998 &a,
                                         const int n) noexcept {
     return modint998(mod_pow(a._val, n, a.MOD));
@@ -138,16 +139,16 @@ public:
     return tmp;
   }
   constexpr inline modint998 operator+(const modint998 &a) const noexcept {
-    return modint998(_val) += a;
+    return modint998(*this) += a;
   }
   constexpr inline modint998 operator-(const modint998 &a) const noexcept {
-    return modint998(_val) -= a;
+    return modint998(*this) -= a;
   }
   constexpr inline modint998 operator*(const modint998 &a) const noexcept {
-    return modint998(_val) *= a;
+    return modint998(*this) *= a;
   }
   constexpr inline modint998 operator/(const modint998 &a) const noexcept {
-    return modint998(_val) /= a;
+    return modint998(*this) /= a;
   }
   constexpr inline bool operator==(const modint998 &a) noexcept {
     return _val == a._val;

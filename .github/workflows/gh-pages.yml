@@ -38,6 +38,46 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+  print:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install NeoVim
+        run: |
+          cd /tmp
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+          chmod u+x nvim.appimage
+          ./nvim.appimage
+      - name: Install nvim-config
+        run: |
+          mkdir -p ~/.config/nvim
+          git clone https://github.com/ZOI-dayo/nvim-config.git ~/.config/nvim
+      - name: Install Cica font
+        run: |
+          cd /tmp
+          curl -L -O https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3_with_emoji.zip
+          unzip Cica_v5.0.3_with_emoji.zip
+          sudo mkdir /usr/share/fonts/truetype/cica
+          sudo cp *.ttf /usr/share/fonts/truetype/cica/
+          sudo fc-cache -vf
+      - name: Install wkhtmltopdf
+        run: sudo apt install -y wkhtmltopdf
+      - name: Generate PDF
+        run: ./build-pdf.sh
+      - name: Commit files
+        run: |
+          git add .
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Generate PDF" || echo "No changes to commit"
+          git pull --rebase
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
   format:
     runs-on: ubuntu-latest
     needs: lint
