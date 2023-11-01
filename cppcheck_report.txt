@@ -22,28 +22,22 @@ math/modint.hpp:48:8: style:inconclusive: Technically the member function 'modin
 math/modint.hpp:49:8: style:inconclusive: Technically the member function 'modint::operator!=' can be const. [functionConst]
   bool operator!=(const modint &a) { return _val != a._val; }
        ^
-math/modint.hpp:127:30: style:inconclusive: Technically the member function 'modint998::operator++' can be const. [functionConst]
+math/modint.hpp:131:30: style:inconclusive: Technically the member function 'modint998::operator++' can be const. [functionConst]
   constexpr inline modint998 operator++(int32_t) noexcept {
                              ^
-math/modint.hpp:132:30: style:inconclusive: Technically the member function 'modint998::operator--' can be const. [functionConst]
+math/modint.hpp:136:30: style:inconclusive: Technically the member function 'modint998::operator--' can be const. [functionConst]
   constexpr inline modint998 operator--(int32_t) noexcept {
                              ^
-math/modint.hpp:141:25: style:inconclusive: Technically the member function 'modint998::operator==' can be const. [functionConst]
-  constexpr inline bool operator==(const modint998 &a) noexcept { return _val == a._val; }
+math/modint.hpp:153:25: style:inconclusive: Technically the member function 'modint998::operator==' can be const. [functionConst]
+  constexpr inline bool operator==(const modint998 &a) noexcept {
                         ^
-math/modint.hpp:142:25: style:inconclusive: Technically the member function 'modint998::operator!=' can be const. [functionConst]
-  constexpr inline bool operator!=(const modint998 &a) noexcept { return _val != a._val; }
+math/modint.hpp:156:25: style:inconclusive: Technically the member function 'modint998::operator!=' can be const. [functionConst]
+  constexpr inline bool operator!=(const modint998 &a) noexcept {
                         ^
-convolution/convolution.hpp:32:8: style:inconclusive: Technically the member function 'Convolution::ntt' can be const. [functionConst]
-  void ntt(vec<mint> &A) {
-       ^
-convolution/convolution.hpp:51:8: style:inconclusive: Technically the member function 'Convolution::inv_ntt' can be const. [functionConst]
-  void inv_ntt(vec<mint> &A) {
-       ^
 math/modint.hpp:12:3: style: Struct 'modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   modint(int val) : _val(val) { normalize(); }
   ^
-math/modint.hpp:111:47: style: The scope of the variable 't' can be reduced. [variableScope]
+math/modint.hpp:114:47: style: The scope of the variable 't' can be reduced. [variableScope]
     uint32_t a = _val, b = MOD, u = 1, v = 0, t;
                                               ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
