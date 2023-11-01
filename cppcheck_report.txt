@@ -22,16 +22,16 @@ math/modint.hpp:48:8: style:inconclusive: Technically the member function 'modin
 math/modint.hpp:49:8: style:inconclusive: Technically the member function 'modint::operator!=' can be const. [functionConst]
   bool operator!=(const modint &a) { return _val != a._val; }
        ^
-math/modint.hpp:131:30: style:inconclusive: Technically the member function 'modint998::operator++' can be const. [functionConst]
+math/modint.hpp:133:30: style:inconclusive: Technically the member function 'modint998::operator++' can be const. [functionConst]
   constexpr inline modint998 operator++(int32_t) noexcept {
                              ^
-math/modint.hpp:136:30: style:inconclusive: Technically the member function 'modint998::operator--' can be const. [functionConst]
+math/modint.hpp:138:30: style:inconclusive: Technically the member function 'modint998::operator--' can be const. [functionConst]
   constexpr inline modint998 operator--(int32_t) noexcept {
                              ^
-math/modint.hpp:153:25: style:inconclusive: Technically the member function 'modint998::operator==' can be const. [functionConst]
+math/modint.hpp:155:25: style:inconclusive: Technically the member function 'modint998::operator==' can be const. [functionConst]
   constexpr inline bool operator==(const modint998 &a) noexcept {
                         ^
-math/modint.hpp:156:25: style:inconclusive: Technically the member function 'modint998::operator!=' can be const. [functionConst]
+math/modint.hpp:158:25: style:inconclusive: Technically the member function 'modint998::operator!=' can be const. [functionConst]
   constexpr inline bool operator!=(const modint998 &a) noexcept {
                         ^
 math/modint.hpp:12:3: style: Struct 'modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
