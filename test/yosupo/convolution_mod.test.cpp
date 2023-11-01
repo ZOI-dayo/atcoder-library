@@ -12,7 +12,6 @@ signed main() {
   cin >> N >> M;
   vec<mint> a(N), b(M);
   cin >> a >> b;
-  ;
   convolution(a, b);
   for (auto x : a)
     cout << x << " ";

@@ -4,7 +4,7 @@
 class Point {
 public:
   int x, y;
-  Point() {}
+  Point() : x(0), y(0) {}
   Point(int x, int y) : x(x), y(y) {}
 
   Point up() const { return Point(x - 1, y); }

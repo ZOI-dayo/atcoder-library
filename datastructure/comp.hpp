@@ -12,7 +12,7 @@ private:
 
 public:
   explicit comp(const vec<T> &src)
-      : _n(src.size()), _raw(src), _comp(_n, 0), _cmp_n(0) {
+      : _n(src.size()), _cmp_n(0), _raw(src), _comp(_n, 0) {
     sort(_raw.begin(), _raw.end());
     _raw.erase(unique(_raw.begin(), _raw.end()), _raw.end());
     _cmp_n = _raw.size();
