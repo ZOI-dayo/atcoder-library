@@ -92,6 +92,7 @@ jobs:
           sudo mkdir /usr/share/fonts/truetype/cica
           sudo cp *.ttf /usr/share/fonts/truetype/cica/
           sudo fc-cache -vf
+          fc-list | grep -i cica
       - name: Install wkhtmltopdf
         run: sudo apt install -y wkhtmltopdf
       - name: Generate PDF
