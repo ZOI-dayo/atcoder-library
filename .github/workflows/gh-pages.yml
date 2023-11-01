@@ -83,8 +83,8 @@ jobs:
       - name: Install Cica font
         run: |
           cd /tmp
-          curl -L -O https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3_with_emoji.zip
-          unzip Cica_v5.0.3_with_emoji.zip
+          curl -L -O https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip
+          unzip Cica_v5.0.3.zip
           sudo mkdir /usr/share/fonts/truetype/cica
           sudo cp *.ttf /usr/share/fonts/truetype/cica/
           sudo fc-cache -vf
