@@ -81,8 +81,8 @@ jobs:
           sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
       - name: Install Nightfox
         run: |
-          mkdir -p ~/.local/share/nvim
-          cd ~/.local/share/nvim
+          mkdir -p ~/.config/nvim/
+          cd ~/.config/nvim/
           git clone https://github.com/EdenEast/nightfox.nvim.git
       - name: Install Cica font
         run: |
