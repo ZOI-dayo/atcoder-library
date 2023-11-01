@@ -14,13 +14,15 @@ constexpr int DIVIDE_LIMIT = 23; // M
 // static const int PRIMITIVE_ROOT = 3;
 constexpr array<mint, DIVIDE_LIMIT + 1> make_ws() {
   array<mint, DIVIDE_LIMIT + 1> ret;
-  generate(all(ret), [n=-1]() mutable {return n++, mint(ROOT).pow(1LL << (DIVIDE_LIMIT - n));});
+  generate(all(ret), [n = -1]() mutable {
+    return n++, mint(ROOT).pow(1LL << (DIVIDE_LIMIT - n));
+  });
   return ret;
 }
 constexpr auto ws = make_ws();
 constexpr array<mint, DIVIDE_LIMIT + 1> make_iws() {
   array<mint, DIVIDE_LIMIT + 1> ret;
-  generate(all(ret), [n=-1]() mutable {return n++, ws[n].pow(MOD-2);});
+  generate(all(ret), [n = -1]() mutable { return n++, ws[n].pow(MOD - 2); });
   return ret;
 }
 constexpr auto iws = make_iws();
@@ -81,7 +83,7 @@ inline void calc(vec<mint> &f, vec<mint> &g) noexcept {
   inv_ntt(f);
   f.resize(m);
 }
-};
+}; // namespace Convolution
 
 // Convolution *Convolution::instance = nullptr;
 

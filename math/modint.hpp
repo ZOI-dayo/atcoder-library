@@ -119,7 +119,9 @@ public:
     }
     return modint998(u);
   }
-  constexpr modint998 pow(const int n) const { return modint998(mod_pow(_val, n, MOD)); }
+  constexpr modint998 pow(const int n) const {
+    return modint998(mod_pow(_val, n, MOD));
+  }
   constexpr inline static modint998 pow(const modint998 &a,
                                         const int n) noexcept {
     return modint998(mod_pow(a._val, n, a.MOD));
