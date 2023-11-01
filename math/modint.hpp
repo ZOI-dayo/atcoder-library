@@ -4,9 +4,13 @@
 #include "./pow.hpp"
 
 namespace modint_utils {
-  constexpr inline int normalize(int val, int mod) { return (val % mod + mod) % mod; }
-  constexpr inline int inv(int val, int mod) { return mod_pow(val, mod - 2, mod); }
+constexpr inline int normalize(int val, int mod) {
+  return (val % mod + mod) % mod;
 }
+constexpr inline int inv(int val, int mod) {
+  return mod_pow(val, mod - 2, mod);
+}
+} // namespace modint_utils
 
 template <int MOD> struct dynamic_modint {
 private:
@@ -18,9 +22,14 @@ public:
 
   // logic
   int val() const { return _val; }
-  inline dynamic_modint inv() const { return dynamic_modint(modint_utils::inv(_val, MOD)); }
-  inline dynamic_modint pow(const int n) const { return dynamic_modint(mod_pow(_val, n, MOD)); }
-  inline static constexpr dynamic_modint pow(const dynamic_modint &a, const int n) {
+  inline dynamic_modint inv() const {
+    return dynamic_modint(modint_utils::inv(_val, MOD));
+  }
+  inline dynamic_modint pow(const int n) const {
+    return dynamic_modint(mod_pow(_val, n, MOD));
+  }
+  inline static constexpr dynamic_modint pow(const dynamic_modint &a,
+                                             const int n) {
     return dynamic_modint(mod_pow(a._val, n, a.MOD));
   }
 
@@ -37,10 +46,18 @@ public:
     --*this;
     return tmp;
   }
-  inline dynamic_modint operator+(const dynamic_modint &a) const { return dynamic_modint(_val) += a; }
-  inline dynamic_modint operator-(const dynamic_modint &a) const { return dynamic_modint(_val) -= a; }
-  inline dynamic_modint operator*(const dynamic_modint &a) const { return dynamic_modint(_val) *= a; }
-  inline dynamic_modint operator/(const dynamic_modint &a) const { return dynamic_modint(_val) /= a; }
+  inline dynamic_modint operator+(const dynamic_modint &a) const {
+    return dynamic_modint(_val) += a;
+  }
+  inline dynamic_modint operator-(const dynamic_modint &a) const {
+    return dynamic_modint(_val) -= a;
+  }
+  inline dynamic_modint operator*(const dynamic_modint &a) const {
+    return dynamic_modint(_val) *= a;
+  }
+  inline dynamic_modint operator/(const dynamic_modint &a) const {
+    return dynamic_modint(_val) /= a;
+  }
   inline bool operator==(const dynamic_modint &a) { return _val == a._val; }
   inline bool operator!=(const dynamic_modint &a) { return _val != a._val; }
   inline dynamic_modint &operator+=(const dynamic_modint &a) {
@@ -79,7 +96,8 @@ public:
 
 // using modint998 = modint<998244353>;
 
-template <int MOD> ostream &operator<<(ostream &os, const dynamic_modint<MOD> &i) {
+template <int MOD>
+ostream &operator<<(ostream &os, const dynamic_modint<MOD> &i) {
   os << i.val();
   return os;
 }
@@ -92,13 +110,13 @@ ostream &operator<<(ostream &os, const vector<dynamic_modint<MOD>> &v) {
   return os;
 }
 
-template <const int MOD>
-struct modint {
+template <const int MOD> struct modint {
 private:
   int _val;
 
 public:
-  constexpr inline modint(int val = 0) noexcept : _val(modint_utils::normalize(val, MOD)) {}
+  constexpr inline modint(int val = 0) noexcept
+      : _val(modint_utils::normalize(val, MOD)) {}
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 
   // logic
@@ -106,8 +124,7 @@ public:
   constexpr modint pow(const int n) const {
     return modint(mod_pow(_val, n, MOD));
   }
-  constexpr inline static modint pow(const modint &a,
-                                        const int n) noexcept {
+  constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));
   }
 
