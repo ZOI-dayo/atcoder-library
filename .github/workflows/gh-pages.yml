@@ -79,14 +79,11 @@ jobs:
           ./squashfs-root/AppRun --version
           sudo mv squashfs-root /
           sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
-      - name: Install nvim-config
+      - name: Install Nightfox
         run: |
-          mkdir -p ~/.config/nvim
-          cd ~/.config/nvim
+          mkdir -p ~/.local/share/nvim
+          cd ~/.local/share/nvim
           git clone https://github.com/EdenEast/nightfox.nvim.git
-          mkdir colors
-          mv nightfox.nvim/colors/dayfox.vim colors
-          rm -rf nightfox.nvim
       - name: Install Cica font
         run: |
           cd /tmp
@@ -99,18 +96,22 @@ jobs:
         run: sudo apt install -y wkhtmltopdf
       - name: Generate PDF
         run: ./build-pdf.sh
-      - name: Commit files
-        run: |
-          git add .
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -a -m "Generate PDF" || echo "No changes to commit"
-          git pull --rebase
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          name: pdf
+          path: pdf/
+      # - name: Commit files
+      #   run: |
+      #     git add .
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git commit -a -m "Generate PDF" || echo "No changes to commit"
+      #     git pull --rebase
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}
   build:
     runs-on: ubuntu-latest
     needs: format
