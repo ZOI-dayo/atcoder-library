@@ -93,7 +93,7 @@ jobs:
           sudo cp *.ttf /usr/share/fonts/truetype/cica/
           sudo fc-cache -vf
           fc-list | grep -i cica
-          echo '<match target="pattern"><test name="family" qual="any"><string>monospace</string></test><edit binding="strong" mode="prepend" name="family"><string>Cica</string></edit></match>' | sudo tee /etc/fonts/local.conf
+          echo '<?xml version="1.0"?><!DOCTYPE fontconfig SYSTEM "fonts.dtd"><fontconfig><match target="pattern"><test name="family" qual="any"><string>monospace</string></test><edit binding="strong" mode="prepend" name="family"><string>Cica</string></edit></match></fontconfig>' | sudo tee /etc/fonts/local.conf
       - name: Install wkhtmltopdf
         run: |
           cd /tmp
