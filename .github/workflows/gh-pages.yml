@@ -94,7 +94,12 @@ jobs:
           sudo fc-cache -vf
           fc-list | grep -i cica
       - name: Install wkhtmltopdf
-        run: sudo apt install -y wkhtmltopdf
+        run: |
+          cd /tmp
+          apt-get install libfontenc1 xfonts-75dpi xfonts-base xfonts-encodings xfonts-utils openssl build-essential libssl-dev libxrender-dev git-core libx11-dev libxext-dev libfontconfig1-dev libfreetype6-dev fontconfig -y
+          wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.focal_amd64.deb
+          dpkg -i wkhtmltox_0.12.5-1.focal_amd64.deb
+          apt --fix-broken install
       - name: Generate PDF
         run: ./build-pdf.sh
       - uses: actions/upload-artifact@v3
