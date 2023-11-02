@@ -4,9 +4,14 @@ cd `dirname $0`
 
 opt=${2:-Portrait}
 mkdir pdf
-for file in `ls **/*.hpp`; do
+for file in **/*.hpp; do
+  echo "---"
+  echo ${file}
+  git log -n 1 ${file}
   commitid=`git log -n 1 --pretty=format:%H ${file}`
+  echo "${commitid}"
   commitid=${commitid:0:7}
+  echo "${commitid}"
   mkdir -p pdf/`dirname ${file}`
 
   nvim ${file} -c 'set runtimepath+=~/.config/nvim/nightfox.nvim | colorscheme dayfox | set number | let g:html_font = "Cica" | TOhtml | w tmp.html | qa!'
