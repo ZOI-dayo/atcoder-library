@@ -3,10 +3,10 @@
 cd `dirname $0`
 
 opt=${2:-Portrait}
-commitid=`git log -n 1 --pretty=format:'%H'`
-commitid=${commitid:0:7}
 mkdir pdf
 for file in `ls **/*.hpp`; do
+  commitid=`git log -n 1 --pretty=format:%H -- ${file}`
+  commitid=${commitid:0:7}
   mkdir -p pdf/`dirname ${file}`
 
   nvim ${file} -c 'set runtimepath+=~/.config/nvim/nightfox.nvim | colorscheme dayfox | set number | TOhtml | w tmp.html | qa!'
