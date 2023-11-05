@@ -97,16 +97,18 @@ public:
     // a,bを親に移しつつ、aが実在頂点の間
     while ((a >>= 1), (b >>= 1), a) {
       if (_lazy[a] == id) {
-        // _data[(a << 1) | 0] = update(_lazy[(a << 1) | 0], _data[(a << 1) | 0]);
-        // _data[(a << 1) | 1] = update(_lazy[(a << 1) | 1], _data[(a << 1) | 1]);
-        // _data[a] = op(_data[(a << 1) | 0], _data[(a << 1) | 1]);
-        _data[a] = op(update(_lazy[(a << 1) | 0], _data[(a << 1) | 0]), update(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
+        // _data[(a << 1) | 0] = update(_lazy[(a << 1) | 0], _data[(a << 1) |
+        // 0]); _data[(a << 1) | 1] = update(_lazy[(a << 1) | 1], _data[(a << 1)
+        // | 1]); _data[a] = op(_data[(a << 1) | 0], _data[(a << 1) | 1]);
+        _data[a] = op(update(_lazy[(a << 1) | 0], _data[(a << 1) | 0]),
+                      update(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
       }
       if (_lazy[b] == id) {
-        // _data[(b << 1) | 0] = update(_lazy[(b << 1) | 0], _data[(b << 1) | 0]);
-        // _data[(b << 1) | 1] = update(_lazy[(b << 1) | 1], _data[(b << 1) | 1]);
-        // _data[b] = op(_data[(b << 1) | 0], _data[(b << 1) | 1]);
-        _data[b] = op(update(_lazy[(b << 1) | 0], _data[(b << 1) | 0]), update(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
+        // _data[(b << 1) | 0] = update(_lazy[(b << 1) | 0], _data[(b << 1) |
+        // 0]); _data[(b << 1) | 1] = update(_lazy[(b << 1) | 1], _data[(b << 1)
+        // | 1]); _data[b] = op(_data[(b << 1) | 0], _data[(b << 1) | 1]);
+        _data[b] = op(update(_lazy[(b << 1) | 0], _data[(b << 1) | 0]),
+                      update(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
       }
     }
   }
@@ -138,9 +140,9 @@ public:
     // bを [a, b]から[a, b)にする
     for (b++; a < b; a >>= 1, b >>= 1) {
       if (a & 1)
-        vl = op(vl,/* _data[a] = */update(_lazy[a], _data[a])), a++;
+        vl = op(vl, /* _data[a] = */ update(_lazy[a], _data[a])), a++;
       if (b & 1)
-        b--, vr = op(/*_data[b] = */update(_lazy[b], _data[b]), vr);
+        b--, vr = op(/*_data[b] = */ update(_lazy[b], _data[b]), vr);
     }
     return op(vl, vr);
   }
