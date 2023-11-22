@@ -121,9 +121,23 @@ jobs:
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
       #     branch: ${{ github.ref }}
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      something: ${{ steps.set-matrix.outputs.value }}
+    steps:
+      - name: make values
+        id: set-matrix
+        run: |
+          list=$(find ./test/ -type f -name *.test.cpp -print0 | jq -R 'split("\u0000") | .[] | select(length > 0)' | jq -sc ".")
+          echo "value=${list}" >> $GITHUB_OUTPUT
   build:
     runs-on: ubuntu-latest
-    needs: format
+    needs: [format, set-matrix]
+    strategy:
+      fail-fast: false
+      matrix:
+        testcase: ${{fromJson(needs.set-matrix.outputs.something)}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -155,40 +169,40 @@ jobs:
           key: testcases-cache
           restore-keys: testcases-cache
       - name: Verify code
-        run: oj-verify run
+        run: oj-verify run ${{ matrix.testcase }}
         env:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
       - name: Cache testcases
         uses: actions/cache/save@v3
         with:
           path: .verify-helper/cache/**/test
-          key: testcases-cache
+          key: testcases-cache-${{ matrix.testcase }}
           restore-keys: testcases-cache
-      - name: Build docs
-        run: oj-verify docs
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-          working-directory: .verify-helper/markdown
-      - name: Build HTML
-        working-directory: .verify-helper/markdown
-        run: |
-          bundle install
-          bundle exec jekyll build -I -d ../../_site --baseurl /${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}/
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      # - name: Build docs
+        # run: oj-verify docs
+      # - name: Setup Pages
+        # uses: actions/configure-pages@v3
+      # - name: Setup Ruby
+        # uses: ruby/setup-ruby@v1
+        # with:
+          # ruby-version: '3.1'
+          # bundler-cache: true
+          # working-directory: .verify-helper/markdown
+      # - name: Build HTML
+        # working-directory: .verify-helper/markdown
+        # run: |
+          # bundle install
+          # bundle exec jekyll build -I -d ../../_site --baseurl /${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}/
+      # - name: Upload artifact
+        # uses: actions/upload-pages-artifact@v2
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+  # deploy:
+    # environment:
+      # name: github-pages
+      # url: ${{ steps.deployment.outputs.page_url }}
+    # runs-on: ubuntu-latest
+    # needs: build
+    # steps:
+      # - name: Deploy to GitHub Pages
+        # id: deployment
+        # uses: actions/deploy-pages@v2
