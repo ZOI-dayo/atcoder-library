@@ -126,6 +126,8 @@ jobs:
     outputs:
       something: ${{ steps.set-matrix.outputs.value }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: make values
         id: set-matrix
         run: |
