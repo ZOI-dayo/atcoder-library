@@ -175,7 +175,7 @@ jobs:
         env:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
       - name: Check timestamp
-        run: cat ./verify-helper/timestamps.remote.json
+        run: ls -al ./verify-helper/; cat ./verify-helper/timestamps.remote.json
       - name: Create timestamp file
         run: cat ./verify-helper/timestamps.remote.json | jq '.["${{ matrix.testcase }}"]' > ./timestamp.txt
       - name: Upload timestamp
