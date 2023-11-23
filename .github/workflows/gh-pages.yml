@@ -218,12 +218,14 @@ jobs:
         with:
           path: ./tmp
       - name: Check files
-        run: ls tmp/
+        run: ls -al tmp/
+      - name: Create remote.json
+        run: if [ ! -e .verify-helper/timestamps.remote.json ]; then echo "{}" > .verify-helper/timestamps.remote.json; fi
       - name: Load data
         run: |
           echo "${{needs.set-matrix.outputs.something}}" \
           | jq -r ".[]" \
-          | xargs -L 1 -I {} bash -c "cat .verify-helper/timestamps.remote.json | jq '.[{}] |= `cat ./tmp/timestamp-${sha256sum {}}/timestamp.txt` | .' > .verify-helper/timestamps.remote.json"
+          | xargs -L 1 -I {} bash -c "cat .verify-helper/timestamps.remote.json | jq '.[{}] |= `cat ./tmp/timestamp-${sha256sum {}}` | .' > .verify-helper/timestamps.remote.json"
       - name: Check data
         run: cat .verify-helper/timestamps.remote.json
       - name: Build HTML
@@ -239,7 +241,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: web-build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
