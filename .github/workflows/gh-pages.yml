@@ -215,7 +215,7 @@ jobs:
         run: if [ ! -e .verify-helper/timestamps.remote.json ]; then echo "{}" > .verify-helper/timestamps.remote.json; fi
       - name: Load data
         run: |
-          echo "${{needs.set-matrix.outputs.something}}" \
+          echo '${{needs.set-matrix.outputs.something}}' \
           | jq -r ".[]" \
           | xargs -L 1 -I {} bash -c "SUM=\`sha256sum {} | cut -d ' ' -f 1\`; echo \$SUM; cat .verify-helper/timestamps.remote.json | jq '.[\"{}\"] |= \`cat ./tmp/timestamp-\$SUM\` | .' > .verify-helper/timestamps.remote.json"
       - name: Check data
