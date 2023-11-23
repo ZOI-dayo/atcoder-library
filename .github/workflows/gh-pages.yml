@@ -174,20 +174,25 @@ jobs:
         run: oj-verify run ${{ matrix.testcase }}
         env:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+      - name: Create timestamp file
+        run: cat ./verify-helper/timestamps.remote.json | jq '.["${{ matrix.testcase }}"]' > ./timestamp.txt
+      - name: Upload timestamp
+        uses: actions/upload-artifact@v3
+        with:
+          name: timestamp-${{ matrix.testcase }}
+          path: ./timestamp.txt
       - name: Cache testcases
         uses: actions/cache/save@v3
         with:
           path: .verify-helper/cache/**/test
           key: testcases-cache-${{ matrix.testcase }}
-          restore-keys: testcases-cache
+          restore-keys: testcases-cache-${{ matrix.testcase }}
   web-build:
     runs-on: ubuntu-latest
-    needs: format
+    needs: web-build
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -206,6 +211,21 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true
           working-directory: .verify-helper/markdown
+      - name: Create temp dir
+        run: mkdir tmp
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ./tmp
+      - name: Check files
+        run: ls tmp/
+      - name: Load data
+        run: |
+          echo "${{needs.set-matrix.outputs.something}}" \
+          | jq -r ".[]" \
+          | xargs -L 1 -I {} bash -c "cat .verify-helper/timestamps.remote.json | jq '.[{}] |= `cat ./tmp/timestamp-{}/timestamp.txt` | .' > .verify-helper/timestamps.remote.json"
+      - name: Check data
+        run: cat .verify-helper/timestamps.remote.json
       - name: Build HTML
         working-directory: .verify-helper/markdown
         run: |
@@ -219,7 +239,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: web-build
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
