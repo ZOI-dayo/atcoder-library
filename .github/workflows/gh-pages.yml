@@ -179,7 +179,7 @@ jobs:
       - name: Upload timestamp
         uses: actions/upload-artifact@v3
         with:
-          name: timestamp-${{ matrix.testcase }}
+          name: timestamp-${{ hashFiles(matrix.testcase) }}
           path: ./timestamp.txt
       - name: Cache testcases
         uses: actions/cache/save@v3
@@ -223,7 +223,7 @@ jobs:
         run: |
           echo "${{needs.set-matrix.outputs.something}}" \
           | jq -r ".[]" \
-          | xargs -L 1 -I {} bash -c "cat .verify-helper/timestamps.remote.json | jq '.[{}] |= `cat ./tmp/timestamp-{}/timestamp.txt` | .' > .verify-helper/timestamps.remote.json"
+          | xargs -L 1 -I {} bash -c "cat .verify-helper/timestamps.remote.json | jq '.[{}] |= `cat ./tmp/timestamp-${sha256sum {}}/timestamp.txt` | .' > .verify-helper/timestamps.remote.json"
       - name: Check data
         run: cat .verify-helper/timestamps.remote.json
       - name: Build HTML
