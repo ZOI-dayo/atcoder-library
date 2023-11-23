@@ -178,10 +178,13 @@ jobs:
         run: ls -al ./.verify-helper/; cat ./.verify-helper/timestamps.remote.json
       - name: Create timestamp file
         run: cat ./.verify-helper/timestamps.remote.json | jq '.["${{ matrix.testcase }}"]' > ./timestamp.txt
+      - name: Make base64-url name
+        id: make-base64
+        run: BASE64=`echo "${{ matrix.testcase }}" | basenc --base64url`; "base64=$BASE64" >> $GITHUB_OUTPUT
       - name: Upload timestamp
         uses: actions/upload-artifact@v3
         with:
-          name: timestamp-${{ hashFiles(matrix.testcase) }}
+          name: timestamp-${{ steps.make-base64.outputs.base64 }}
           path: ./timestamp.txt
       - name: Cache testcases
         uses: actions/cache/save@v3
@@ -217,7 +220,7 @@ jobs:
         run: |
           echo '${{needs.set-matrix.outputs.something}}' \
           | jq -r ".[]" \
-          | xargs -L 1 -I {} bash -c "SUM=\`sha256sum {} | cut -d ' ' -f 1\`; echo \$SUM; cat .verify-helper/timestamps.remote.json | jq \".['{}'] |= \`cat ./tmp/timestamp-\$SUM/timestamp.txt\` | .\" > .verify-helper/timestamps.remote.json"
+          | xargs -L 1 -I {} bash -c "SUM=\`echo "{}" | basenc --base64url\`; echo \$SUM; cat .verify-helper/timestamps.remote.json | jq \".['{}'] |= \`cat ./tmp/timestamp-\$SUM/timestamp.txt\` | .\" > .verify-helper/timestamps.remote.json"
       - name: Check data
         run: cat .verify-helper/timestamps.remote.json
       - name: Build docs
