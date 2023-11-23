@@ -217,7 +217,7 @@ jobs:
         run: |
           echo '${{needs.set-matrix.outputs.something}}' \
           | jq -r ".[]" \
-          | xargs -L 1 -I {} bash -c "SUM=\`sha256sum {} | cut -d ' ' -f 1\`; echo \$SUM; cat .verify-helper/timestamps.remote.json | jq \".['{}'] |= \`cat ./tmp/timestamp-\$SUM\` | .\" > .verify-helper/timestamps.remote.json"
+          | xargs -L 1 -I {} bash -c "SUM=\`sha256sum {} | cut -d ' ' -f 1\`; echo \$SUM; cat .verify-helper/timestamps.remote.json | jq \".['{}'] |= \`cat ./tmp/timestamp-\$SUM/timestamp.txt\` | .\" > .verify-helper/timestamps.remote.json"
       - name: Check data
         run: cat .verify-helper/timestamps.remote.json
       - name: Build docs
