@@ -210,7 +210,7 @@ jobs:
         with:
           path: ./tmp
       - name: Check files
-        run: ls -al tmp/
+        run: ls -al tmp/**/*
       - name: Create remote.json
         run: if [ ! -e .verify-helper/timestamps.remote.json ]; then echo "{}" > .verify-helper/timestamps.remote.json; fi
       - name: Load data
