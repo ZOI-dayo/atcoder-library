@@ -2,3 +2,4 @@
 !.verify-helper/config.toml
 pdf/
 tmp.html
+.DS_Store

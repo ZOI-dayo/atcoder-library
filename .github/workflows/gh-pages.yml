@@ -131,7 +131,7 @@ jobs:
       - name: make values
         id: set-matrix
         run: |
-          list=$(find ./test/ -type f -name *.test.cpp -print0 | jq -R 'split("\u0000") | .[] | select(length > 0)' | jq -sc ".")
+          list=$(find test/ -type f -name *.test.cpp -print0 | jq -R 'split("\u0000") | .[] | select(length > 0)' | jq -sc ".")
           echo "value=${list}" >> $GITHUB_OUTPUT
   build:
     runs-on: ubuntu-latest
