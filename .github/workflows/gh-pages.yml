@@ -180,7 +180,7 @@ jobs:
         run: cat ./.verify-helper/timestamps.remote.json | jq '.["${{ matrix.testcase }}"]' > ./timestamp.txt
       - name: Make base64-url name
         id: make-base64
-        run: BASE64=`echo "${{ matrix.testcase }}" | basenc --base64url`; echo "base64=\"$BASE64\"" >> $GITHUB_OUTPUT
+        run: BASE64=`echo "${{ matrix.testcase }}" | basenc --base64url`; echo "base64=$BASE64" >> $GITHUB_OUTPUT
       - name: Upload timestamp
         uses: actions/upload-artifact@v3
         with:
