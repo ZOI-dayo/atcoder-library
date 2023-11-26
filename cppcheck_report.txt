@@ -1,3 +1,6 @@
+graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
+vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
+                               ^
 math/modint.hpp:44:25: style:inconclusive: Technically the member function 'dynamic_modint::operator--' can be const. [functionConst]
   inline dynamic_modint operator--(int32_t) {
                         ^
