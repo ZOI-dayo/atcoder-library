@@ -10,7 +10,7 @@ template <typename T = ll> vec<ll> dijkstra(WGraph<T> &graph, int start) {
   while (!q.empty()) {
     WeightState current = q.top();
     q.pop();
-    for (auto next : graph[current.location]) {
+    for (auto &next : graph[current.location]) {
       ll next_cost = current.used_cost + next.cost;
       if (way[next.id] <= next_cost)
         continue;

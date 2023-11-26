@@ -2,7 +2,6 @@
   "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B"
 
 #include "../../common/template.hpp"
-#include "../../math/pow.hpp"
 
 signed main() {
   io_setup();
