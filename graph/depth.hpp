@@ -11,14 +11,17 @@ public:
 
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
   vec<TreeNodeInfo> result(graph.size(), TreeNodeInfo(-1, -1));
-  auto dfs = [&](auto fn, int index, int parent) -> void {
-    result[index] = TreeNodeInfo(parent, result[parent].depth + 1);
+  stack<int> st;
+  st.push(root);
+  result[root] = TreeNodeInfo(root, 0);
+  while(!st.empty()) {
+    int index = st.top();
+    st.pop();
     for (auto next : graph[index]) {
-      if (result[next].depth != -1)
-        continue;
-      fn(fn, next, index);
+      if (result[next].depth != -1)continue;
+      result[next] = TreeNodeInfo(index, result[index].depth + 1);
+      st.push(next);
     }
-  };
-  dfs(dfs, root, 0);
+  }
   return result;
 }

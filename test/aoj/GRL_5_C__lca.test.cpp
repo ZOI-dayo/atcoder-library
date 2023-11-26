@@ -18,8 +18,11 @@ signed main() {
       graph[i][j] = c;
     }
   }
+  line_debug();
   LCA lca(graph);
+  line_debug();
   int q;
+  line_debug();
   cin >> q;
   rep(i, q) {
     int u, v;

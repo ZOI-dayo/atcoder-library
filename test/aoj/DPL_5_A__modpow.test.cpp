@@ -1,7 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_A"
 
-#include "../../math/pow.hpp"
+#include "../../common/template.hpp"
 
 signed main() {
   io_setup();

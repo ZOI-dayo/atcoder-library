@@ -29,4 +29,7 @@ public:
     assert(0 <= i && i < _n);
     return _comp[i];
   }
+  inline T get_comp(int raw) {
+    return lower_bound(_raw.begin(), _raw.end(), raw) - _raw.begin();
+  }
 };

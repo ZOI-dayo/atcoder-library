@@ -26,24 +26,30 @@ int diameter(Graph &graph, int start = 0) {
 }
 
 template <typename T = ll> int diameter(WGraph<T> &graph, int start = 0) {
-  vec<int> seen(graph.size(), 0);
-  auto dfs = [&](auto fn, int index) -> pair<T, int> {
-    // max-cost, index
-    pair<T, int> result = {0, index};
+  auto dfs = [&](int index) -> pair<T, int> {
+    vec<T> result(graph.size(), -1);
 
-    seen[index] = 1;
-
-    for (auto next : graph[index]) {
-      if (seen[next.id])
-        continue;
-      auto next_result = fn(fn, next.id);
-      next_result.first += next.cost;
-      result = max(result, next_result);
+    T mx = 0;
+    int mx_index = index;
+    stack<int> st;
+    st.push(index);
+    result[index] = 0;
+    while (!st.empty()) {
+      int current = st.top();
+      st.pop();
+      for (auto next : graph[current]) {
+        if (result[next.id] >= 0)
+          continue;
+        st.push(next.id);
+        result[next.id] = result[current] + next.cost;
+        if(chmax(mx, result[next.id])) {
+          mx_index = next.id;
+        }
+      }
     }
-    seen[index] = 0;
-    return result;
+    return {mx, mx_index};
   };
-  auto result = dfs(dfs, start);
-  result = dfs(dfs, result.second);
+  auto result = dfs(start);
+  result = dfs(result.second);
   return result.first;
 }
