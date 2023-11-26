@@ -42,7 +42,7 @@ template <typename T = ll> int diameter(WGraph<T> &graph, int start = 0) {
           continue;
         st.push(next.id);
         result[next.id] = result[current] + next.cost;
-        if(chmax(mx, result[next.id])) {
+        if (chmax(mx, result[next.id])) {
           mx_index = next.id;
         }
       }
