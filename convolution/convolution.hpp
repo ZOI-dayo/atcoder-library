@@ -13,23 +13,22 @@ constinit const int ROOT = 31;         // Q
 constinit const int DIVIDE_LIMIT = 23; // M
 // static const int PRIMITIVE_ROOT = 3;
 // constinit const auto ws = views::iota(0, DIVIDE_LIMIT + 1) | views::all |
-  // views::transform([](int n) { return mint(ROOT).pow(1LL << (DIVIDE_LIMIT - n)); });
+// views::transform([](int n) { return mint(ROOT).pow(1LL << (DIVIDE_LIMIT -
+// n)); });
 constinit const auto ws = []() {
-    array<mint, DIVIDE_LIMIT + 1> ws;
-    rep(i, DIVIDE_LIMIT + 1) {
-      ws[i] = mint(ROOT).pow(1LL << (DIVIDE_LIMIT - i));
-    }
-    return ws;
-  }();
+  array<mint, DIVIDE_LIMIT + 1> ws;
+  rep(i, DIVIDE_LIMIT + 1) {
+    ws[i] = mint(ROOT).pow(1LL << (DIVIDE_LIMIT - i));
+  }
+  return ws;
+}();
 // constinit const auto iws = views::iota(0, DIVIDE_LIMIT + 1) | views::all |
-  // views::transform([](int n) { return ws[n].pow(MOD - 2); });
+// views::transform([](int n) { return ws[n].pow(MOD - 2); });
 constinit const auto iws = []() {
-    array<mint, DIVIDE_LIMIT + 1> iws;
-    rep(i, DIVIDE_LIMIT + 1) {
-      iws[i] = ws[i].pow(MOD - 2);
-    }
-    return iws;
-  }();
+  array<mint, DIVIDE_LIMIT + 1> iws;
+  rep(i, DIVIDE_LIMIT + 1) { iws[i] = ws[i].pow(MOD - 2); }
+  return iws;
+}();
 
 inline void ntt(vec<mint> &A) noexcept {
   if (A.size() == 1)
