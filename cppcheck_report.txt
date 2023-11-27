@@ -10,20 +10,23 @@ math/modint.hpp:61:15: style:inconclusive: Technically the member function 'dyna
 math/modint.hpp:62:15: style:inconclusive: Technically the member function 'dynamic_modint::operator!=' can be const. [functionConst]
   inline bool operator!=(const dynamic_modint &a) { return _val != a._val; }
               ^
-math/modint.hpp:134:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator++' can be const. [functionConst]
+math/modint.hpp:135:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
-math/modint.hpp:139:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator--' can be const. [functionConst]
+math/modint.hpp:140:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator--' can be const. [functionConst]
   constexpr inline modint operator--(int32_t) noexcept {
                           ^
-math/modint.hpp:156:25: style:inconclusive: Technically the member function 'modint < 998244353 >::operator==' can be const. [functionConst]
+math/modint.hpp:157:25: style:inconclusive: Technically the member function 'modint < 998244353 >::operator==' can be const. [functionConst]
   constexpr inline bool operator==(const modint &a) noexcept {
                         ^
-math/modint.hpp:159:25: style:inconclusive: Technically the member function 'modint < 998244353 >::operator!=' can be const. [functionConst]
+math/modint.hpp:160:25: style:inconclusive: Technically the member function 'modint < 998244353 >::operator!=' can be const. [functionConst]
   constexpr inline bool operator!=(const modint &a) noexcept {
                         ^
 math/modint.hpp:21:3: style: Struct 'dynamic_modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   dynamic_modint(int val) : _val(modint_utils::normalize(val, MOD)) {}
   ^
+math/modint.hpp:119:20: style: Struct 'modint < 998244353 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  constexpr inline modint(int val) noexcept
+                   ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
