@@ -112,6 +112,12 @@ template <typename T> struct vec_accumulate : vec<T> {
   }
 };
 
+// vector func
+template <typename T> inline void unique_erase(vec<T> &v) {
+  sort(all(v));
+  v.erase(unique(all(v)), v.end());
+}
+
 void io_setup() {
   cin.tie(nullptr);
   ios::sync_with_stdio(false);

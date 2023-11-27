@@ -115,7 +115,8 @@ private:
   int _val;
 
 public:
-  constexpr inline modint(int val = 0) noexcept
+  consteval inline modint() noexcept : _val(0) {}
+  constexpr inline modint(int val) noexcept
       : _val(modint_utils::normalize(val, MOD)) {}
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 

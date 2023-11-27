@@ -8,24 +8,28 @@
 
 namespace Convolution {
 using mint = mint998;
-constexpr int MOD = 998244353;
-constexpr int ROOT = 31;         // Q
-constexpr int DIVIDE_LIMIT = 23; // M
+constinit const int MOD = 998244353;
+constinit const int ROOT = 31;         // Q
+constinit const int DIVIDE_LIMIT = 23; // M
 // static const int PRIMITIVE_ROOT = 3;
-constexpr array<mint, DIVIDE_LIMIT + 1> make_ws() {
-  array<mint, DIVIDE_LIMIT + 1> ret;
-  generate(all(ret), [n = -1]() mutable {
-    return n++, mint(ROOT).pow(1LL << (DIVIDE_LIMIT - n));
-  });
-  return ret;
-}
-constexpr auto ws = make_ws();
-constexpr array<mint, DIVIDE_LIMIT + 1> make_iws() {
-  array<mint, DIVIDE_LIMIT + 1> ret;
-  generate(all(ret), [n = -1]() mutable { return n++, ws[n].pow(MOD - 2); });
-  return ret;
-}
-constexpr auto iws = make_iws();
+// constinit const auto ws = views::iota(0, DIVIDE_LIMIT + 1) | views::all |
+  // views::transform([](int n) { return mint(ROOT).pow(1LL << (DIVIDE_LIMIT - n)); });
+constinit const auto ws = []() {
+    array<mint, DIVIDE_LIMIT + 1> ws;
+    rep(i, DIVIDE_LIMIT + 1) {
+      ws[i] = mint(ROOT).pow(1LL << (DIVIDE_LIMIT - i));
+    }
+    return ws;
+  }();
+// constinit const auto iws = views::iota(0, DIVIDE_LIMIT + 1) | views::all |
+  // views::transform([](int n) { return ws[n].pow(MOD - 2); });
+constinit const auto iws = []() {
+    array<mint, DIVIDE_LIMIT + 1> iws;
+    rep(i, DIVIDE_LIMIT + 1) {
+      iws[i] = ws[i].pow(MOD - 2);
+    }
+    return iws;
+  }();
 
 inline void ntt(vec<mint> &A) noexcept {
   if (A.size() == 1)

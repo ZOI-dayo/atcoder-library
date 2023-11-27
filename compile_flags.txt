@@ -1,4 +1,4 @@
--std=c++23
+-std=c++2b
 -stdlib=libstdc++
 -O2
 -I/opt/homebrew/Cellar/gcc/13.2.0/include/c++/13/

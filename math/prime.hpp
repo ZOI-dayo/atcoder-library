@@ -80,8 +80,8 @@ vec<PrimeFactor> prime_factorize(uint64_t N) {
     return {{p, 1}};
   auto left = prime_factorize(p);
   auto right = prime_factorize(N / p);
-  left.insert(left.end(), right.begin(), right.end());
-  sort(left.begin(), left.end(),
+  left.insert(left.end(), all(right));
+  sort(all(left),
        [](const PrimeFactor &a, const PrimeFactor &b) {
          return a.prime < b.prime;
        });
