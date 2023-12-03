@@ -1,11 +1,9 @@
 #pragma once
 
-#include <bits/stdc++.h>
 // #include <gmpxx.h>
 // #include <boost/multiprecision/cpp_int.hpp>
 
-#include "print.hpp"
-
+#include <bits/stdc++.h>
 using namespace std;
 // using namespace std::views;
 // using namespace boost::multiprecision;
