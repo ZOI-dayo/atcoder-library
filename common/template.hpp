@@ -5,7 +5,7 @@
 
 #include "alias.hpp"
 #include "debug.hpp"
-#include "util.hpp"
 #include "print.hpp"
+#include "util.hpp"
 
 #include "../math/pow.hpp"
