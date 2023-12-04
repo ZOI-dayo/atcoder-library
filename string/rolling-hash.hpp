@@ -36,7 +36,7 @@ public:
       return;
     mod.resize(new_length + 1);
     for (int i = old_length; i <= new_length; i++) {
-      mod[i] = mod[i - 1] * mint(1007);
+      mod[i] = mod[i - 1] * base;
     }
   }
 };

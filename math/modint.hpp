@@ -4,10 +4,10 @@
 #include "./pow.hpp"
 
 namespace modint_utils {
-constexpr inline int normalize(int val, int mod) {
+constexpr inline int32_t normalize(int val, int32_t mod) {
   return (val % mod + mod) % mod;
 }
-constexpr inline int inv(int val, int mod) {
+constexpr inline int32_t inv(int32_t val, int32_t mod) {
   return mod_pow(val, mod - 2, mod);
 }
 } // namespace modint_utils
@@ -110,9 +110,10 @@ ostream &operator<<(ostream &os, const vector<dynamic_modint<MOD>> &v) {
   return os;
 }
 
-template <const int MOD> struct modint {
+template <const int32_t MOD> struct modint {
 private:
-  int _val;
+  using i32 = int32_t;
+  i32 _val;
 
 public:
   consteval inline modint() noexcept : _val(0) {}
@@ -121,7 +122,7 @@ public:
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 
   // logic
-  constexpr uint32_t val() const noexcept { return _val; }
+  constexpr i32 val() const noexcept { return _val; }
   constexpr modint pow(const int n) const {
     return modint(mod_pow(_val, n, MOD));
   }
@@ -161,19 +162,19 @@ public:
     return _val != a.val();
   }
   constexpr inline modint &operator+=(const modint &a) noexcept {
-    _val += a.val();
+    _val += a._val;
     if (_val >= MOD)
       _val -= MOD;
     return *this;
   }
   constexpr inline modint &operator-=(const modint &a) noexcept {
-    _val -= a.val();
+    _val -= a._val;
     if (_val < 0)
       _val += MOD;
     return *this;
   }
   constexpr inline modint &operator*=(const modint &a) noexcept {
-    _val = _val * a.val() % MOD;
+    _val = (ll)_val * a._val % MOD;
     return *this;
   }
   constexpr inline modint &operator/=(const modint &a) noexcept {
@@ -185,7 +186,7 @@ public:
 
   // io
   friend ostream &operator<<(ostream &os, const modint &a) noexcept {
-    return os << a.val();
+    return os << a._val;
   }
   friend istream &operator>>(istream &os, modint &a) noexcept {
     os >> a._val;

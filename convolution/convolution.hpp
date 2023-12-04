@@ -7,10 +7,10 @@
 // https://qiita.com/Sen_comp/items/9401382df736e51564c1
 
 namespace Convolution {
-using mint = mint998;
 constinit const int MOD = 998244353;
 constinit const int ROOT = 31;         // Q
 constinit const int DIVIDE_LIMIT = 23; // M
+using mint = modint<MOD>;
 // static const int PRIMITIVE_ROOT = 3;
 // constinit const auto ws = views::iota(0, DIVIDE_LIMIT + 1) | views::all |
 // views::transform([](int n) { return mint(ROOT).pow(1LL << (DIVIDE_LIMIT -
