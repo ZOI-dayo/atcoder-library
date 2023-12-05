@@ -129,6 +129,9 @@ public:
   constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));
   }
+  constexpr inline modint inv() const noexcept {
+    return modint(modint_utils::inv(_val, MOD));
+  }
 
   // op
   constexpr inline modint &operator++() noexcept { return *this += 1; }
