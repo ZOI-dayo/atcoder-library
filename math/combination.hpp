@@ -3,8 +3,7 @@
 #include "../common/alias.hpp"
 #include "modint.hpp"
 
-template <int32_t MOD = 998244353, int32_t MAX = 100010>
-class Combination {
+template <int32_t MOD = 998244353, int32_t MAX = 100010> class Combination {
 private:
   using mint = modint<MOD>;
   // static constinit const int32_t MAX = 2000010;
@@ -34,8 +33,7 @@ public:
 };
 
 template <int32_t MOD, int32_t MAX>
-constinit const array<modint<MOD>, MAX>
-Combination<MOD, MAX>::fact = []() {
+constinit const array<modint<MOD>, MAX> Combination<MOD, MAX>::fact = []() {
   array<Combination<MOD, MAX>::mint, MAX> fact;
   fact[0] = 1;
   for (int32_t i = 1; i < MAX; ++i)
@@ -44,7 +42,8 @@ Combination<MOD, MAX>::fact = []() {
 }();
 // template <int32_t MOD>
 // constinit const array<modint<MOD>, Combination<MOD>::MAX>
-// Combination<MOD>::invfact = Combination<MOD>::fact | views::transform([](auto x){return x.inv();});
+// Combination<MOD>::invfact = Combination<MOD>::fact | views::transform([](auto
+// x){return x.inv();});
 /*
 template <int32_t MOD>
 constinit const array<modint<MOD>, Combination<MOD>::MAX>

@@ -1,4 +1,5 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_B"
+#define PROBLEM                                                                \
+  "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_B"
 
 #include "../../common/template.hpp"
 #include "../../math/combination.hpp"
