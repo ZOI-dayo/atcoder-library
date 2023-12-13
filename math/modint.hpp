@@ -7,8 +7,17 @@ namespace modint_utils {
 constexpr inline int32_t normalize(int val, int32_t mod) {
   return (val % mod + mod) % mod;
 }
-constexpr inline int32_t inv(int32_t val, int32_t mod) {
-  return mod_pow(val, mod - 2, mod);
+constexpr inline int32_t inv(int32_t a, int32_t mod) {
+  int32_t b = mod, u = 1, v = 0;
+  while (b) {
+    int32_t t = a / b;
+    a -= t * b; swap(a, b);
+    u -= t * v; swap(u, v);
+  }
+  u %= mod;
+  if (u < 0) u += mod;
+  return u;
+  // return mod_pow(val, mod - 2, mod);
 }
 } // namespace modint_utils
 
@@ -118,7 +127,7 @@ private:
 public:
   consteval inline modint() noexcept : _val(0) {}
   constexpr inline modint(int val) noexcept
-      : _val(modint_utils::normalize(val, MOD)) {}
+  : _val(modint_utils::normalize(val, MOD)) {}
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 
   // logic
