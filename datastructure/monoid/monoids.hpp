@@ -9,8 +9,7 @@ template <integral T = int> struct SumMonoid : public Monoid<T> {
   T op(T a, T b) { return a + b; }
 };
 
-template<integral T = int>
-struct MinMonoid : public Monoid<T> {
+template <integral T = int> struct MinMonoid : public Monoid<T> {
   T e() const override { return numeric_limits<T>::max(); }
   T op(T a, T b) const override { return min(a, b); }
 };
