@@ -43,21 +43,27 @@ math/modint.hpp:164:25: style:inconclusive: Technically the member function 'mod
 math/modint.hpp:120:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
-datastructure/segment-tree.hpp:13:5: style:inconclusive: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list. [initializerList]
+datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list. [initializerList]
   M _monoid;
     ^
-datastructure/segment-tree.hpp:59:41: note: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list.
+datastructure/segment-tree.hpp:58:41: note: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list.
   SegmentTree(int n, M monoid) : _n(1), _monoid(monoid), e(monoid.e()) {
                                         ^
-datastructure/segment-tree.hpp:13:5: note: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list.
+datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree::_monoid' is in the wrong place in the initializer list.
   M _monoid;
     ^
-datastructure/segment-tree.hpp:65:21: performance:inconclusive: Function parameter 'a' should be passed by const reference. [passedByValue]
+datastructure/segment-tree.hpp:64:21: performance:inconclusive: Function parameter 'a' should be passed by const reference. [passedByValue]
   void set(int i, T a) {
                     ^
-datastructure/lazy-segment-tree.hpp:39:11: error: Syntax Error: AST broken, 'while' doesn't have two operands. [internalAstError]
-    while (_n < n)
-          ^
+datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list. [initializerList]
+  const MT e;
+           ^
+datastructure/lazy-segment-tree.hpp:36:84: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
+  explicit inline LazySegmentTree(const int32_t n) : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
+                                                                                   ^
+datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
+  const MT e;
+           ^
 graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
                                ^
