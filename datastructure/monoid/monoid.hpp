@@ -11,8 +11,7 @@ concept MonoidConcept = requires(M &x, M::T a, M::T b) {
 };
 */
 
-template <class Type>
-class Monoid {
+template <class Type> class Monoid {
 public:
   Monoid() = default;
   using T = Type;

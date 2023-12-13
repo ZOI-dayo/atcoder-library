@@ -1,12 +1,11 @@
 #pragma once
 
-#include "./monoid/monoid.hpp"
 #include "../common/template.hpp"
+#include "./monoid/monoid.hpp"
 
 // 参考: https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
-template <MonoidConcept M>
-struct SegmentTree {
+template <MonoidConcept M> struct SegmentTree {
   using T = typename M::T;
 
 private:

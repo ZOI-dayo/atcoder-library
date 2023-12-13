@@ -2,8 +2,7 @@
 
 #include "./monoid.hpp"
 
-template <class Type, MonoidConcept Mono>
-class Monofunc {
+template <class Type, MonoidConcept Mono> class Monofunc {
 public:
   Monofunc() = default;
   using T = Type;
@@ -15,7 +14,8 @@ public:
 };
 
 template <class M>
-concept MonofuncConcept = requires(M &x, typename M::T before, typename M::T after, typename M::MT mono) {
+concept MonofuncConcept = requires(M &x, typename M::T before,
+                                   typename M::T after, typename M::MT mono) {
   typename M::T;
   typename M::M;
   typename M::MT;

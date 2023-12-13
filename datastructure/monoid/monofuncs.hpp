@@ -1,7 +1,7 @@
 #pragma once
 
-#include "monoids.hpp"
 #include "monofunc.hpp"
+#include "monoids.hpp"
 
 namespace Monofuncs {
 
@@ -16,4 +16,4 @@ public:
   MT apply(T a, MT b) { return a ? a : b; }
   T merge(T before, T after) { return after ? after : before; }
 };
-}
+} // namespace Monofuncs

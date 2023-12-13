@@ -28,7 +28,7 @@ inline void rep_perm(int n, function<void(vec<int> &)> f) {
   } while (next_permutation(v.begin(), v.end()));
 }
 
-inline void rep_bit(int n, function<void(int)> f) { rep(i, 1LL<<n) f(i); }
+inline void rep_bit(int n, function<void(int)> f) { rep(i, 1LL << n) f(i); }
 
 // 配列 to string
 template <typename T> inline string join(const vec<T> &v, string sep = " ") {

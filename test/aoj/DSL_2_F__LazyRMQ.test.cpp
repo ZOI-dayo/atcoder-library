@@ -8,7 +8,8 @@ signed main() {
   io_setup();
   int n, q;
   cin >> n >> q;
-  LazySegmentTree<Monofuncs::RangeSetMonofunc<Monoids::MinMonoid<int32_t>>> seg(n);
+  LazySegmentTree<Monofuncs::RangeSetMonofunc<Monoids::MinMonoid<int32_t>>> seg(
+      n);
   /*
       n, (1LL << 31) - 1, -1, [](int a, int b) { return min(a, b); },
       [](int fn, int val) { return fn >= 0 ? fn : val; },
