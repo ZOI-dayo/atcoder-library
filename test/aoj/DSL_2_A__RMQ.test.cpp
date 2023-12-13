@@ -8,7 +8,7 @@ signed main() {
   io_setup();
   int n, q;
   cin >> n >> q;
-  auto seg = SegmentTree(n, Monoids::MinMonoid<int32_t>());
+  SegmentTree<Monoids::MinMonoid<int32_t>> seg(n);
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;

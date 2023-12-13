@@ -8,7 +8,7 @@ signed main() {
   int N, Q;
   cin >> N >> Q;
 
-  auto seg = SegmentTree(N, Monoids::MinMonoid());
+  SegmentTree<Monoids::MinMonoid<int>> seg(N);
   rep(i, N) {
     int a;
     cin >> a;

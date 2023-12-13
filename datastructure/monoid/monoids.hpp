@@ -5,8 +5,8 @@
 namespace Monoids {
 
 template <integral T = int> struct SumMonoid : public Monoid<T> {
-  T e() { return 0; }
-  T op(T a, T b) { return a + b; }
+  T e() const override { return 0; }
+  T op(T a, T b) const override { return a + b; }
 };
 
 template <integral T = int> struct MinMonoid : public Monoid<T> {
