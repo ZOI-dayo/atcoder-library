@@ -28,6 +28,18 @@ private:
   vec<MT> _data;
   vec<FT> _lazy;
 
+  // 自分の遅延を解消して子に伝搬する
+  inline void eval(int32_t k) {
+    if (_lazy[k] == id)
+      return;
+    _data[k] = _monofunc.apply(_lazy[k], _data[k]);
+    if (k < _n) {
+      _lazy[k << 1 | 0] = _monofunc.merge(_lazy[k << 1 | 0], _lazy[k]);
+      _lazy[k << 1 | 1] = _monofunc.merge(_lazy[k << 1 | 1], _lazy[k]);
+    }
+    _lazy[k] = id;
+  }
+
 public:
   // n: 要素数, e: 単位元, id: 操作情報の単位元, op: 演算, update:
   // ノードの更新(fn,val->val), merge:
@@ -41,6 +53,17 @@ public:
       _n <<= 1, _height++;
     _data = vec<MT>(_n << 1, e);
     _lazy = vec<FT>(_n << 1, id);
+  }
+  explicit inline LazySegmentTree(vec<MT> &data) : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
+    _n = 1;
+    _height = 1;
+    while (_n < data.size())
+      _n <<= 1, _height++;
+    _data = vec<MT>(_n << 1, e);
+    _lazy = vec<FT>(_n << 1, id);
+    rep(i, data.size()) _data[i+_n] = data[i];
+    for (int i = _n - 1; i > 0; --i)
+      _data[i] = _monoid.op(_data[i << 1], _data[i << 1 | 1]);
   }
   /*
   inline LazySegmentTree(const T e, const F id,
@@ -58,18 +81,6 @@ public:
     _lazy = vec<F>(_n << 1, id);
   }
   */
-
-  // 自分の遅延を解消して子に伝搬する
-  inline void eval(int32_t k) {
-    if (_lazy[k] == id)
-      return;
-    _data[k] = _monofunc.apply(_lazy[k], _data[k]);
-    if (k < _n) {
-      _lazy[k << 1 | 0] = _monofunc.merge(_lazy[k << 1 | 0], _lazy[k]);
-      _lazy[k << 1 | 1] = _monofunc.merge(_lazy[k << 1 | 1], _lazy[k]);
-    }
-    _lazy[k] = id;
-  }
 
   inline void set(int32_t l, int32_t r, FT f) {
     /*
@@ -151,6 +162,9 @@ public:
         b--, vr = _monoid.op(_monofunc.apply(_lazy[b], _data[b]), vr);
     }
     return _monoid.op(vl, vr);
+  }
+  inline MT get(int32_t i) {
+    return query(i, i + 1);
   }
 };
 /*

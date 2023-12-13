@@ -4,8 +4,8 @@
 
 namespace Monoids {
 
-template <integral T = int> struct SumMonoid : public Monoid<T> {
-  T e() const override { return 0; }
+template <addable T = int> struct SumMonoid : public Monoid<T> {
+  T e() const override { return T(0); }
   T op(T a, T b) const override { return a + b; }
 };
 

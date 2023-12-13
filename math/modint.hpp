@@ -170,10 +170,10 @@ public:
   constexpr inline modint operator/(const modint &a) const noexcept {
     return modint(*this) /= a;
   }
-  constexpr inline bool operator==(const modint &a) noexcept {
+  constexpr inline bool operator==(const modint &a) const noexcept {
     return _val == a.val();
   }
-  constexpr inline bool operator!=(const modint &a) noexcept {
+  constexpr inline bool operator!=(const modint &a) const noexcept {
     return _val != a.val();
   }
   constexpr inline modint &operator+=(const modint &a) noexcept {

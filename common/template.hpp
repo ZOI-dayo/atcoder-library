@@ -7,5 +7,6 @@
 #include "debug.hpp"
 #include "print.hpp"
 #include "util.hpp"
+#include "concepts.hpp"
 
 #include "../math/pow.hpp"

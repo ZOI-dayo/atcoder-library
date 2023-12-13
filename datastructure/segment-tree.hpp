@@ -60,6 +60,14 @@ public:
       _n *= 2;
     _data = vec<T>(2 * _n, e);
   }
+  explicit SegmentTree(const vec<T> &v) : _n(1), _monoid(M()), e(_monoid.e()) {
+    while (_n < v.size())
+      _n *= 2;
+    _data = vec<T>(2 * _n, e);
+    rep(i, v.size()) _data[i + _n] = v[i];
+    for (int i = _n - 1; i > 0; --i)
+      _data[i] = _monoid.op(_data[i << 1], _data[i << 1 | 1]);
+  }
 
   void set(int i, T a) {
     // 1段目は1, 2段目は2~3, ... , 最下段はn~(2n-1)
