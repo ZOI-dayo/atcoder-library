@@ -2,19 +2,14 @@
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B"
 
 #include "../../datastructure/segment-tree.hpp"
+#include "../../datastructure/monoid/monoids.hpp"
 
 signed main() {
   io_setup();
   int n, q;
   cin >> n >> q;
 
-  struct Monoid {
-    using T = int;
-    static T e() { return 0; }
-    static T op(T a, T b) { return a + b; }
-  };
-
-  Segtree<Monoid> seg(n);
+  SegmentTree seg(n, Monoids::SumMonoid());
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;

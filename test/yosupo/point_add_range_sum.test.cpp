@@ -1,19 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include "../../datastructure/segment-tree.hpp"
+#include "../../datastructure/monoid/monoids.hpp"
 
 signed main() {
   io_setup();
   int N, Q;
   cin >> N >> Q;
 
-  struct Monoid {
-    using T = ll;
-    static T e() { return 0; }
-    static T op(T a, T b) { return a + b; }
-  };
-
-  Segtree<Monoid> seg(N);
+  SegmentTree seg(N, Monoids::SumMonoid());
   rep(i, N) {
     int a;
     cin >> a;

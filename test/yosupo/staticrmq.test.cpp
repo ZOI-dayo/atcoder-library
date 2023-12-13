@@ -1,13 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
 #include "../../datastructure/segment-tree.hpp"
+#include "../../datastructure/monoid/monoids.hpp"
 
 signed main() {
   io_setup();
   int N, Q;
   cin >> N >> Q;
 
-  auto seg = RMQSeg(N);
+  auto seg = SegmentTree(N, Monoids::MinMonoid());
   rep(i, N) {
     int a;
     cin >> a;
