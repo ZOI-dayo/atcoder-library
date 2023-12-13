@@ -13,7 +13,8 @@ signed main() {
   vec<mint> a(N);
   cin >> a;
 
-  LazySegmentTree<Monofuncs::RangeAffineMonofunc<Monoids::SumMonoid<mint>>> seg(a);
+  LazySegmentTree<Monofuncs::RangeAffineMonofunc<Monoids::SumMonoid<mint>>> seg(
+      a);
 
   rep(q, Q) {
     int type;

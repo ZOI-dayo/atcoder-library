@@ -1,8 +1,8 @@
 #pragma once
 
+#include "affine.hpp"
 #include "monofunc.hpp"
 #include "monoids.hpp"
-#include "affine.hpp"
 
 namespace Monofuncs {
 
@@ -27,9 +27,7 @@ public:
   // using M = Monoids::SumMonoid<T>;
   T id() const override { return T(1, 0); }
   MT apply(T a, MT b) const override { return a(b); }
-  T merge(T before, T after) const override {
-    return before * after;
-  }
+  T merge(T before, T after) const override { return before * after; }
 };
 
 } // namespace Monofuncs

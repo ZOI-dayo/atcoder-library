@@ -54,14 +54,15 @@ public:
     _data = vec<MT>(_n << 1, e);
     _lazy = vec<FT>(_n << 1, id);
   }
-  explicit inline LazySegmentTree(vec<MT> &data) : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
+  explicit inline LazySegmentTree(vec<MT> &data)
+      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
     _n = 1;
     _height = 1;
     while (_n < data.size())
       _n <<= 1, _height++;
     _data = vec<MT>(_n << 1, e);
     _lazy = vec<FT>(_n << 1, id);
-    rep(i, data.size()) _data[i+_n] = data[i];
+    rep(i, data.size()) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
       _data[i] = _monoid.op(_data[i << 1], _data[i << 1 | 1]);
   }
@@ -163,9 +164,7 @@ public:
     }
     return _monoid.op(vl, vr);
   }
-  inline MT get(int32_t i) {
-    return query(i, i + 1);
-  }
+  inline MT get(int32_t i) { return query(i, i + 1); }
 };
 /*
 template <typename T, typename F> using LazySegtree = LazySegmentTree<T, F>;
