@@ -15,8 +15,8 @@ template <class Type> class Monoid {
 public:
   Monoid() = default;
   using T = Type;
-  virtual T e() = 0;
-  virtual T op(T a, T b) = 0;
+  virtual T e() const = 0;
+  virtual T op(T a, T b) const = 0;
 };
 
 template <class M>

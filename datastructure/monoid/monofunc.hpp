@@ -8,9 +8,9 @@ public:
   using T = Type;
   using M = Mono;
   using MT = typename M::T;
-  virtual T id() = 0;
-  virtual MT apply(T a, MT b) = 0;
-  virtual T merge(T before, T after) = 0;
+  virtual T id() const = 0;
+  virtual MT apply(T a, MT b) const = 0;
+  virtual T merge(T before, T after) const = 0;
 };
 
 template <class M>

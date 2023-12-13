@@ -25,7 +25,7 @@ private:
   int32_t _n;
   int32_t _height;
   // SefTreeのデータ
-  vec<M> _data;
+  vec<MT> _data;
   vec<FT> _lazy;
 
 public:
@@ -33,8 +33,7 @@ public:
   // ノードの更新(fn,val->val), merge:
   // 操作aがすでに行われている状態に操作bを適用したときの操作
   // TODO: 2つの実装が別れているのをどうにかする
-  inline LazySegmentTree(const int32_t n)
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()), {
+  explicit inline LazySegmentTree(const int32_t n) : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
     _n = 1;
     _height = 1;
     while (_n < n)
@@ -104,17 +103,15 @@ public:
         // _data[(a << 1) | 0] = update(_lazy[(a << 1) | 0], _data[(a << 1) |
         // 0]); _data[(a << 1) | 1] = update(_lazy[(a << 1) | 1], _data[(a << 1)
         // | 1]); _data[a] = op(_data[(a << 1) | 0], _data[(a << 1) | 1]);
-        _data[a] =
-            op(_monofunc.apply(_lazy[(a << 1) | 0], _data[(a << 1) | 0]),
-               _monofunc.apply(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
+        _data[a] = _monoid.op(_monofunc.apply(_lazy[(a << 1) | 0], _data[(a << 1) | 0]),
+                              _monofunc.apply(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
       }
       if (_lazy[b] == id) {
         // _data[(b << 1) | 0] = update(_lazy[(b << 1) | 0], _data[(b << 1) |
         // 0]); _data[(b << 1) | 1] = update(_lazy[(b << 1) | 1], _data[(b << 1)
         // | 1]); _data[b] = op(_data[(b << 1) | 0], _data[(b << 1) | 1]);
-        _data[b] =
-            op(_monofunc.apply(_lazy[(b << 1) | 0], _data[(b << 1) | 0]),
-               _monofunc.apply(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
+        _data[b] = _monoid.op(_monofunc.apply(_lazy[(b << 1) | 0], _data[(b << 1) | 0]),
+                              _monofunc.apply(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
       }
     }
   }
