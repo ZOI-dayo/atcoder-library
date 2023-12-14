@@ -2,8 +2,7 @@
 
 #include "../common/template.hpp"
 
-template <addable T>
-struct WeightedUnionFind {
+template <addable T> struct WeightedUnionFind {
 private:
   int _n;
   vec<int> _parents;
@@ -16,7 +15,8 @@ private:
   }
 
 public:
-  explicit WeightedUnionFind(int n) : _n(n), _parents(n), _size(n, 1), _weight(n) {
+  explicit WeightedUnionFind(int n)
+      : _n(n), _parents(n), _size(n, 1), _weight(n) {
     iota(all(_parents), 0);
   }
 
@@ -51,5 +51,4 @@ public:
   bool same(int a, int b) { return find(a) == find(b); }
 };
 
-template <addable T>
-using WUF = WeightedUnionFind<T>;
+template <addable T> using WUF = WeightedUnionFind<T>;

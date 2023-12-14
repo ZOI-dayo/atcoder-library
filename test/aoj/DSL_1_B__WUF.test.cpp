@@ -16,8 +16,10 @@ signed main() {
       cin >> z;
       wuf.merge(x, y, z);
     } else {
-      if(wuf.same(x, y)) cout << wuf.diff(x, y) << endl;
-      else cout << "?" << endl;
+      if (wuf.same(x, y))
+        cout << wuf.diff(x, y) << endl;
+      else
+        cout << "?" << endl;
     }
   }
 }
