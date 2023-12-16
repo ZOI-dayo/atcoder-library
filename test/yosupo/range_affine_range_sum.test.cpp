@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include "../../datastructure/lazy-segment-tree.hpp"
-#include "../../datastructure/monoid/monoid.hpp"
-#include "../../datastructure/monoid/monofunc.hpp"
 #include "../../datastructure/monoid/affine.hpp"
+#include "../../datastructure/monoid/monofunc.hpp"
+#include "../../datastructure/monoid/monoid.hpp"
 #include "../../math/modint.hpp"
 
 using mint = mint998;

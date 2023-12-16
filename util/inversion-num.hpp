@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../datastructure/fenwick-tree.hpp"
 #include "../datastructure/comp.hpp"
+#include "../datastructure/fenwick-tree.hpp"
 
 int inversion_num(const vec<int> &a) {
   comp<int> c(a);
@@ -15,4 +15,3 @@ int inversion_num(const vec<int> &a) {
   }
   return ans;
 }
-

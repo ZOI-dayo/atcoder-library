@@ -9,7 +9,7 @@ private:
 
 public:
   explicit FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
-  explicit FenwickTree(const vec<T> &src) : _n(src.size()), _data(_n+1, 0) {
+  explicit FenwickTree(const vec<T> &src) : _n(src.size()), _data(_n + 1, 0) {
     rep(i, _n) add(i, src[i]);
   }
 
