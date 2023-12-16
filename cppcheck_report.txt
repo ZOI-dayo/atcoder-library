@@ -136,6 +136,24 @@ datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTre
 datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list.
   const MT e;
            ^
+datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list. [initializerList]
+  const MT e;
+           ^
+datastructure/lazy-segment-tree.hpp:49:39: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
+      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
+                                      ^
+datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
+  const MT e;
+           ^
+datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list. [initializerList]
+  const MT e;
+           ^
+datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
+      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
+                                      ^
+datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
+  const MT e;
+           ^
 datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list. [initializerList]
   M _monoid;
     ^
