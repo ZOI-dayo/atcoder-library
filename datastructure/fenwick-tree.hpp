@@ -9,6 +9,10 @@ private:
 
 public:
   explicit FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
+  explicit FenwickTree(const vec<T> &src) : _n(src.size()), _data(_n+1, 0) {
+    rep(i, _n) add(i, src[i]);
+  }
+
   void add(int i, T val) {
     i++;
     while (i <= _n) {
@@ -16,6 +20,7 @@ public:
       i += i & -i;
     }
   }
+  // [0, i]
   int sum(int i) const {
     i++;
     T ans = 0;
@@ -25,4 +30,6 @@ public:
     }
     return ans;
   }
+  // [l, r)
+  int sum(int l, int r) const { return sum(r - 1) - sum(l - 1); }
 };

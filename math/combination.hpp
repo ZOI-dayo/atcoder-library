@@ -11,6 +11,11 @@ private:
   // static const array<mint, MAX> invfact;
 public:
   constexpr Combination() = default;
+  static mint factorial(int32_t n) {
+    if (n < 0) return 0;
+    assert(n < MAX);
+    return fact[n];
+  }
   static mint nCr(int32_t n, int32_t r) {
     if (n < 0 || r < 0 || n < r)
       return 0;
