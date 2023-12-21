@@ -36,4 +36,13 @@ public:
       build();
     return _data[i];
   }
+
+  friend ostream &operator<<(ostream &os, const imos<T> &a) {
+    if (!a._is_build) {
+      os << "not builded";
+      return os;
+    }
+    os << a._data;
+    return os;
+  }
 };

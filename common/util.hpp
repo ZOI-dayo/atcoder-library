@@ -49,6 +49,11 @@ inline void transform(vec<T> &src, function<void(T &)> f) {
     f(val);
 }
 
+// ベース指定ceil
+inline ll ceil(ll x, ll base) { return (x + base - 1) / base * base; }
+// ベース指定floor
+inline ll floor(ll x, ll base) { return x / base * base; }
+
 // 合計値を求める
 ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
 

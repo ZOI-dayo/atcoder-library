@@ -5,7 +5,7 @@
 // Node
 template <class T = ll> struct WeightedNode {
   int id;
-  T cost;
+  T cost = numeric_limits<T>::max();
   WeightedNode(int id, T cost) : id(id), cost(cost) {}
 };
 
@@ -36,6 +36,23 @@ public:
   inline int size() const { return n; }
 };
 
-template <class T = ll> using WeightedGraph = vec<vec<WeightedNode<T>>>;
+template <class T = ll>
+struct WeightedGraph {
+private:
+  const int n;
+  vec<vec<WeightedNode<T>>> edges;
+
+public:
+  explicit WeightedGraph(int n) : n(n), edges(n) {}
+  inline void add_edge(int u, int v, T w, bool directed = true) {
+    edges[u].emplace_back(WeightedNode(v, w));
+    if (directed)
+      edges[v].emplace_back(WeightedNode(u, w));
+  }
+  inline vec<WeightedNode<T>> &operator[](int i) { return edges[i]; }
+  inline int size() const { return n; }
+};
+
+// template <class T = ll> using WeightedGraph = vec<vec<WeightedNode<T>>>;
 
 template <class T = ll> using WGraph = WeightedGraph<T>;

@@ -2,6 +2,7 @@
 
 template <typename T = ll> struct Rational {
   T num, den;
+  Rational(T num) : num(num), den(1) {}
   Rational(T num, T den) : num(num), den(den) {
     T g = gcd(num, den);
     this->num /= g;
@@ -39,8 +40,26 @@ template <typename T = ll> struct Rational {
   friend ostream &operator<<(ostream &os, const Rational &r) {
     return os << r.num << "/" << r.den;
   }
+  void operator+=(const Rational &rhs) { *this = *this + rhs; }
+  void operator-=(const Rational &rhs) { *this = *this - rhs; }
+  void operator*=(const Rational &rhs) { *this = *this * rhs; }
+  void operator/=(const Rational &rhs) { *this = *this / rhs; }
 
   double val() const { return (double)num / den; }
-  operator double() const { return val(); }
-  operator string() const { return to_string(num) + "/" + to_string(den); }
+  // operator double() const { return val(); }
+  // operator string() const { return to_string(num) + "/" + to_string(den); }
+  Rational pow(ll n) const {
+    if (n == 0) {
+      return Rational(1);
+    } else if (n < 0) {
+      return Rational(den, num).pow(-n);
+    } else {
+      Rational res = pow(n / 2);
+      res *= res;
+      if (n % 2 == 1) {
+        res *= *this;
+      }
+      return res;
+    }
+  }
 };

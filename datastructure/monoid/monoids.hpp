@@ -14,4 +14,9 @@ template <integral T = int> struct MinMonoid : public Monoid<T> {
   T op(T a, T b) const override { return min(a, b); }
 };
 
+template <integral T = int> struct MaxMonoid : public Monoid<T> {
+  T e() const override { return numeric_limits<T>::min(); }
+  T op(T a, T b) const override { return max(a, b); }
+};
+
 } // namespace Monoids
