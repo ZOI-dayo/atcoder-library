@@ -36,8 +36,7 @@ public:
   inline int size() const { return n; }
 };
 
-template <class T = ll>
-struct WeightedGraph {
+template <class T = ll> struct WeightedGraph {
 private:
   const int n;
   vec<vec<WeightedNode<T>>> edges;
