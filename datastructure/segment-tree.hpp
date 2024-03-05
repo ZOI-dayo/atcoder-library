@@ -67,4 +67,3 @@ public:
     return _monoid.op(l_val, r_val);
   }
 };
-
