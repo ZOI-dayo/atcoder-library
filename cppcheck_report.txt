@@ -100,6 +100,9 @@ datastructure/monoid/monofuncs.hpp:30:23: performance:inconclusive: Function par
 graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
                                ^
+math/prime.hpp:17:19: style: The scope of the variable 't' can be reduced. [variableScope]
+        long long t, x = mod_pow(a, d, N);
+                  ^
 math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < MOD >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
