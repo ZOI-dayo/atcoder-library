@@ -23,13 +23,14 @@ public:
 struct Graph {
 private:
   const int n;
+  const bool directed;
   vec<vec<int>> edges;
 
 public:
-  explicit Graph(int n) : n(n), edges(n) {}
-  inline void add_edge(int u, int v, bool directed = false) {
+  explicit Graph(int n, bool directed = false) : n(n), directed(directed), edges(n) {}
+  inline void add_edge(int u, int v) {
     edges[u].emplace_back(v);
-    if (directed)
+    if (!directed)
       edges[v].emplace_back(u);
   }
   inline vec<int> &operator[](int i) { return edges[i]; }
@@ -39,13 +40,14 @@ public:
 template <class T = ll> struct WeightedGraph {
 private:
   const int n;
+  const bool directed;
   vec<vec<WeightedNode<T>>> edges;
 
 public:
-  explicit WeightedGraph(int n) : n(n), edges(n) {}
-  inline void add_edge(int u, int v, T w, bool directed = true) {
+  explicit WeightedGraph(int n, bool directed = false) : n(n), directed(directed), edges(n) {}
+  inline void add_edge(int u, int v, T w) {
     edges[u].emplace_back(WeightedNode(v, w));
-    if (directed)
+    if (!directed)
       edges[v].emplace_back(WeightedNode(u, w));
   }
   inline vec<WeightedNode<T>> &operator[](int i) { return edges[i]; }

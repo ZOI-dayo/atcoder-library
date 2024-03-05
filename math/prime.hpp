@@ -5,35 +5,35 @@
 
 // ミラーラビン素数判定法
 // O(k log^3 n)
-// https://qiita.com/Kiri8128/items/eca965fe86ea5f4cbb98
-bool is_prime(const uint64_t &N) {
-  if (N <= 1)
-    return false;
-  const vec<uint64_t> ws =
-      N < 4'759'123'141
-          ? vec<uint64_t>{2, 7, 61}
-          : vec<uint64_t>{2, 325, 9375, 28178, 450775, 9780504, 1795265022ULL};
-
-  if (N == 2)
+// https://drken1215.hatenablog.com/entry/2023/05/23/233000
+bool MillerRabin(long long N, vector<long long> A) {
+    long long s = 0, d = N - 1;
+    while (d % 2 == 0) {
+        ++s;
+        d >>= 1;
+    }
+    for (auto a : A) {
+        if (N <= a) return true;
+        long long t, x = mod_pow(a, d, N);
+        if (x != 1) {
+            for (t = 0; t < s; ++t) {
+                if (x == N - 1) break;
+                x = __int128_t(x) * x % N;
+            }
+            if (t == s) return false;
+        }
+    }
     return true;
-  if (~N & 1)
-    return false;
+}
 
-  uint64_t d = N - 1;
-  while (d % 2 == 0)
-    d /= 2;
-  uint64_t e = 1, rev = N - 1;
-  for (uint64_t w : ws) {
-    if (w % N == 0)
-      continue;
-    uint64_t t = d;
-    uint64_t y = mod_pow(w, t, N);
-    while (t != N - 1 && y != e && y != rev)
-      y = y * y % N, t *= 2;
-    if (y != rev && t % 2 == 0)
-      return false;
-  }
-  return true;
+bool is_prime(long long N) {
+    if (N <= 1) return false;
+    if (N == 2) return true;
+    if (N % 2 == 0) return false;
+    if (N < 4759123141LL)
+        return MillerRabin(N, {2, 7, 61});
+    else
+        return MillerRabin(N, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
 }
 
 // ポラード・ロー素因数分解法

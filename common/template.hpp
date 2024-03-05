@@ -8,5 +8,6 @@
 #include "debug.hpp"
 #include "print.hpp"
 #include "util.hpp"
+#include "int128_t.hpp"
 
 #include "../math/pow.hpp"

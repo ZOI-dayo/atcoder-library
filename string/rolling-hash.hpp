@@ -63,4 +63,6 @@ public:
     RH::extend_pow(r - l);
     return RH(hashes[r].hash - hashes[l].hash * RH::mod[r - l], r - l);
   }
+  
+  inline int length() const { return hashes.size()-1; }
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "alias.hpp"
+#include "concepts.hpp"
 
 // --- Utils ---
 
@@ -55,7 +56,10 @@ inline ll ceil(ll x, ll base) { return (x + base - 1) / base * base; }
 inline ll floor(ll x, ll base) { return x / base * base; }
 
 // 合計値を求める
-ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
+// ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
+template<addable T> T sum(const vec<T> &v) {
+  return accumulate(all(v), T());
+}
 
 // 可変引数min
 template <class... T> auto min(T... a) {
@@ -109,7 +113,7 @@ template <typename T> struct vec_accumulate : vec<T> {
       data[i] = data[i - 1] + v[i];
   }
 
-  T &operator[](int i) {
+  T operator[](int i) {
     assert(is_contained(-1, i, data.size()));
     if (i == -1)
       return T();
