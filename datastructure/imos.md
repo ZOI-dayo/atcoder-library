@@ -16,7 +16,7 @@ imos法。累積和の応用...?
 
 ## Usage
 
-| Method | Cost | Verifyed | Description |
+| Method | Cost | Verified | Description |
 | :--- | :--- | :--- | :--- |
 | `(int n) -> imos<T>`      | $O(1)$           | :heavy_check_mark: | 長さ`n`のimosを生成 |
 | `(vec<T> src) -> imos<T>` | $O(N)$           | :warning:          | 配列をimosに変換 |
