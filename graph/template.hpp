@@ -27,7 +27,8 @@ private:
   vec<vec<int>> edges;
 
 public:
-  explicit Graph(int n, bool directed = false) : n(n), directed(directed), edges(n) {}
+  explicit Graph(int n, bool directed = false)
+      : n(n), directed(directed), edges(n) {}
   inline void add_edge(int u, int v) {
     edges[u].emplace_back(v);
     if (!directed)
@@ -44,7 +45,8 @@ private:
   vec<vec<WeightedNode<T>>> edges;
 
 public:
-  explicit WeightedGraph(int n, bool directed = false) : n(n), directed(directed), edges(n) {}
+  explicit WeightedGraph(int n, bool directed = false)
+      : n(n), directed(directed), edges(n) {}
   inline void add_edge(int u, int v, T w) {
     edges[u].emplace_back(WeightedNode(v, w));
     if (!directed)

@@ -7,33 +7,39 @@
 // O(k log^3 n)
 // https://drken1215.hatenablog.com/entry/2023/05/23/233000
 bool MillerRabin(long long N, vector<long long> A) {
-    long long s = 0, d = N - 1;
-    while (d % 2 == 0) {
-        ++s;
-        d >>= 1;
+  long long s = 0, d = N - 1;
+  while (d % 2 == 0) {
+    ++s;
+    d >>= 1;
+  }
+  for (auto a : A) {
+    if (N <= a)
+      return true;
+    long long t, x = mod_pow(a, d, N);
+    if (x != 1) {
+      for (t = 0; t < s; ++t) {
+        if (x == N - 1)
+          break;
+        x = __int128_t(x) * x % N;
+      }
+      if (t == s)
+        return false;
     }
-    for (auto a : A) {
-        if (N <= a) return true;
-        long long t, x = mod_pow(a, d, N);
-        if (x != 1) {
-            for (t = 0; t < s; ++t) {
-                if (x == N - 1) break;
-                x = __int128_t(x) * x % N;
-            }
-            if (t == s) return false;
-        }
-    }
-    return true;
+  }
+  return true;
 }
 
 bool is_prime(long long N) {
-    if (N <= 1) return false;
-    if (N == 2) return true;
-    if (N % 2 == 0) return false;
-    if (N < 4759123141LL)
-        return MillerRabin(N, {2, 7, 61});
-    else
-        return MillerRabin(N, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
+  if (N <= 1)
+    return false;
+  if (N == 2)
+    return true;
+  if (N % 2 == 0)
+    return false;
+  if (N < 4759123141LL)
+    return MillerRabin(N, {2, 7, 61});
+  else
+    return MillerRabin(N, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
 }
 
 // ポラード・ロー素因数分解法
