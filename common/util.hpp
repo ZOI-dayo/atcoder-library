@@ -102,20 +102,19 @@ inline bool is_same_side(int root, int a, int b) {
 }
 
 // vector継承にする?
-template <typename T> struct vec_accumulate : vec<T> {
-  vec<T> data;
-  explicit vec_accumulate(vec<T> &v) : data(v.size()) {
+template <typename T> struct vec_accumulate : public vec<T> {
+  explicit vec_accumulate(vec<T> &v) : vec<T>(v.size()) {
     assert(v.size() > 0);
-    data[0] = v[0];
+    this->at(0) = v[0];
     for (int i = 1; i < v.size(); ++i)
-      data[i] = data[i - 1] + v[i];
+      this->at(i) = this->at(i - 1) + v[i];
   }
 
   T operator[](int i) {
-    assert(is_contained(-1, i, data.size()));
+    assert(is_contained(-1, i, this->size()));
     if (i == -1)
       return T();
-    return data[i];
+    return this->at(i);
   }
 };
 
