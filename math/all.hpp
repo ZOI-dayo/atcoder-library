@@ -6,4 +6,3 @@
 #include "pow.hpp"
 #include "prime.hpp"
 #include "rational.hpp"
-

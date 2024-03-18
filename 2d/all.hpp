@@ -2,4 +2,3 @@
 
 #include "area.hpp"
 #include "point.hpp"
-
