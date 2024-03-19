@@ -162,6 +162,8 @@ jobs:
           # make check
           # sudo make install
           # cd ../
+      - name: Install boost
+        run: sudo apt install libboost-all-dev
       - name: Create cache dir
         run: mkdir -p .verify-helper/cache/_/test
       - name: Restore testcases

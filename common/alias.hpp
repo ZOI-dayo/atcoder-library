@@ -1,7 +1,6 @@
 #pragma once
 
 #include <boost/multiprecision/cpp_int.hpp>
-#include <gmpxx.h>
 
 #include <bits/stdc++.h>
 using namespace std;
