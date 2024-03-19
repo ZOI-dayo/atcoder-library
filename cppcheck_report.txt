@@ -1,3 +1,9 @@
+test/aoj/ALDS1_14_B__rolling_hash.test.cpp:11:10: style: Variable 'h' is assigned a value that is never used. [unreadVariable]
+  auto h = RollingHash("abc");
+         ^
+test/aoj/ALDS1_14_B__rolling_hash.test.cpp:12:11: style: Variable 'h2' is assigned a value that is never used. [unreadVariable]
+  auto h2 = RollingHash("b");
+          ^
 math/modint.hpp:56:25: style:inconclusive: Technically the member function 'dynamic_modint::operator--' can be const. [functionConst]
   inline dynamic_modint operator--(int32_t) {
                         ^
@@ -7,27 +13,15 @@ math/modint.hpp:73:15: style:inconclusive: Technically the member function 'dyna
 math/modint.hpp:74:15: style:inconclusive: Technically the member function 'dynamic_modint::operator!=' can be const. [functionConst]
   inline bool operator!=(const dynamic_modint &a) { return _val != a._val; }
               ^
-math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint::operator++' can be const. [functionConst]
-  constexpr inline modint operator++(int32_t) noexcept {
-                          ^
-math/modint.hpp:156:27: style:inconclusive: Technically the member function 'modint::operator--' can be const. [functionConst]
-  constexpr inline modint operator--(int32_t) noexcept {
-                          ^
-math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  dynamic_modint(int val) : _val(modint_utils::normalize(val, MOD)) {}
-  ^
-math/modint.hpp:132:20: style: Struct 'modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-  constexpr inline modint(int val) noexcept
-                   ^
-string/rolling-hash.hpp:17:29: performance:inconclusive: Function parameter 'hash' should be passed by const reference. [passedByValue]
-  explicit RollingHash(mint hash, int length) : hash(hash), length(length) {}
-                            ^
 math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
 math/modint.hpp:156:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator--' can be const. [functionConst]
   constexpr inline modint operator--(int32_t) noexcept {
                           ^
+math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  dynamic_modint(int val) : _val(modint_utils::normalize(val, MOD)) {}
+  ^
 math/modint.hpp:132:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
