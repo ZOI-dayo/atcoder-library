@@ -16,7 +16,7 @@ const string _TERM_BACK_RESET = _TERM_ESC + "[49m";
 #define line_debug() cerr << "line: " << __LINE__ << endl;
 #define coutd(x) cerr << "[debug] " << x;
 #define printd(x)                                                              \
-  cerr << _TERM_BOLD << _TERM_BACK_RED << "[debug] " << (#x) << " = " << (x)       \
+  cerr << _TERM_BOLD << _TERM_BACK_RED << "[debug] " << (#x) << " = " << (x)   \
        << _TERM_BACK_RESET << _TERM_DECO_RESET << endl;
 
 #else

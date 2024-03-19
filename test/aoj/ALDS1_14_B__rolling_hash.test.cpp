@@ -1,4 +1,4 @@
-#define PROBLEM  "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B"
 
 #include "../../common/util.hpp"
 #include "../../string/rolling-hash.hpp"
