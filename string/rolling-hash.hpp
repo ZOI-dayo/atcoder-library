@@ -1,68 +1,175 @@
 #pragma once
 
-#include "../math/modint.hpp"
+#include "../common/alias.hpp"
 
-template <int MOD = 1000000007> class RollingHash {
-  using mint = modint<MOD>;
+namespace rolling_hash {
 
+/**
+  * @brief modを法とするべき乗を計算する
+  * @param x 底
+  * @param n 指数
+  * @param mod 法
+  * @return x^n mod mod
+  */
+class PowCache {
 public:
-  static vec<mint> mod;
-  static mint base;
+  int mod;
+  int base;
+  vec<int> pow;
+  PowCache(int mod, int base) : mod(mod), base(base), pow(1, 1) {}
 
-  mint hash;
-  int length;
-
-  RollingHash() : hash(0), length(0) {}
-  explicit RollingHash(char c) : hash((int)c), length(1) {}
-  explicit RollingHash(mint hash, int length) : hash(hash), length(length) {}
-
-  inline RollingHash append(char c) const {
-    return RollingHash<MOD>(hash * base + mint((int)c), length + 1);
-  }
-  static inline RollingHash append(RollingHash h, char c) {
-    return h.append(c);
-  }
-  inline RollingHash merge(RollingHash b) const {
-    extend_pow(length + b.length);
-    return RollingHash<MOD>(hash * mod[b.length] + b.hash, length + b.length);
-  }
-  static inline RollingHash merge(RollingHash a, RollingHash b) {
-    return a.merge(b);
-  }
-
-  static inline void extend_pow(int new_length) {
-    int old_length = mod.size();
-    if (new_length < old_length)
-      return;
-    mod.resize(new_length + 1);
-    for (int i = old_length; i <= new_length; i++) {
-      mod[i] = mod[i - 1] * base;
+  /**
+    * @brief powを必要分延長する
+    * @param new_length 必要な長さ 増分ではない
+    */
+  void extend(int new_length) {
+    int old_length = pow.size();
+    if(new_length < old_length) return;
+    pow.resize(new_length + 1);
+    for(int l = old_length; l <= new_length; l++) {
+      pow[l] = pow[l - 1] * base % mod;
     }
   }
+  int get(int n) {
+    extend(n);
+    return pow[n];
+  }
 };
 
-template <int MOD>
-vec<modint<MOD>> RollingHash<MOD>::mod = vec<modint<MOD>>(1, modint<MOD>(1));
+/**
+ * @brief ローリングハッシュの演算を行う
+ */
+class Hash {
+private:
+  PowCache* pow_cache;
+public:
+  int mod;
+  int base;
+  int val;
+  int length;
+  Hash(PowCache* pow_cache, int val, int length) : pow_cache(pow_cache), mod(pow_cache->mod), base(pow_cache->base), val(val), length(length) {}
+  void append(char c) {
+    val = (val * base + c) % mod;
+    length++;
+  }
+  Hash appended(char c) const {
+    Hash ret(pow_cache, val, length);
+    ret.append(c);
+    return ret;
+  }
+  void merge(const Hash &h) {
+    if(mod != h.mod || base != h.base) {
+      throw invalid_argument("mod and base must be same");
+    }
+    val = (val * pow_cache->get(length) + h.val) % mod;
+  }
+  Hash merged(const Hash &h) const {
+    Hash ret(pow_cache, val, length);
+    ret.merge(h);
+    return ret;
+  }
+  Hash operator+(char c) const {
+    return appended(c);
+  }
+  Hash operator+(const Hash &h) const {
+    return merged(h);
+  }
+  Hash operator+=(char c) {
+    append(c);
+    return *this;
+  }
+  Hash operator+=(const Hash &h) {
+    merge(h);
+    return *this;
+  }
+  Hash operator-(const Hash &h) const {
+    if(mod != h.mod || base != h.base) {
+      throw invalid_argument("mod and base must be same");
+    }
+    if(length < h.length) {
+      throw invalid_argument("length must be greater than or equal to h.length");
+    }
+    int new_length = length - h.length;
+    int new_val = (val - h.val * pow_cache->get(new_length)) % mod;
+    if(new_val < 0) new_val += mod;
+    return Hash(pow_cache, new_val, new_length);
+  }
+  bool operator==(const Hash &h) const {
+    return mod == h.mod && base == h.base && val == h.val;
+  }
+  bool operator!=(const Hash &h) const {
+    return !(*this == h);
+  }
 
-template <int MOD> modint<MOD> RollingHash<MOD>::base = modint<MOD>(1007);
+};
+};
 
-template <int MOD = 1000000007> class RollingHashedString {
-  using RH = RollingHash<MOD>;
-  vec<RH> hashes;
+/**
+ * @brief 部分文字列のローリングハッシュの計算を行う
+ */
+class RollingHash {
+  /**
+    * ハッシュ値を計算するためのmodとbase
+    * [i] := {mod, base}
+    */
+  static vec<rolling_hash::PowCache> pow_cache;
+  /**
+    * [[i]][[j]] := j文字目までのハッシュ値をmod[[i]]で割った余り
+    * jは1-indexed、すなわちi=0は空文字列
+    */
+  vvec<rolling_hash::Hash> hashes;
 
 public:
-  explicit inline RollingHashedString(string s) : hashes(s.size() + 1) {
-    RH::extend_pow(s.size());
-    rep(i, s.size()) { hashes[i + 1] = RH::append(hashes[i], s[i]); }
+  /**
+    * @brief stringからRollingHashを構築する
+    *
+    * @param s 元の文字列
+    */
+  explicit inline RollingHash(string s) {
+    hashes.resize(pow_cache.size());
+    rep(i, pow_cache.size()) {
+      hashes[i].reserve(s.size() + 1);
+      hashes[i].emplace_back(rolling_hash::Hash(&pow_cache[i], 0, 0));
+    }
+    rep(i, pow_cache.size()) {
+      rep(j, s.size()) {
+        hashes[i].emplace_back(hashes[i][j] + s[j]);
+      }
+    }
+    rolling_hash::Hash h(&pow_cache[0], 0, 0);
   }
 
-  inline RH query(int l, int r) const {
+  /**
+    * @brief
+    * [l, r)のハッシュ値を取得する (0-indexed)
+    * 制約: 0 <= l <= r <= length()
+    * @param l 左端
+    * @param r 右端
+    * @return [l, r)のハッシュ値
+    */
+  inline vec<rolling_hash::Hash> query(int l, int r) {
     assert(0 <= l);
     assert(l <= r);
-    assert(r <= (int)hashes.size() - 1);
-    RH::extend_pow(r - l);
-    return RH(hashes[r].hash - hashes[l].hash * RH::mod[r - l], r - l);
+    assert(r <= length());
+    vec<rolling_hash::Hash> ret;
+    ret.reserve(pow_cache.size());
+    rep(i, pow_cache.size()) {
+      ret.emplace_back(hashes[i][r] - hashes[i][l]);
+    }
+    return ret;
   }
 
-  inline int length() const { return hashes.size() - 1; }
+  /**
+    * @brief 文字列の長さを取得する
+    *
+    * @return int 文字列の長さ
+    */
+  inline int length() const { return hashes[0].size() - 1; }
 };
+
+// 初期化
+vec<rolling_hash::PowCache> RollingHash::pow_cache = {
+  {1'000'000'007, 1007},
+  {1'000'000'009, 1009}
+};
+

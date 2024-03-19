@@ -15,7 +15,7 @@ template <integral T, integral F> constexpr T pow(T a, F n) {
   return ans;
 }
 
-constexpr ll mod_pow(ll a, ll n, const ll mod) {
+constexpr ll powm(ll a, ll n, const ll mod) {
   lll ans = 1;
   while (n > 0) {
     if (n & 1)
