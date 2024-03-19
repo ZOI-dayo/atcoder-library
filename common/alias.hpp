@@ -1,7 +1,7 @@
 #pragma once
 
-// #include <gmpxx.h>
-// #include <boost/multiprecision/cpp_int.hpp>
+#include <gmpxx.h>
+#include <boost/multiprecision/cpp_int.hpp>
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -15,6 +15,7 @@ template <typename T> using vec = vector<T>;
 template <typename T> using vvec = vector<vector<T>>;
 template <typename T> using p_queue = priority_queue<T>;
 template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
+using bint = boost::multiprecision::cpp_int;
 
 // --- 黒魔術 ---
 #define int ll
