@@ -135,9 +135,7 @@ public:
 
   // logic
   constexpr i32 val() const noexcept { return _val; }
-  constexpr modint pow(const int n) const {
-    return modint(powm(_val, n, MOD));
-  }
+  constexpr modint pow(const int n) const { return modint(powm(_val, n, MOD)); }
   constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));
   }
