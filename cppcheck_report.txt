@@ -13,10 +13,10 @@ math/modint.hpp:73:15: style:inconclusive: Technically the member function 'dyna
 math/modint.hpp:74:15: style:inconclusive: Technically the member function 'dynamic_modint::operator!=' can be const. [functionConst]
   inline bool operator!=(const dynamic_modint &a) { return _val != a._val; }
               ^
-math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator++' can be const. [functionConst]
+math/modint.hpp:149:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
-math/modint.hpp:156:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator--' can be const. [functionConst]
+math/modint.hpp:154:27: style:inconclusive: Technically the member function 'modint < 1000000007 >::operator--' can be const. [functionConst]
   constexpr inline modint operator--(int32_t) noexcept {
                           ^
 math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
@@ -97,16 +97,16 @@ vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
 math/prime.hpp:18:15: style: The scope of the variable 't' can be reduced. [variableScope]
     long long t, x = powm(a, d, N);
               ^
-math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < MOD >::operator++' can be const. [functionConst]
+math/modint.hpp:149:27: style:inconclusive: Technically the member function 'modint < MOD >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
-math/modint.hpp:156:27: style:inconclusive: Technically the member function 'modint < MOD >::operator--' can be const. [functionConst]
+math/modint.hpp:154:27: style:inconclusive: Technically the member function 'modint < MOD >::operator--' can be const. [functionConst]
   constexpr inline modint operator--(int32_t) noexcept {
                           ^
-math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator++' can be const. [functionConst]
+math/modint.hpp:149:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
                           ^
-math/modint.hpp:156:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator--' can be const. [functionConst]
+math/modint.hpp:154:27: style:inconclusive: Technically the member function 'modint < 998244353 >::operator--' can be const. [functionConst]
   constexpr inline modint operator--(int32_t) noexcept {
                           ^
 math/modint.hpp:132:20: style: Struct 'modint < MOD >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
