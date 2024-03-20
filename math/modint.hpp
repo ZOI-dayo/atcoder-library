@@ -38,7 +38,7 @@ public:
     return dynamic_modint(modint_utils::inv(_val, MOD));
   }
   inline dynamic_modint pow(const int n) const {
-    return dynamic_modint(mod_pow(_val, n, MOD));
+    return dynamic_modint(powm(_val, n, MOD));
   }
   inline static constexpr dynamic_modint pow(const dynamic_modint &a,
                                              const int n) {
@@ -136,7 +136,7 @@ public:
   // logic
   constexpr i32 val() const noexcept { return _val; }
   constexpr modint pow(const int n) const {
-    return modint(mod_pow(_val, n, MOD));
+    return modint(powm(_val, n, MOD));
   }
   constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));

@@ -67,7 +67,7 @@ inline void inv_ntt(vec<mint> &A) noexcept {
     }
     r <<= 1;
   }
-  mint ni = mod_pow(n, MOD - 2, MOD);
+  mint ni = powm(n, MOD - 2, MOD);
   // mint ni = mint(n).pow(MOD - 2);
   for (int i = 0; i < n; i++) {
     A[i] = A[i] * ni;

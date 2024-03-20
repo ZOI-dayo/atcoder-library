@@ -15,7 +15,7 @@ bool MillerRabin(long long N, vector<long long> A) {
   for (auto a : A) {
     if (N <= a)
       return true;
-    long long t, x = mod_pow(a, d, N);
+    long long t, x = powm(a, d, N);
     if (x != 1) {
       for (t = 0; t < s; ++t) {
         if (x == N - 1)
