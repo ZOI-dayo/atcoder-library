@@ -95,7 +95,7 @@ graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [cons
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
                                ^
 math/prime.hpp:18:15: style: The scope of the variable 't' can be reduced. [variableScope]
-    long long t, x = mod_pow(a, d, N);
+    long long t, x = powm(a, d, N);
               ^
 math/modint.hpp:151:27: style:inconclusive: Technically the member function 'modint < MOD >::operator++' can be const. [functionConst]
   constexpr inline modint operator++(int32_t) noexcept {
