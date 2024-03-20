@@ -7,5 +7,5 @@ signed main() {
   io_setup();
   int n, k;
   cin >> n >> k;
-  cout << mod_pow(k, n, 1'000'000'007) << endl;
+  cout << powm(k, n, 1'000'000'007) << endl;
 }
