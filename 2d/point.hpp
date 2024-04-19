@@ -23,6 +23,7 @@ public:
   }
 
   int manhattan() const { return std::abs(x) + std::abs(y); }
+  int eucurid2() const { return x * x + y * y; }
 
   bool operator==(const Point &p) const { return x == p.x && y == p.y; }
   bool operator!=(const Point &p) const { return !(*this == p); }

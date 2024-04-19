@@ -8,7 +8,8 @@
 // 二分探索
 template <typename T>
 inline T bin_search(T ok, T ng, const function<bool(T)> is_ok) {
-  assert(is_ok(ok) && !is_ok(ng));
+  assert(is_ok(ok));
+  assert(!is_ok(ng));
   assert(ok < ng);
   while (abs(ok - ng) > 1) {
     T mid = (ok + ng) / 2;
