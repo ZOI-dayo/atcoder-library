@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: .verify-helper/cache/**/test
-          key: testcases-cache
+          key: testcases-cache-${{ matrix.testcase }}
           restore-keys: testcases-cache-${{ matrix.testcase }}
       - name: Verify code
         run: oj-verify run ${{ matrix.testcase }}

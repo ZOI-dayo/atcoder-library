@@ -29,14 +29,11 @@ public:
   /**
     * @brief 個数から空のSegmentTreeを生成する
     *
-    * @param n 要素数
+    * @param length 要素数
     * @param e 単位元
     * @param op 演算
     */
-  explicit SegmentTree(int n, T e, function<T(T,T)> op) : e(e), op(op) {
-    n = bit_ceil(n);
-    data = vec<T>(2 * n, e);
-  }
+  explicit SegmentTree(int length, T e, function<T(T,T)> op) : n(bit_ceil(length)), data(2 * n, e), e(e), op(op) {}
 
   /**
     * @brief 既存のベクトルからSegmentTreeを生成する
@@ -45,9 +42,7 @@ public:
     * @param e 単位元
     * @param op 演算
     */
-  explicit SegmentTree(const vec<T> &v, T e, function<T(T,T)>) : e(e), op(op) {
-    n = bit_ceil(v.size());
-    data = vec<T>(2 * n, e);
+  explicit SegmentTree(const vec<T> &v, T e, function<T(T,T)>) : n(bit_ceil(v.size())), data(2*n, e), e(e), op(op) {
     rep(i, v.size()) data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
       data[i] = op(data[L(i)], data[R(i)]);
@@ -85,12 +80,15 @@ public:
     T l_val = e, r_val = e;
     l+=n, r+=n;
     while (l < r) {
-      l = P(l), r = P(r);
+      printd(l);
+      printd(r);
       if (l & 1)
         l_val = op(l_val, data[l++]);
       if (r & 1)
         r_val = op(data[--r], r_val);
+      l = P(l), r = P(r);
     }
     return op(l_val, r_val);
   }
 };
+
