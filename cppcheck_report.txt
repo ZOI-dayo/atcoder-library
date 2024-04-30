@@ -25,48 +25,6 @@ math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 ar
 math/modint.hpp:132:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:21:40: note: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(int n) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                       ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:26:50: note: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(const vec<T> &v) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                                 ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: MinMonoid < int32_t > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:48:5: style:inconclusive: Technically the member function 'SegmentTree < Monoids :: MinMonoid < int32_t > >::query' can be const. [functionConst]
-  T query(int l, int r) {
-    ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:21:40: note: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(int n) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                       ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:26:50: note: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(const vec<T> &v) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                                 ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: SumMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:48:5: style:inconclusive: Technically the member function 'SegmentTree < Monoids :: SumMonoid < long long > >::query' can be const. [functionConst]
-  T query(int l, int r) {
-    ^
 datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list. [initializerList]
   const MT e;
            ^
@@ -151,26 +109,5 @@ datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTre
 datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
   const MT e;
            ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:21:40: note: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(int n) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                       ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:12:5: style:inconclusive: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list. [initializerList]
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:26:50: note: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  explicit SegmentTree(const vec<T> &v) : _n(1), _monoid(M()), e(_monoid.e()) {
-                                                 ^
-datastructure/segment-tree.hpp:12:5: note: Member variable 'SegmentTree < Monoids :: MinMonoid < long long > >::_monoid' is in the wrong place in the initializer list.
-  M _monoid;
-    ^
-datastructure/segment-tree.hpp:48:5: style:inconclusive: Technically the member function 'SegmentTree < Monoids :: MinMonoid < long long > >::query' can be const. [functionConst]
-  T query(int l, int r) {
-    ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
