@@ -33,7 +33,7 @@ public:
     * @param e 単位元
     * @param op 演算
     */
-  explicit SegmentTree(int length, T e, function<T(T,T)> op) : n(bit_ceil(length)), data(2 * n, e), e(e), op(op) {}
+  explicit SegmentTree(int length, T e, function<T(T,T)> op) : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
 
   /**
     * @brief 既存のベクトルからSegmentTreeを生成する
@@ -42,7 +42,7 @@ public:
     * @param e 単位元
     * @param op 演算
     */
-  explicit SegmentTree(const vec<T> &v, T e, function<T(T,T)>) : n(bit_ceil(v.size())), data(2*n, e), e(e), op(op) {
+  explicit SegmentTree(const vec<T> &v, T e, function<T(T,T)> op) : e(e), op(op), n(bit_ceil(v.size())), data(2*n, e) {
     rep(i, v.size()) data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
       data[i] = op(data[L(i)], data[R(i)]);
@@ -57,7 +57,7 @@ public:
   void set(int i, T a) {
     i += n;
     data[i] = a;
-    while (P(i))
+    while (i = P(i), i>0)
       data[i] = op(data[L(i)], data[R(i)]);
   }
 
@@ -80,8 +80,6 @@ public:
     T l_val = e, r_val = e;
     l+=n, r+=n;
     while (l < r) {
-      printd(l);
-      printd(r);
       if (l & 1)
         l_val = op(l_val, data[l++]);
       if (r & 1)

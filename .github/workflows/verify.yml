@@ -44,6 +44,7 @@ jobs:
           key: testcases-cache-${{ matrix.testcase }}
           restore-keys: testcases-cache-${{ matrix.testcase }}
       - name: Verify code
+        timeout-minutes: 5
         run: oj-verify run ${{ matrix.testcase }}
         env:
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
