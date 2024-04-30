@@ -8,7 +8,7 @@ signed main() {
   int N, Q;
   cin >> N >> Q;
 
-  SegmentTree<Monoids::SumMonoid<int>> seg(N);
+  SegmentTree<int> seg(N, 0, [](int a, int b) { return a + b; });
   rep(i, N) {
     int a;
     cin >> a;
