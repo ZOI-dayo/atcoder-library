@@ -17,6 +17,9 @@ signed main() {
     mint sum;
     int size;
     Node(mint sum, int size) : sum(sum), size(size) {}
+    Node operator+(const Node &rhs) const {
+      return {sum + rhs.sum, size + rhs.size};
+    }
   };
 
   vec<Node> a(N, {0, 0});
@@ -39,7 +42,7 @@ signed main() {
     T merge(T a, T b) const override { return a * b; }
   };
 
-  LazySegmentTree<F> seg(a);
+  LazySegmentTree<Node, Affine<mint>> seg(a, {0, 0}, {1, 0}, [](Node a, Node b){ return a + b; }, [](Affine<mint> a, Node b){ return Node{a.a * b.sum + a.b * b.size, b.size}; }, [](Affine<mint> a, Affine<mint> b){ return a * b; });
 
   rep(q, Q) {
     int type;
