@@ -25,30 +25,6 @@ math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 ar
 math/modint.hpp:132:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:49:39: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeSetMonofunc < Monoids :: MinMonoid < int32_t > > >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
-datastructure/monoid/monofuncs.hpp:30:13: performance:inconclusive: Function parameter 'before' should be passed by const reference. [passedByValue]
-  T merge(T before, T after) const override { return before * after; }
-            ^
-datastructure/monoid/monofuncs.hpp:30:23: performance:inconclusive: Function parameter 'after' should be passed by const reference. [passedByValue]
-  T merge(T before, T after) const override { return before * after; }
-                      ^
 graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
                                ^
@@ -73,41 +49,5 @@ math/modint.hpp:132:20: style: Struct 'modint < MOD >' has a constructor with 1 
 math/modint.hpp:132:20: style: Struct 'modint < 998244353 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:49:39: note: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < Monofuncs :: RangeAffineMonofunc < Monoids :: SumMonoid < modint < 998244353 > > > >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:49:39: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:15:12: style:inconclusive: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list. [initializerList]
-  const MT e;
-           ^
-datastructure/lazy-segment-tree.hpp:58:39: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
-      : _monoid(M()), _monofunc(F()), e(_monoid.e()), id(_monofunc.id()) {
-                                      ^
-datastructure/lazy-segment-tree.hpp:15:12: note: Member variable 'LazySegmentTree < F >::e' is in the wrong place in the initializer list.
-  const MT e;
-           ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
