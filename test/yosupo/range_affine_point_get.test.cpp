@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
-#include "../../datastructure/lazy-segment-tree.hpp"
 #include "../../datastructure/affine.hpp"
+#include "../../datastructure/lazy-segment-tree.hpp"
 #include "../../math/modint.hpp"
 
 using mint = mint998;
@@ -29,11 +29,11 @@ signed main() {
   }
 
   LazySegmentTree<Node, Affine<mint>> seg(
-    a, {0, 0}, {1, 0},
-    [](Node a, Node b){ return a + b; },
-    [](Affine<mint> a, Node b){ return Node{a.a * b.sum + a.b * b.size, b.size}; },
-    [](Affine<mint> a, Affine<mint> b){ return a * b; }
-  );
+      a, {0, 0}, {1, 0}, [](Node a, Node b) { return a + b; },
+      [](Affine<mint> a, Node b) {
+        return Node{a.a * b.sum + a.b * b.size, b.size};
+      },
+      [](Affine<mint> a, Affine<mint> b) { return a * b; });
 
   rep(q, Q) {
     int type;

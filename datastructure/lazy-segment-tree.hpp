@@ -40,10 +40,10 @@ private:
 #define P(i) (i >> 1)
 
   /**
-    * @brief k番目のノードの遅延情報を解消し、子ノードに伝搬する
-    *
-    * @param k ノード番号 (1-indexed, seg-index)
-    */
+   * @brief k番目のノードの遅延情報を解消し、子ノードに伝搬する
+   *
+   * @param k ノード番号 (1-indexed, seg-index)
+   */
   inline void eval(int32_t k) {
     if (_lazy[k] == id)
       return;
@@ -62,51 +62,51 @@ public:
   // TODO: 2つの実装が別れているのをどうにかする
 
   /**
-    * @brief 要素数から空のLazySegmentTreeを生成する
-    *
-    * @param length 要素数
-    * @param e 単位元
-    * @param id 操作情報の単位元
-    * @param op ノードのマージ
-    * @param apply 操作の適用
-    * @param merge 操作のマージ
-    */
+   * @brief 要素数から空のLazySegmentTreeを生成する
+   *
+   * @param length 要素数
+   * @param e 単位元
+   * @param id 操作情報の単位元
+   * @param op ノードのマージ
+   * @param apply 操作の適用
+   * @param merge 操作のマージ
+   */
   explicit inline LazySegmentTree(const int32_t length, const T e, const F id,
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-    : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
-    _height(bit_width(_n)-1), _data(2 * _n, e), _lazy(2 * _n, id) {
-  }
+      : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
+        _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
-    * @brief 既存のベクトルからLazySegmentTreeを生成する
-    *
-    * @param data データ
-    * @param e 単位元
-    * @param id 操作情報の単位元
-    * @param op ノードのマージ
-    * @param apply 操作の適用
-    * @param merge 操作のマージ
-    */
+   * @brief 既存のベクトルからLazySegmentTreeを生成する
+   *
+   * @param data データ
+   * @param e 単位元
+   * @param id 操作情報の単位元
+   * @param op ノードのマージ
+   * @param apply 操作の適用
+   * @param merge 操作のマージ
+   */
   explicit inline LazySegmentTree(vec<T> &data, const T e, const F id,
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-    : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(data.size())),
-    _height(bit_width(_n)-1), _data(2 * _n, e), _lazy(2 * _n, id) {
+      : e(e), id(id), op(op), apply(apply), merge(merge),
+        _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
+        _lazy(2 * _n, id) {
     rep(i, data.size()) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
       _data[i] = op(_data[L(i)], _data[R(i)]);
   }
 
   /**
-    * @brief [l, r)の区間に対して操作fを適用する
-    *
-    * @param l 左端 (0-indexed)
-    * @param r 右端 (0-indexed)
-    * @param f 操作
-    */
+   * @brief [l, r)の区間に対して操作fを適用する
+   *
+   * @param l 左端 (0-indexed)
+   * @param r 右端 (0-indexed)
+   * @param f 操作
+   */
   inline void set(int32_t l, int32_t r, F f) {
     // a, bはseg-index [a,b]
     int32_t a = l + _n, b = r + _n - 1;
@@ -126,25 +126,23 @@ public:
     // a,bを親に移しつつ、aが実在頂点の間
     while ((a >>= 1), (b >>= 1), a) {
       if (_lazy[a] == id) {
-        _data[a] = op(
-          apply(_lazy[(a << 1) | 0], _data[(a << 1) | 0]),
-          apply(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
+        _data[a] = op(apply(_lazy[(a << 1) | 0], _data[(a << 1) | 0]),
+                      apply(_lazy[(a << 1) | 1], _data[(a << 1) | 1]));
       }
       if (_lazy[b] == id) {
-        _data[b] = op(
-          apply(_lazy[(b << 1) | 0], _data[(b << 1) | 0]),
-          apply(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
+        _data[b] = op(apply(_lazy[(b << 1) | 0], _data[(b << 1) | 0]),
+                      apply(_lazy[(b << 1) | 1], _data[(b << 1) | 1]));
       }
     }
   }
 
   /**
-    * @brief [l, r)の区間に対するクエリを処理する
-    *
-    * @param l 左端 (0-indexed)
-    * @param r 右端 (0-indexed)
-    * @return T クエリの結果
-    */
+   * @brief [l, r)の区間に対するクエリを処理する
+   *
+   * @param l 左端 (0-indexed)
+   * @param r 右端 (0-indexed)
+   * @return T クエリの結果
+   */
   inline T query(int32_t l, int32_t r) {
     // a, bはseg-index [a,b]
     int32_t a = l + _n, b = r + _n - 1;
@@ -163,11 +161,10 @@ public:
   }
 
   /**
-    * @brief i番目の要素を取得する
-    *
-    * @param i インデックス (0-indexed)
-    * @return T i番目の要素
-    */
+   * @brief i番目の要素を取得する
+   *
+   * @param i インデックス (0-indexed)
+   * @return T i番目の要素
+   */
   inline T get(int32_t i) { return query(i, i + 1); }
 };
-

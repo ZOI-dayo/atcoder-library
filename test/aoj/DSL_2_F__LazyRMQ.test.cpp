@@ -8,11 +8,9 @@ signed main() {
   int n, q;
   cin >> n >> q;
   LazySegmentTree<int, int> seg(
-    n, (1LL << 31) - 1, -1,
-    [](int a, int b) { return min(a, b); },
-    [](int fn, int val) { return fn >= 0 ? fn : val; },
-    [](int current, int next) { return next >= 0 ? next : current; }
-  );
+      n, (1LL << 31) - 1, -1, [](int a, int b) { return min(a, b); },
+      [](int fn, int val) { return fn >= 0 ? fn : val; },
+      [](int current, int next) { return next >= 0 ? next : current; });
   rep(i, q) {
     int com;
     cin >> com;

@@ -7,10 +7,8 @@ signed main() {
   io_setup();
   int n, q;
   cin >> n >> q;
-  SegmentTree<int32_t> seg(
-    n, numeric_limits<int32_t>::max(),
-    [](int32_t a, int32_t b) { return min(a, b); }
-  );
+  SegmentTree<int32_t> seg(n, numeric_limits<int32_t>::max(),
+                           [](int32_t a, int32_t b) { return min(a, b); });
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;
