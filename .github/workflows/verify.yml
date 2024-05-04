@@ -67,3 +67,8 @@ jobs:
           path: .verify-helper/cache/**/test
           key: testcases-cache-${{ matrix.testcase }}
           restore-keys: testcases-cache-${{ matrix.testcase }}
+  verify_check:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - run: echo "All tests passed!!"
