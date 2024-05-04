@@ -17,12 +17,15 @@ private:
   /// SegTreeのノード上のデータ
   vec<T> data;
 
-/// 左の子のインデックスを返す
-#define L(i) (i << 1)
-/// 右の子のインデックスを返す
-#define R(i) (i << 1 | 1)
-/// 親のインデックスを返す
-#define P(i) (i >> 1)
+#ifndef SEG_MACROS
+#define SEG_MACROS
+  /// 左の子のインデックスを返す
+#define SEG_L_CHILD(i) (i << 1)
+  /// 右の子のインデックスを返す
+#define SEG_R_CHILD(i) (i << 1 | 1)
+  /// 親のインデックスを返す
+#define SEG_PARENT(i) (i >> 1)
+#endif
 
 public:
   /**
@@ -33,7 +36,7 @@ public:
    * @param op 演算
    */
   explicit SegmentTree(int length, T e, function<T(T, T)> op)
-      : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
+  : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
 
   /**
    * @brief 既存のベクトルからSegmentTreeを生成する
@@ -43,10 +46,10 @@ public:
    * @param op 演算
    */
   explicit SegmentTree(const vec<T> &v, T e, function<T(T, T)> op)
-      : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
+    : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
     rep(i, v.size()) data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
-      data[i] = op(data[L(i)], data[R(i)]);
+      data[i] = op(data[SEG_L_CHILD(i)], data[SEG_R_CHILD(i)]);
   }
 
   /**
@@ -58,8 +61,8 @@ public:
   void set(int i, T a) {
     i += n;
     data[i] = a;
-    while (i = P(i), i > 0)
-      data[i] = op(data[L(i)], data[R(i)]);
+    while (i = SEG_PARENT(i), i > 0)
+      data[i] = op(data[SEG_L_CHILD(i)], data[SEG_R_CHILD(i)]);
   }
 
   /**
@@ -85,7 +88,7 @@ public:
         l_val = op(l_val, data[l++]);
       if (r & 1)
         r_val = op(data[--r], r_val);
-      l = P(l), r = P(r);
+      l = SEG_PARENT(l), r = SEG_PARENT(r);
     }
     return op(l_val, r_val);
   }
