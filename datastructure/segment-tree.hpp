@@ -36,7 +36,7 @@ public:
    * @param op 演算
    */
   explicit SegmentTree(int length, T e, function<T(T, T)> op)
-  : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
+      : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
 
   /**
    * @brief 既存のベクトルからSegmentTreeを生成する
@@ -46,7 +46,7 @@ public:
    * @param op 演算
    */
   explicit SegmentTree(const vec<T> &v, T e, function<T(T, T)> op)
-    : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
+      : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
     rep(i, v.size()) data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
       data[i] = op(data[SEG_L_CHILD(i)], data[SEG_R_CHILD(i)]);

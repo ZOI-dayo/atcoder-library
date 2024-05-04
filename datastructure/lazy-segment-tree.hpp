@@ -78,8 +78,8 @@ public:
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-    : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
-    _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
+      : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
+        _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
    * @brief 既存のベクトルからLazySegmentTreeを生成する
@@ -95,9 +95,9 @@ public:
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-    : e(e), id(id), op(op), apply(apply), merge(merge),
-    _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
-    _lazy(2 * _n, id) {
+      : e(e), id(id), op(op), apply(apply), merge(merge),
+        _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
+        _lazy(2 * _n, id) {
     rep(i, data.size()) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
       _data[i] = op(_data[SEG_L_CHILD(i)], _data[SEG_R_CHILD(i)]);
