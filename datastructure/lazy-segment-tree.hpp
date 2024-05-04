@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../common/template.hpp"
-#include "./monoid/monofunc.hpp"
 
 // 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
