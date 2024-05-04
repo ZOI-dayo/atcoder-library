@@ -32,12 +32,15 @@ private:
   /// セグ木の遅延情報
   vec<F> _lazy;
 
+#ifndef SEG_MACROS
+#define SEG_MACROS
   /// 左の子のインデックスを返す
-#define L(i) (i << 1)
+#define SEG_L_CHILD(i) (i << 1)
   /// 右の子のインデックスを返す
-#define R(i) (i << 1 | 1)
+#define SEG_R_CHILD(i) (i << 1 | 1)
   /// 親のインデックスを返す
-#define P(i) (i >> 1)
+#define SEG_PARENT(i) (i >> 1)
+#endif
 
   /**
    * @brief k番目のノードの遅延情報を解消し、子ノードに伝搬する
@@ -49,8 +52,8 @@ private:
       return;
     _data[k] = apply(_lazy[k], _data[k]);
     if (k < _n) {
-      _lazy[L(k)] = merge(_lazy[L(k)], _lazy[k]);
-      _lazy[R(k)] = merge(_lazy[R(k)], _lazy[k]);
+      _lazy[SEG_L_CHILD(k)] = merge(_lazy[SEG_L_CHILD(k)], _lazy[k]);
+      _lazy[SEG_R_CHILD(k)] = merge(_lazy[SEG_R_CHILD(k)], _lazy[k]);
     }
     _lazy[k] = id;
   }
@@ -75,8 +78,8 @@ public:
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-      : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
-        _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
+    : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
+    _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
    * @brief 既存のベクトルからLazySegmentTreeを生成する
@@ -92,12 +95,12 @@ public:
                                   const function<T(T, T)> op,
                                   const function<T(F, T)> apply,
                                   const function<F(F, F)> merge)
-      : e(e), id(id), op(op), apply(apply), merge(merge),
-        _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
-        _lazy(2 * _n, id) {
+    : e(e), id(id), op(op), apply(apply), merge(merge),
+    _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
+    _lazy(2 * _n, id) {
     rep(i, data.size()) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
-      _data[i] = op(_data[L(i)], _data[R(i)]);
+      _data[i] = op(_data[SEG_L_CHILD(i)], _data[SEG_R_CHILD(i)]);
   }
 
   /**
