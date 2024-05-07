@@ -1,6 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 
+#include "../../common/util.hpp"
 #include "../../datastructure/lazy-segment-tree.hpp"
 
 signed main() {
