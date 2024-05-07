@@ -5,10 +5,10 @@
 // 参考: https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
 /**
-  * @brief セグメント木
-  *
-  * @tparam T ノードの型
-  */
+ * @brief セグメント木
+ *
+ * @tparam T ノードの型
+ */
 template <typename T> struct SegmentTree {
 
 private:
@@ -95,7 +95,7 @@ public:
     return op(l_val, r_val);
   }
 
-  #undef L
-  #undef R
-  #undef P
+#undef L
+#undef R
+#undef P
 };

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../../datastructure/segment-tree.hpp"
 #include "../../common/util.hpp"
+#include "../../datastructure/segment-tree.hpp"
 
 signed main() {
   io_setup();

@@ -5,14 +5,13 @@
 // 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
 /**
-  * @brief 遅延セグメント木
-  *
-  * @tparam T ノードの型
-  * @tparam F 操作情報の型
-  */
+ * @brief 遅延セグメント木
+ *
+ * @tparam T ノードの型
+ * @tparam F 操作情報の型
+ */
 template <typename T, typename F> struct LazySegmentTree {
 private:
-
   /// データの単位元
   const T e;
   /// 操作の単位元
@@ -170,7 +169,7 @@ public:
    */
   inline T get(int32_t i) { return query(i, i + 1); }
 
-  #undef L
-  #undef R
-  #undef P
+#undef L
+#undef R
+#undef P
 };
