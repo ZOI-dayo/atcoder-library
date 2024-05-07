@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "../common/alias.hpp"
 
 // 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
@@ -146,7 +145,7 @@ public:
    * @param r 右端 (0-indexed)
    * @return T クエリの結果
    */
-  inline T query(int32_t l, int32_t r) const {
+  inline T query(int32_t l, int32_t r) {
     // a, bはseg-index [a,b]
     int32_t a = l + _n, b = r + _n - 1;
     // 上から下へとlazyを伝搬させる
