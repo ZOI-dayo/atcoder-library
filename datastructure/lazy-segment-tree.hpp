@@ -168,7 +168,7 @@ public:
    * @param i インデックス (0-indexed)
    * @return T i番目の要素
    */
-  inline T get(int32_t i) const { return query(i, i + 1); }
+  inline T get(int32_t i) { return query(i, i + 1); }
 
   #undef L
   #undef R
