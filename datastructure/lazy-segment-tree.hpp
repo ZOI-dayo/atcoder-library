@@ -1,15 +1,18 @@
 #pragma once
 
-#include "../common/template.hpp"
+
+#include "../common/alias.hpp"
 
 // 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
-// T : Nodeの型, F : 操作情報
+/**
+  * @brief 遅延セグメント木
+  *
+  * @tparam T ノードの型
+  * @tparam F 操作情報の型
+  */
 template <typename T, typename F> struct LazySegmentTree {
 private:
-  // using M = typename F::M;
-  // using FT = typename F::T;
-  // using MT = typename M::T;
 
   /// データの単位元
   const T e;
@@ -32,18 +35,15 @@ private:
   /// セグ木の遅延情報
   vec<F> _lazy;
 
-#ifndef SEG_MACROS
-#define SEG_MACROS
   /// 左の子のインデックスを返す
-#define SEG_L_CHILD(i) (i << 1)
+#define L(i) (i << 1)
   /// 右の子のインデックスを返す
-#define SEG_R_CHILD(i) (i << 1 | 1)
+#define R(i) (i << 1 | 1)
   /// 親のインデックスを返す
-#define SEG_PARENT(i) (i >> 1)
-#endif
+#define P(i) (i >> 1)
 
   /**
-   * @brief k番目のノードの遅延情報を解消し、子ノードに伝搬する
+   * @brief k番目のノードの遅延情報を解消し、子ノードに伝搬する O(log N) * merge
    *
    * @param k ノード番号 (1-indexed, seg-index)
    */
@@ -52,8 +52,8 @@ private:
       return;
     _data[k] = apply(_lazy[k], _data[k]);
     if (k < _n) {
-      _lazy[SEG_L_CHILD(k)] = merge(_lazy[SEG_L_CHILD(k)], _lazy[k]);
-      _lazy[SEG_R_CHILD(k)] = merge(_lazy[SEG_R_CHILD(k)], _lazy[k]);
+      _lazy[L(k)] = merge(_lazy[L(k)], _lazy[k]);
+      _lazy[R(k)] = merge(_lazy[R(k)], _lazy[k]);
     }
     _lazy[k] = id;
   }
@@ -65,7 +65,7 @@ public:
   // TODO: 2つの実装が別れているのをどうにかする
 
   /**
-   * @brief 要素数から空のLazySegmentTreeを生成する
+   * @brief 要素数から空のLazySegmentTreeを生成する O(length)
    *
    * @param length 要素数
    * @param e 単位元
@@ -82,7 +82,7 @@ public:
         _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
-   * @brief 既存のベクトルからLazySegmentTreeを生成する
+   * @brief 既存のベクトルからLazySegmentTreeを生成する O(length) * op
    *
    * @param data データ
    * @param e 単位元
@@ -100,11 +100,11 @@ public:
         _lazy(2 * _n, id) {
     rep(i, data.size()) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
-      _data[i] = op(_data[SEG_L_CHILD(i)], _data[SEG_R_CHILD(i)]);
+      _data[i] = op(_data[L(i)], _data[R(i)]);
   }
 
   /**
-   * @brief [l, r)の区間に対して操作fを適用する
+   * @brief [l, r)の区間に対して操作fを適用する O(log N) * op
    *
    * @param l 左端 (0-indexed)
    * @param r 右端 (0-indexed)
@@ -146,7 +146,7 @@ public:
    * @param r 右端 (0-indexed)
    * @return T クエリの結果
    */
-  inline T query(int32_t l, int32_t r) {
+  inline T query(int32_t l, int32_t r) const {
     // a, bはseg-index [a,b]
     int32_t a = l + _n, b = r + _n - 1;
     // 上から下へとlazyを伝搬させる
@@ -169,5 +169,9 @@ public:
    * @param i インデックス (0-indexed)
    * @return T i番目の要素
    */
-  inline T get(int32_t i) { return query(i, i + 1); }
+  inline T get(int32_t i) const { return query(i, i + 1); }
+
+  #undef L
+  #undef R
+  #undef P
 };
