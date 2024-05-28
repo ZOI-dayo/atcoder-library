@@ -9,8 +9,7 @@ template <class T = ll> struct WeightedNode {
   WeightedNode(int id, T cost) : id(id), cost(cost) {}
 };
 
-template <class T = ll>
-struct WeightState {
+template <class T = ll> struct WeightState {
 public:
   int location;
   T used_cost;
