@@ -9,11 +9,12 @@ template <class T = ll> struct WeightedNode {
   WeightedNode(int id, T cost) : id(id), cost(cost) {}
 };
 
+template <class T = ll>
 struct WeightState {
 public:
   int location;
-  ll used_cost;
-  WeightState(int location, ll used_cost)
+  T used_cost;
+  WeightState(int location, T used_cost)
       : location(location), used_cost(used_cost) {}
   bool operator<(const WeightState &n) const { return used_cost < n.used_cost; }
   bool operator>(const WeightState &n) const { return used_cost > n.used_cost; }
@@ -42,9 +43,9 @@ template <class T = ll> struct WeightedGraph {
 private:
   const int n;
   const bool directed;
-  vec<vec<WeightedNode<T>>> edges;
 
 public:
+  vec<vec<WeightedNode<T>>> edges;
   explicit WeightedGraph(int n, bool directed = false)
       : n(n), directed(directed), edges(n) {}
   inline void add_edge(int u, int v, T w) {

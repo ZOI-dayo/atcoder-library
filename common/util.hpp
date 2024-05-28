@@ -111,6 +111,8 @@ template <typename T> struct vec_accumulate : public vec<T> {
       this->at(i) = this->at(i - 1) + v[i];
   }
 
+  // [0, i]の和
+  // なので、-1 <= i < size()
   T operator[](int i) {
     assert(is_contained(-1, i, this->size()));
     if (i == -1)

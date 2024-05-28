@@ -38,6 +38,13 @@ public:
 
   Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
   Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
+
+  bool operator<(const Point &p) const {
+    return x == p.x ? y < p.y : x < p.x;
+  }
+  bool operator>(const Point &p) const {
+    return x == p.x ? y > p.y : x > p.x;
+  }
 };
 ostream &operator<<(ostream &os, const Point &p) {
   os << p.x << p.y;

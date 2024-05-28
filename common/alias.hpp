@@ -12,6 +12,7 @@ using ll = long long;
 using ull = unsigned long long;
 template <typename T> using vec = vector<T>;
 template <typename T> using vvec = vector<vector<T>>;
+template <typename T> using vvvec = vector<vector<vector<T>>>;
 template <typename T> using p_queue = priority_queue<T>;
 template <typename T> using rp_queue = priority_queue<T, vec<T>, greater<T>>;
 using bint = boost::multiprecision::cpp_int;
