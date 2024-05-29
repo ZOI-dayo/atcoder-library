@@ -58,8 +58,12 @@ private:
       }
     }
 
-    /// ノードが葉かどうか判定する
-    bool is_bottom() const { return l + 1 == r; }
+    /// 子ノードの情報からvalを更新する
+    void update(auto &op) {
+      T l_val = l_child == nullptr ? e : l_child->val;
+      T r_val = r_child == nullptr ? e : r_child->val;
+      val = op(l_val, r_val);
+    }
   };
 
   Node* root;
@@ -97,7 +101,7 @@ public:
     node->val = a;
     while(node->p != nullptr) {
       node = node->p;
-      node->val = op(node->child(0)->val, node->child(1)->val);
+      node->update(op);
     }
   }
 
@@ -120,6 +124,7 @@ public:
     return _query(root, l, r);
   }
 
+private:
   /**
     * @brief 特定のノードに対し、[l, r)の範囲に対するクエリを行う O(log n) * op
     *

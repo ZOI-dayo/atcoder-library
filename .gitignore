@@ -4,3 +4,5 @@ pdf/
 tmp.html
 .DS_Store
 .secrets
+setenv
+
