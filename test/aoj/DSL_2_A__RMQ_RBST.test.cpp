@@ -8,16 +8,13 @@ signed main() {
   io_setup();
   int n, q;
   cin >> n >> q;
-  RBST<int32_t> tree(
-    numeric_limits<int32_t>::max(),
-    [](int32_t a, int32_t b) { return min(a, b); });
-  rep(i, n) {
-    tree.insert_at(0, numeric_limits<int32_t>::max());
-  }
+  RBST<int32_t> tree(numeric_limits<int32_t>::max(),
+                     [](int32_t a, int32_t b) { return min(a, b); });
+  rep(i, n) { tree.insert_at(0, numeric_limits<int32_t>::max()); }
   rep(i, q) {
     int com, x, y;
     cin >> com >> x >> y;
-    if(com == 0) {
+    if (com == 0) {
       tree.erase_at(x);
       tree.insert_at(x, y);
     } else {

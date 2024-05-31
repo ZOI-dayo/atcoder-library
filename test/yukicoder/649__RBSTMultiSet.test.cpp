@@ -17,7 +17,7 @@ signed main() {
       cin >> v;
       tree.insert(v);
     } else {
-      if(K >= tree.size()) {
+      if (K >= tree.size()) {
         cout << -1 << endl;
         continue;
       }
