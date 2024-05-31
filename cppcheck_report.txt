@@ -25,6 +25,18 @@ math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 ar
 math/modint.hpp:132:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
+datastructure/rbst.hpp:36:17: performance:inconclusive: Technically the member function 'RBST < int32_t >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+  inline size_t size(const node_t* const t) const {
+                ^
+datastructure/rbst.hpp:28:5: style: Struct 'node_t' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    node_t(T val): val(val), size(1), sum(val), lch(nullptr), rch(nullptr) {}
+    ^
+datastructure/rbst.hpp:88:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
+    assert(0 <= k);
+             ^
+datastructure/rbst.hpp:99:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
+    assert(0 <= k);
+             ^
 graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
 vec<TreeNodeInfo> depth(Graph &graph, int root = 0) {
                                ^
@@ -56,7 +68,7 @@ datastructure/dynamic-segment-tree.hpp:80:44: warning: Struct 'DynamicSegmentTre
       : e(e), op(op), n(bit_ceil(length)), root(new Node(e, e, 0, n)) {}
                                            ^
 datastructure/dynamic-segment-tree.hpp:69:9: style: Class 'DynamicSegmentTree < long long >' is unsafe, 'DynamicSegmentTree < long long >::root' can leak by wrong usage. [unsafeClassCanLeak]
-  Node* root;
+  Node *root;
         ^
 datastructure/dynamic-segment-tree.hpp:31:15: style: Class 'Node' is unsafe, 'Node::l_child' can leak by wrong usage. [unsafeClassCanLeak]
     Node *p, *l_child, *r_child;
@@ -67,5 +79,8 @@ datastructure/dynamic-segment-tree.hpp:31:25: style: Class 'Node' is unsafe, 'No
 datastructure/dynamic-segment-tree.hpp:62:23: style: Parameter 'op' can be declared with const [constParameter]
     void update(auto &op) {
                       ^
+datastructure/rbst.hpp:36:17: performance:inconclusive: Technically the member function 'RBST < long long >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+  inline size_t size(const node_t* const t) const {
+                ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
