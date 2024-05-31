@@ -33,27 +33,27 @@ private:
     /// ノードの範囲
     int l, r;
 
-    Node(T val, T e, int l, int r) :
-      val(val), e(e),
-      p(nullptr), l_child(nullptr), r_child(nullptr),
-      l(l), r(r) {}
+    Node(T val, T e, int l, int r)
+        : val(val), e(e), p(nullptr), l_child(nullptr), r_child(nullptr), l(l),
+          r(r) {}
 
-    Node(T val, Node *p, bool child_index) :
-      val(val), e(p->e),
-      p(p), l_child(nullptr), r_child(nullptr),
-      l(!child_index ? p->l : p->mid()),
-      r(!child_index ? p->mid() : p->r) {}
+    Node(T val, Node *p, bool child_index)
+        : val(val), e(p->e), p(p), l_child(nullptr), r_child(nullptr),
+          l(!child_index ? p->l : p->mid()), r(!child_index ? p->mid() : p->r) {
+    }
 
     /// ノードの範囲の中央
     int mid() const { return (l + r) / 2; }
 
     /// 子ノードを取得する
-    Node* child(bool child_index) {
-      if(child_index == 0) {
-        if(l_child == nullptr) l_child = new Node(e, this, 0);
+    Node *child(bool child_index) {
+      if (child_index == 0) {
+        if (l_child == nullptr)
+          l_child = new Node(e, this, 0);
         return l_child;
       } else {
-        if(r_child == nullptr) r_child = new Node(e, this, 1);
+        if (r_child == nullptr)
+          r_child = new Node(e, this, 1);
         return r_child;
       }
     }
@@ -66,7 +66,7 @@ private:
     }
   };
 
-  Node* root;
+  Node *root;
 
 public:
   /**
@@ -80,11 +80,11 @@ public:
       : e(e), op(op), n(bit_ceil(length)), root(new Node(e, e, 0, n)) {}
 
   /**
-    * @brief i番目の要素を取得する O(log n)
-    */
-  inline Node* get_node(int i) const {
+   * @brief i番目の要素を取得する O(log n)
+   */
+  inline Node *get_node(int i) const {
     Node *node = root;
-    while(node->l + 1 < node->r) {
+    while (node->l + 1 < node->r) {
       node = node->child(node->mid() <= i);
     }
     return node;
@@ -99,7 +99,7 @@ public:
   inline void set(int i, T a) {
     Node *node = get_node(i);
     node->val = a;
-    while(node->p != nullptr) {
+    while (node->p != nullptr) {
       node = node->p;
       node->update(op);
     }
@@ -120,23 +120,22 @@ public:
    * @param r クエリの右端 (0-indexed)
    * @return クエリの結果
    */
-  inline T query(int l, int r) const {
-    return _query(root, l, r);
-  }
+  inline T query(int l, int r) const { return _query(root, l, r); }
 
 private:
   /**
-    * @brief 特定のノードに対し、[l, r)の範囲に対するクエリを行う O(log n) * op
-    *
-    * @param node クエリを行うノード
-    * @param l クエリの左端 (0-indexed)
-    * @param r クエリの右端 (0-indexed)
-    * @return クエリの結果
-    */
+   * @brief 特定のノードに対し、[l, r)の範囲に対するクエリを行う O(log n) * op
+   *
+   * @param node クエリを行うノード
+   * @param l クエリの左端 (0-indexed)
+   * @param r クエリの右端 (0-indexed)
+   * @return クエリの結果
+   */
   inline T _query(Node *node, int l, int r) const {
-    if(r <= node->l || node->r <= l) return e;
-    if(l <= node->l && node->r <= r) return node->val;
+    if (r <= node->l || node->r <= l)
+      return e;
+    if (l <= node->l && node->r <= r)
+      return node->val;
     return op(_query(node->child(0), l, r), _query(node->child(1), l, r));
   }
-
 };
