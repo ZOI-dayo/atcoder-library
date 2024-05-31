@@ -49,5 +49,23 @@ math/modint.hpp:132:20: style: Struct 'modint < MOD >' has a constructor with 1 
 math/modint.hpp:132:20: style: Struct 'modint < 998244353 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
+datastructure/dynamic-segment-tree.hpp:80:44: warning: Struct 'DynamicSegmentTree < long long >' does not have a copy constructor which is recommended since it has dynamic memory/resource allocation(s). [noCopyConstructor]
+      : e(e), op(op), n(bit_ceil(length)), root(new Node(e, e, 0, n)) {}
+                                           ^
+datastructure/dynamic-segment-tree.hpp:80:44: warning: Struct 'DynamicSegmentTree < long long >' does not have a operator= which is recommended since it has dynamic memory/resource allocation(s). [noOperatorEq]
+      : e(e), op(op), n(bit_ceil(length)), root(new Node(e, e, 0, n)) {}
+                                           ^
+datastructure/dynamic-segment-tree.hpp:69:9: style: Class 'DynamicSegmentTree < long long >' is unsafe, 'DynamicSegmentTree < long long >::root' can leak by wrong usage. [unsafeClassCanLeak]
+  Node* root;
+        ^
+datastructure/dynamic-segment-tree.hpp:31:15: style: Class 'Node' is unsafe, 'Node::l_child' can leak by wrong usage. [unsafeClassCanLeak]
+    Node *p, *l_child, *r_child;
+              ^
+datastructure/dynamic-segment-tree.hpp:31:25: style: Class 'Node' is unsafe, 'Node::r_child' can leak by wrong usage. [unsafeClassCanLeak]
+    Node *p, *l_child, *r_child;
+                        ^
+datastructure/dynamic-segment-tree.hpp:62:23: style: Parameter 'op' can be declared with const [constParameter]
+    void update(auto &op) {
+                      ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
