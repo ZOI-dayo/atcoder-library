@@ -13,7 +13,7 @@ private:
   /// 演算
   function<T(T, T)> F;
 
-protected:
+public:
   /// ノード
   struct node_t {
     /// ノードの値
@@ -40,7 +40,6 @@ protected:
     return t;
   }
 
-public:
   RBST(T e, function<T(T, T)> F) : mt(rd()), e(e), F(F) {}
 
   node_t *root = nullptr;
@@ -116,3 +115,19 @@ public:
   inline T query(const size_t l, const size_t r) { return query(root, l, r); }
   inline size_t size() const { return size(root); }
 };
+
+template<typename T>
+ostream &operator<<(ostream &os, const RBST<T> &t) {
+  using node_t = typename RBST<T>::node_t;
+  auto dump = [&os](auto fn, node_t* t) {
+    if(!t) return;
+    fn(fn, t->lch);
+    os << t->val << " ";
+    fn(fn, t->rch);
+  };
+  os << "RBST[ ";
+  dump(dump, t.root);
+  os << "]";
+  return os;
+}
+
