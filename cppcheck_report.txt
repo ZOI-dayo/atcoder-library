@@ -25,16 +25,16 @@ math/modint.hpp:33:3: style: Struct 'dynamic_modint' has a constructor with 1 ar
 math/modint.hpp:132:20: style: Struct 'modint < 1000000007 >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
   constexpr inline modint(int val) noexcept
                    ^
-datastructure/rbst.hpp:36:17: performance:inconclusive: Technically the member function 'RBST < int32_t >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
-  inline size_t size(const node_t* const t) const {
+datastructure/rbst.hpp:35:17: performance:inconclusive: Technically the member function 'RBST < int32_t >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+  inline size_t size(const node_t *const t) const { return t ? t->size : 0; }
                 ^
 datastructure/rbst.hpp:28:5: style: Struct 'node_t' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
-    node_t(T val): val(val), size(1), sum(val), lch(nullptr), rch(nullptr) {}
+    node_t(T val) : val(val), size(1), sum(val), lch(nullptr), rch(nullptr) {}
     ^
-datastructure/rbst.hpp:88:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
+datastructure/rbst.hpp:87:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
     assert(0 <= k);
              ^
-datastructure/rbst.hpp:99:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
+datastructure/rbst.hpp:98:14: style: Unsigned expression 'k' can't be negative so it is unnecessary to test it. [unsignedPositive]
     assert(0 <= k);
              ^
 graph/depth.hpp:12:32: style: Parameter 'graph' can be declared with const [constParameter]
@@ -79,8 +79,8 @@ datastructure/dynamic-segment-tree.hpp:31:25: style: Class 'Node' is unsafe, 'No
 datastructure/dynamic-segment-tree.hpp:62:23: style: Parameter 'op' can be declared with const [constParameter]
     void update(auto &op) {
                       ^
-datastructure/rbst.hpp:36:17: performance:inconclusive: Technically the member function 'RBST < long long >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
-  inline size_t size(const node_t* const t) const {
+datastructure/rbst.hpp:35:17: performance:inconclusive: Technically the member function 'RBST < long long >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+  inline size_t size(const node_t *const t) const { return t ? t->size : 0; }
                 ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
