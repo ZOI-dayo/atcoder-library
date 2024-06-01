@@ -116,11 +116,11 @@ public:
   inline size_t size() const { return size(root); }
 };
 
-template<typename T>
-ostream &operator<<(ostream &os, const RBST<T> &t) {
+template <typename T> ostream &operator<<(ostream &os, const RBST<T> &t) {
   using node_t = typename RBST<T>::node_t;
-  auto dump = [&os](auto fn, node_t* t) {
-    if(!t) return;
+  auto dump = [&os](auto fn, node_t *t) {
+    if (!t)
+      return;
     fn(fn, t->lch);
     os << t->val << " ";
     fn(fn, t->rch);
@@ -130,4 +130,3 @@ ostream &operator<<(ostream &os, const RBST<T> &t) {
   os << "]";
   return os;
 }
-
