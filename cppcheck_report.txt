@@ -82,5 +82,5 @@ datastructure/dynamic-segment-tree.hpp:62:23: style: Parameter 'op' can be decla
 datastructure/rbst.hpp:35:17: performance:inconclusive: Technically the member function 'RBST < long long >::size' can be static (but you may consider moving to unnamed namespace). [functionStatic]
   inline size_t size(const node_t *const t) const { return t ? t->size : 0; }
                 ^
-nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
 
