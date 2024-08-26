@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
+#include "../../common/template.hpp"
 #include "../../datastructure/affine.hpp"
 #include "../../datastructure/lazy-segment-tree.hpp"
 #include "../../math/modint.hpp"
