@@ -14,7 +14,9 @@ template <integral T, integral F> constexpr T powi(T a, F n) {
   }
   return ans;
 }
-template <integral T, integral F> constexpr T pow(T a, F n) {return powi(a, n);}
+template <integral T, integral F> constexpr T pow(T a, F n) {
+  return powi(a, n);
+}
 
 constexpr ll powm(ll a, ll n, const ll mod) {
   lll ans = 1;
