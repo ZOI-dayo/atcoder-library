@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 
 template <typename T> struct FenwickTree {
 private:

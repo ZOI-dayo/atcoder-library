@@ -1,5 +1,6 @@
 #pragma once
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
+#include "../common/util.hpp"
 
 class Point {
 public:

@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 #include "point.hpp"
 
 class Area {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 
 struct UnionFind {
 private:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 
 // Node
 template <class T = ll> struct WeightedNode {
