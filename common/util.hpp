@@ -128,9 +128,9 @@ template <typename T> inline void unique_erase(vec<T> &v) {
 }
 
 // view
-struct to_vec_adoptor
-{
-  friend constexpr auto operator|(std::ranges::viewable_range auto&& r, to_vec_adoptor self) {
+struct to_vec_adoptor {
+  friend constexpr auto operator|(std::ranges::viewable_range auto &&r,
+                                  to_vec_adoptor self) {
     auto r_common = r | std::views::common;
     return std::vector(r_common.begin(), r_common.end());
   }
