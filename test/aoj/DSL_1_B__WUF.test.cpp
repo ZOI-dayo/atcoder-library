@@ -1,6 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
+#include "../../common/template.hpp"
 #include "../../datastructure/weighted-union-find.hpp"
 
 signed main() {

@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 
+#include "../../common/template.hpp"
 #include "../../datastructure/fenwick-tree.hpp"
 
 signed main() {

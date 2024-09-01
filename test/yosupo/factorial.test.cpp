@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
+#include "../../common/template.hpp"
 #include "../../math/factorial.hpp"
 #include "../../common/template.hpp"
 

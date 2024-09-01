@@ -1,8 +1,8 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A"
 
-#include "../../2d/point.hpp"
 #include "../../common/template.hpp"
+#include "../../2d/point.hpp"
 #include "../../datastructure/comp.hpp"
 #include "../../datastructure/imos2d.hpp"
 
