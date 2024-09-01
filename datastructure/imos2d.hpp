@@ -3,6 +3,11 @@
 #include "../2d/point.hpp"
 #include "../common/alias.hpp"
 
+namespace zoi {
+namespace datastructure {
+namespace __imos2d {
+using namespace geometory;
+
 template <typename T> struct imos2d {
 private:
   const int _H, _W;
@@ -18,7 +23,7 @@ public:
   }
   inline pair<int, int> size() const { return {_H, _W}; }
   // 半開区間
-  inline void add(Point a, Point b, T x) {
+  inline void add(point_t a, point_t b, T x) {
     assert(!_is_build);
     assert(a.x < b.x && a.y < b.y);
     assert(is_contained(_H, _W, a) && is_contained(_H, _W, b.upper_left()));
@@ -27,7 +32,7 @@ public:
     _data[b.x][a.y] -= x;
     _data[b.x][b.y] += x;
   }
-  inline void add(Point a, T x) {
+  inline void add(point_t a, T x) {
     assert(!_is_build);
     assert(is_contained(_H, _W, a));
     add(a, a.lower_right(), x);
@@ -37,7 +42,7 @@ public:
     rep(y, _W) rep(x, _H) _data[x + 1][y] += _data[x][y];
     _is_build = true;
   }
-  inline T get(Point p) const {
+  inline T get(point_t p) const {
     assert(is_contained(_H, _W, p));
     assert(_is_build);
     return _data[p.x][p.y];
@@ -51,3 +56,10 @@ template <typename T> ostream &operator<<(ostream &os, const imos2d<T> &im) {
   }
   return os;
 }
+
+} // namespace __imos2d
+
+template <typename T> using imos2d = __imos2d::imos2d<T>;
+
+} // namespace datastructure
+} // namespace zoi

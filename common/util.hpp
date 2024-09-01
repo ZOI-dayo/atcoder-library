@@ -5,21 +5,6 @@
 
 // --- Utils ---
 
-// 二分探索
-template <typename T>
-inline T bin_search(T ok, T ng, const function<bool(T)> is_ok) {
-  assert(is_ok(ok));
-  assert(!is_ok(ng));
-  assert(ok < ng);
-  while (abs(ok - ng) > 1) {
-    T mid = (ok + ng) / 2;
-    if (is_ok(mid))
-      ok = mid;
-    else
-      ng = mid;
-  }
-  return ok;
-}
 
 // 順列全探索
 inline void rep_perm(int n, function<void(vec<int> &)> f) {
@@ -100,14 +85,6 @@ template <typename T> inline void unique_erase(vec<T> &v) {
 }
 
 // view
-struct to_vec_adoptor {
-  friend constexpr auto operator|(std::ranges::viewable_range auto &&r,
-                                  to_vec_adoptor self) {
-    auto r_common = r | std::views::common;
-    return std::vector(r_common.begin(), r_common.end());
-  }
-};
-inline constexpr to_vec_adoptor to_vec;
 
 void io_setup() {
   cin.tie(nullptr);

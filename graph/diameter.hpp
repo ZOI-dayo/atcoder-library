@@ -1,37 +1,60 @@
 #pragma once
 
-#include "template.hpp"
+#include <vector>
+#include <stack>
+#include "../std/util.hpp"
 
-int diameter(Graph &graph, int start = 0) {
-  vec<int> seen(graph.size(), 0);
-  auto dfs = [&](auto fn, int index) -> pair<int, int> {
-    // max-cost, index
-    pair<int, int> result = {0, index};
+namespace zoi{
+namespace graph{
 
+template <typename T = long long>
+struct wedge_t {
+  int to;
+  T cost;
+  wedge_t(int to, T cost) : to(to), cost(cost) {}
+};
+
+namespace __diameter{
+
+[[nodiscard]]
+inline int diameter(const std::vector<std::vector<int>> &graph, const int start = 0) {
+  std::vector<int> seen(graph.size(), 0);
+  struct result_t {
+    int cost;
+    int index;
+    bool operator<(const result_t &rhs) const {
+      return cost < rhs.cost;
+    }
+  };
+  auto dfs = [&](auto fn, int index) -> result_t {
+    result_t result = {0, index};
     seen[index] = 1;
-
     for (auto next : graph[index]) {
       if (seen[next])
         continue;
       auto next_result = fn(fn, next);
-      next_result.first += 1;
-      result = max(result, next_result);
+      next_result.cost += 1;
+      result = util::max(result, next_result);
     }
     seen[index] = 0;
     return result;
   };
   auto result = dfs(dfs, start);
-  result = dfs(dfs, result.second);
-  return result.first;
+  result = dfs(dfs, result.index);
+  return result.cost;
 }
 
-template <typename T = ll> int diameter(WGraph<T> &graph, int start = 0) {
-  auto dfs = [&](int index) -> pair<T, int> {
-    vec<T> result(graph.size(), -1);
+template <typename T = long long> [[nodiscard]] int diameter(std::vector<std::vector<T>> &graph, int start = 0) {
+  struct result_t {
+    T cost;
+    int index;
+  };
+  auto dfs = [&](int index) -> result_t {
+    std::vector<T> result(graph.size(), -1);
 
     T mx = 0;
     int mx_index = index;
-    stack<int> st;
+    std::stack<int> st;
     st.push(index);
     result[index] = 0;
     while (!st.empty()) {
@@ -53,3 +76,10 @@ template <typename T = ll> int diameter(WGraph<T> &graph, int start = 0) {
   result = dfs(result.second);
   return result.first;
 }
+} // namespace __diameter
+
+using __diameter::diameter;
+
+} // namespace graph
+} // namespace zoi
+

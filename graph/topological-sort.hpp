@@ -1,19 +1,24 @@
 #pragma once
 
-#include "template.hpp"
+#include <vector>
+#include <queue>
 
-vec<int> topological_sort(Graph &graph) {
-  vec<int> result;
-  vec<int> deleted(graph.size(), false);
+namespace zoi {
+namespace graph {
 
-  vec<int> in_count(graph.size());
-  rep(i, graph.size()) {
+[[nodiscard]]
+inline std::vector<int> topological_sort(const std::vector<std::vector<int>> &graph) {
+  std::vector<int> result;
+  std::vector<int> deleted(graph.size(), false);
+
+  std::vector<int> in_count(graph.size());
+  for(int i=0; i<graph.size(); ++i) {
     for (auto next : graph[i]) {
       in_count[next]++;
     }
   }
-  queue<int> q;
-  rep(i, graph.size()) {
+  std::queue<int, std::vector<int>> q;
+  for(int i=0; i<graph.size(); i++) {
     if (in_count[i] == 0) {
       q.push(i);
     }
@@ -35,4 +40,7 @@ vec<int> topological_sort(Graph &graph) {
   }
 
   return result;
+}
+
+}
 }

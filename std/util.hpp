@@ -8,12 +8,12 @@ namespace zoi {
 namespace util {
 
 // 可変引数min
-template <class... T> auto min(T... a) {
+template <class... T> auto min(const T... a) {
   return std::min(std::initializer_list<std::common_type_t<T...>>{a...});
 }
 
 // 可変引数max
-template <class... T> auto max(T... a) {
+template <class... T> auto max(const T... a) {
   return std::max(std::initializer_list<std::common_type_t<T...>>{a...});
 }
 
