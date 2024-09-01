@@ -1,4 +1,4 @@
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 
 template <typename T = ll> struct Rational {
   T num, den;

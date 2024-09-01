@@ -1,4 +1,4 @@
-#include "../common/template.hpp"
+#include "../common/alias.hpp"
 
 class Cuboid {
 public:
