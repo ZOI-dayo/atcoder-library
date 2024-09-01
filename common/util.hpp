@@ -56,34 +56,6 @@ inline ll ceil(ll x, ll base) { return (x + base - 1) / base * base; }
 // ベース指定floor
 inline ll floor(ll x, ll base) { return x / base * base; }
 
-// 合計値を求める
-// ll sum(const vec<ll> &v) { return accumulate(all(v), 0LL); }
-template <addable T> T sum(const vec<T> &v) { return accumulate(all(v), T()); }
-
-// 可変引数min
-template <class... T> auto min(T... a) {
-  return min(initializer_list<common_type_t<T...>>{a...});
-}
-
-// 可変引数max
-template <class... T> auto max(T... a) {
-  return max(initializer_list<common_type_t<T...>>{a...});
-}
-
-template <class T> bool chmax(T &a, const T &b) {
-  if (a < b) {
-    a = b;
-    return 1;
-  }
-  return 0;
-}
-template <class T> bool chmin(T &a, const T &b) {
-  if (b < a) {
-    a = b;
-    return 1;
-  }
-  return 0;
-}
 
 // 3項間不等式
 // 広義単調増加
