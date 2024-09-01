@@ -1,6 +1,11 @@
-#include "../common/alias.hpp"
+#pragma once
 
-template <typename T = ll> struct Rational {
+#include <iostream>
+
+namespace zoi {
+namespace math {
+
+template <typename T = long long> struct Rational {
   T num, den;
   Rational(T num) : num(num), den(1) {}
   Rational(T num, T den) : num(num), den(den) {
@@ -37,7 +42,7 @@ template <typename T = ll> struct Rational {
   bool operator>=(const Rational &rhs) const {
     return (*this > rhs) || (*this == rhs);
   }
-  friend ostream &operator<<(ostream &os, const Rational &r) {
+  friend std::ostream &operator<<(std::ostream &os, const Rational &r) {
     return os << r.num << "/" << r.den;
   }
   void operator+=(const Rational &rhs) { *this = *this + rhs; }
@@ -48,7 +53,7 @@ template <typename T = ll> struct Rational {
   double val() const { return (double)num / den; }
   // operator double() const { return val(); }
   // operator string() const { return to_string(num) + "/" + to_string(den); }
-  Rational pow(ll n) const {
+  Rational pow(long long n) const {
     if (n == 0) {
       return Rational(1);
     } else if (n < 0) {
@@ -63,3 +68,7 @@ template <typename T = ll> struct Rational {
     }
   }
 };
+
+} // namespace math
+} // namespace zoi
+

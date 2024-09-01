@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../2d/point.hpp"
-#include "../common/alias.hpp"
 
 namespace zoi {
 namespace datastructure {

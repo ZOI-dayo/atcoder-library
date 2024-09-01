@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "../math/modint.hpp"
 
 // https://qiita.com/izu_nori/items/17efc243468b1e1bd2b0

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 template <typename T> struct RBST {
 private:
   /// 乱数シード生成器

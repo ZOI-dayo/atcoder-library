@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorial"
 
 #include "../../math/factorial.hpp"
-#include "../../common/template.hpp"
 
 signed main() {
   io_setup();

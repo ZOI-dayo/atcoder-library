@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "pow.hpp"
 
 // ミラーラビン素数判定法

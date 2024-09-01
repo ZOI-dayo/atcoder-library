@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "./pow.hpp"
 
 namespace modint_utils {

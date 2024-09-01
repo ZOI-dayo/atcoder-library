@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 template <typename T> struct imos {
 private:
   const int _n;

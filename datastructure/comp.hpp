@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 // https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A
 
 template <typename T> struct comp {

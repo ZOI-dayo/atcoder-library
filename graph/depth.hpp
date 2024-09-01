@@ -5,7 +5,7 @@
 
 namespace zoi {
 namespace graph {
-namespace depth_impl {
+namespace __depth {
 
 struct node_t {
 public:
@@ -34,7 +34,7 @@ inline std::vector<node_t> depth(const std::vector<std::vector<int>> &graph, con
 }
 } // namespace depth_impl
 
-using depth_impl::depth;
+using __depth::depth;
 
 } // namespace graph
 } // namespace zoi

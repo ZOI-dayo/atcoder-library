@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 /**
  * @brief セグメント木
  *

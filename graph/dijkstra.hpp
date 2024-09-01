@@ -1,7 +1,5 @@
 #pragma once
 
-#include "template.hpp"
-
 template <typename T = ll> vec<T> dijkstra(WGraph<T> &graph, int start) {
   vec<T> way(graph.size(), INF);
   rp_queue<WeightState<T>> q;

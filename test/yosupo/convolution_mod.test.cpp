@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../common/template.hpp"
-#include "../../convolution/convolution.hpp"
-#include "../../math/modint.hpp"
+#include "../../common/templates.hpp"
 
 using mint = mint998;
 

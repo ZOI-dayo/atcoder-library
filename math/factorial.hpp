@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/util.hpp"
-
 namespace factorial998 {
 
 const uint32_t MOD = 998244353;

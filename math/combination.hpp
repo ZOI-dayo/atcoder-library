@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "modint.hpp"
 
 template <int32_t MOD = 998244353, int32_t MAX = 100010> class Combination {

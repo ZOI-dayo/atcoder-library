@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "../common/int128_t.hpp"
 
 // 繰り返し2乗法

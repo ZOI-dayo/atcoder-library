@@ -1,5 +1,3 @@
-#include "../common/alias.hpp"
-
 class Cuboid {
 public:
   int x, y, z;

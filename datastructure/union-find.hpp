@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 struct UnionFind {
 private:
   int _n;

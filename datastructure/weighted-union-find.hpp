@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
 #include "../common/concepts.hpp"
 
 template <addable T> struct WeightedUnionFind {

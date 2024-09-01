@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../common/alias.hpp"
-
 // Node
 template <class T = ll> struct WeightedNode {
   int id;
