@@ -27,9 +27,8 @@ jobs:
         uses: actions/checkout@v3
       - name: install
         run: |
-          wget https://apt.llvm.org/llvm.sh; \
-          chmod +x llvm.sh; \
-          sudo ./llvm.sh 18.1.8;
+        deb http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main;\
+        deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
       - name: lint
         run: |
           clang-format --dry-run -style=file --Werror ${{ matrix.target }}
