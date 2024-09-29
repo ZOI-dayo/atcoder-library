@@ -1,7 +1,11 @@
 #pragma once
 
-#include "../common/alias.hpp"
+#include <cassert>
+#include <stdexcept>
+#include <vector>
 
+namespace zoi {
+namespace string {
 namespace rolling_hash {
 
 /**
@@ -15,7 +19,7 @@ class PowCache {
 public:
   int mod;
   int base;
-  vec<int> pow;
+  std::vector<int> pow;
   PowCache(int mod, int base) : mod(mod), base(base), pow(1, 1) {}
 
   /**
@@ -63,7 +67,7 @@ public:
   }
   void merge(const Hash &h) {
     if (mod != h.mod || base != h.base) {
-      throw invalid_argument("mod and base must be same");
+      throw std::invalid_argument("mod and base must be same");
     }
     val = (val * pow_cache->get(length) + h.val) % mod;
   }
@@ -84,10 +88,10 @@ public:
   }
   Hash operator-(const Hash &h) const {
     if (mod != h.mod || base != h.base) {
-      throw invalid_argument("mod and base must be same");
+      throw std::invalid_argument("mod and base must be same");
     }
     if (length < h.length) {
-      throw invalid_argument(
+      throw std::invalid_argument(
           "length must be greater than or equal to h.length");
     }
     int new_length = length - h.length;
@@ -111,12 +115,12 @@ class RollingHash {
    * ハッシュ値を計算するためのmodとbase
    * [i] := {mod, base}
    */
-  static vec<rolling_hash::PowCache> pow_cache;
+  static std::vector<rolling_hash::PowCache> pow_cache;
   /**
    * [[i]][[j]] := j文字目までのハッシュ値をmod[[i]]で割った余り
    * jは1-indexed、すなわちi=0は空文字列
    */
-  vvec<rolling_hash::Hash> hashes;
+  std::vector<std::vector<rolling_hash::Hash>> hashes;
 
 public:
   /**
@@ -124,14 +128,16 @@ public:
    *
    * @param s 元の文字列
    */
-  explicit inline RollingHash(string s) {
+  explicit inline RollingHash(std::string s) {
     hashes.resize(pow_cache.size());
-    rep(i, pow_cache.size()) {
+    for(int i=0; i<pow_cache.size(); ++i) {
       hashes[i].reserve(s.size() + 1);
       hashes[i].emplace_back(rolling_hash::Hash(&pow_cache[i], 0, 0));
     }
-    rep(i, pow_cache.size()) {
-      rep(j, s.size()) { hashes[i].emplace_back(hashes[i][j] + s[j]); }
+    for(int i=0; i<pow_cache.size(); ++i) {
+      for(int j=0; j<s.size(); ++j) {
+        hashes[i].emplace_back(hashes[i][j] + s[j]);
+      }
     }
     rolling_hash::Hash h(&pow_cache[0], 0, 0);
   }
@@ -144,13 +150,15 @@ public:
    * @param r 右端
    * @return [l, r)のハッシュ値
    */
-  inline vec<rolling_hash::Hash> query(int l, int r) {
+  inline std::vector<rolling_hash::Hash> query(int l, int r) {
     assert(0 <= l);
     assert(l <= r);
     assert(r <= length());
-    vec<rolling_hash::Hash> ret;
+    std::vector<rolling_hash::Hash> ret;
     ret.reserve(pow_cache.size());
-    rep(i, pow_cache.size()) { ret.emplace_back(hashes[i][r] - hashes[i][l]); }
+    for(int i=0; i<pow_cache.size(); ++i) {
+      ret.emplace_back(hashes[i][r] - hashes[i][l]);
+    }
     return ret;
   }
 
@@ -163,5 +171,8 @@ public:
 };
 
 // 初期化
-vec<rolling_hash::PowCache> RollingHash::pow_cache = {{1'000'000'007, 1007},
+std::vector<rolling_hash::PowCache> RollingHash::pow_cache = {{1'000'000'007, 1007},
                                                       {1'000'000'009, 1009}};
+
+} // namespace string
+} // namespace zoi

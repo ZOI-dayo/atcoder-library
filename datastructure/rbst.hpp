@@ -1,15 +1,24 @@
 #pragma once
 
+#include <cassert>
+#include <functional>
+#include <iostream>
+#include <random>
+#include <utility>
+
+namespace zoi {
+namespace datastructure {
+
 template <typename T> struct RBST {
 private:
   /// 乱数シード生成器
-  random_device rd;
+  std::random_device rd;
   /// 乱数生成器
-  mt19937 mt;
+  std::mt19937 mt;
   /// 単位元
   T e;
   /// 演算
-  function<T(T, T)> F;
+  std::function<T(T, T)> F;
 
 public:
   /// ノード
@@ -38,7 +47,7 @@ public:
     return t;
   }
 
-  RBST(T e, function<T(T, T)> F) : mt(rd()), e(e), F(F) {}
+  RBST(T e, std::function<T(T, T)> F) : mt(rd()), e(e), F(F) {}
 
   node_t *root = nullptr;
   inline node_t *merge(node_t *const l, node_t *const r) {
@@ -52,7 +61,7 @@ public:
       return update(r);
     }
   }
-  inline pair<node_t *, node_t *> split(node_t *const t, const size_t k) {
+  inline std::pair<node_t *, node_t *> split(node_t *const t, const size_t k) {
     if (!t)
       return {nullptr, nullptr};
     if (k <= size(t->lch)) {
@@ -114,7 +123,7 @@ public:
   inline size_t size() const { return size(root); }
 };
 
-template <typename T> ostream &operator<<(ostream &os, const RBST<T> &t) {
+template <typename T> std::ostream &operator<<(std::ostream &os, const RBST<T> &t) {
   using node_t = typename RBST<T>::node_t;
   auto dump = [&os](auto fn, node_t *t) {
     if (!t)
@@ -128,3 +137,6 @@ template <typename T> ostream &operator<<(ostream &os, const RBST<T> &t) {
   os << "]";
   return os;
 }
+
+} // namespace datastructure
+} // namespace zoi

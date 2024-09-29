@@ -1,5 +1,8 @@
 #pragma once
 
+namespace zoi {
+namespace datastructure {
+
 template <class T> class Affine {
 public:
   T a, b;
@@ -21,3 +24,6 @@ public:
   bool operator==(const Affine &rhs) const { return a == rhs.a && b == rhs.b; }
   bool operator!=(const Affine &rhs) const { return !(*this == rhs); }
 };
+
+} // namespace datastructure
+} // namespace zoi

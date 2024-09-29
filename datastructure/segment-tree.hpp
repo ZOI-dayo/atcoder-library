@@ -1,5 +1,11 @@
 #pragma once
 
+#include <cstdint>
+#include <functional>
+
+namespace zoi {
+namespace datastructure {
+
 // 参考: https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
 /**
@@ -13,12 +19,12 @@ private:
   /// 単位元
   T e;
   /// 演算
-  function<T(T, T)> op;
+  std::function<T(T, T)> op;
 
   /// 要素数
   int n;
   /// SegTreeのノード上のデータ
-  vec<T> data;
+  std::vector<T> data;
 
   /// 左の子のインデックスを返す
 #define L(i) (i << 1)
@@ -35,8 +41,8 @@ public:
    * @param e 単位元
    * @param op 演算
    */
-  inline explicit SegmentTree(int length, T e, function<T(T, T)> op)
-      : e(e), op(op), n(bit_ceil(length)), data(2 * n, e) {}
+  inline explicit SegmentTree(uint32_t length, T e, std::function<T(T, T)> op)
+      : e(e), op(op), n(std::bit_ceil(length)), data(2 * n, e) {}
 
   /**
    * @brief 既存のベクトルからSegmentTreeを生成する O(n) * op
@@ -45,9 +51,9 @@ public:
    * @param e 単位元
    * @param op 演算
    */
-  inline explicit SegmentTree(const vec<T> &v, T e, function<T(T, T)> op)
+  inline explicit SegmentTree(const std::vector<T> &v, T e, std::function<T(T, T)> op)
       : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
-    rep(i, v.size()) data[i + n] = v[i];
+    for(int i=0; i<v.size(); ++i) data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
       data[i] = op(data[L(i)], data[R(i)]);
   }
@@ -97,3 +103,6 @@ public:
 #undef R
 #undef P
 };
+
+} // namespace datastructure
+} // namespace zoi

@@ -1,15 +1,22 @@
 #pragma once
 
+#include <vector>
+#include <cassert>
+#include <iostream>
+
+namespace zoi {
+namespace datastructure {
+
 template <typename T> struct imos {
 private:
   const int _n;
-  vec<T> _data;
+  std::vector<T> _data;
   bool _is_build = false;
 
 public:
   explicit imos(int n) : _n(n), _data(_n + 1, 0) {}
-  explicit imos(vec<T> src) : _n(src.size()), _data(_n + 1, 0) {
-    rep(i, _n) add(i, src[i]);
+  explicit imos(std::vector<T> src) : _n(src.size()), _data(_n + 1, 0) {
+    for(int i=0; i<_n; ++i) add(i, src[i]);
   }
   inline int size() const { return _n; }
   inline void add(int l, int r, T x) {
@@ -25,7 +32,7 @@ public:
     add(i, i + 1, x);
   }
   inline void build() {
-    rep(i, _n) _data[i + 1] += _data[i];
+    for(int i=0; i<_n; ++i) _data[i + 1] += _data[i];
     _is_build = true;
   }
   inline T get(int i) {
@@ -35,7 +42,7 @@ public:
     return _data[i];
   }
 
-  friend ostream &operator<<(ostream &os, const imos<T> &a) {
+  friend std::ostream &operator<<(std::ostream &os, const imos<T> &a) {
     if (!a._is_build) {
       os << "not builded";
       return os;
@@ -44,3 +51,6 @@ public:
     return os;
   }
 };
+
+} // namespace datastructure
+} // namespace zoi

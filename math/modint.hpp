@@ -1,8 +1,14 @@
 #pragma once
 
-#include "./pow.hpp"
+#include <iostream>
+#include <vector>
+#include "../std/util.hpp"
 
-namespace modint_utils {
+namespace zoi {
+namespace math {
+
+namespace _modint {
+
 constexpr inline int32_t normalize(int val, int32_t mod) {
   return (val % mod + mod) % mod;
 }
@@ -11,9 +17,9 @@ constexpr inline int32_t inv(int32_t a, int32_t mod) {
   while (b) {
     int32_t t = a / b;
     a -= t * b;
-    swap(a, b);
+    std::swap(a, b);
     u -= t * v;
-    swap(u, v);
+    std::swap(u, v);
   }
   u %= mod;
   if (u < 0)
@@ -21,7 +27,6 @@ constexpr inline int32_t inv(int32_t a, int32_t mod) {
   return u;
   // return mod_pow(val, mod - 2, mod);
 }
-} // namespace modint_utils
 
 template <int MOD> struct dynamic_modint {
 private:
@@ -29,15 +34,15 @@ private:
 
 public:
   dynamic_modint() : dynamic_modint(0) {}
-  dynamic_modint(int val) : _val(modint_utils::normalize(val, MOD)) {}
+  dynamic_modint(int val) : _val(normalize(val, MOD)) {}
 
   // logic
   int val() const { return _val; }
   inline dynamic_modint inv() const {
-    return dynamic_modint(modint_utils::inv(_val, MOD));
+    return dynamic_modint(inv(_val, MOD));
   }
   inline dynamic_modint pow(const int n) const {
-    return dynamic_modint(powm(_val, n, MOD));
+    return dynamic_modint(util::powm(_val, n, MOD));
   }
   inline static constexpr dynamic_modint pow(const dynamic_modint &a,
                                              const int n) {
@@ -88,38 +93,22 @@ public:
     return *this;
   }
   inline dynamic_modint &operator/=(const dynamic_modint &a) {
-    *this *= modint_utils::inv(a.val(), MOD);
+    *this *= inv(a.val(), MOD);
     return *this;
   }
 
   explicit operator int() const { return _val; }
 
   // io
-  friend ostream &operator<<(ostream &os, const dynamic_modint &a) {
+  friend std::ostream &operator<<(std::ostream &os, const dynamic_modint &a) {
     return os << a._val;
   }
-  friend istream &operator>>(istream &os, dynamic_modint &a) {
+  friend std::istream &operator>>(std::istream &os, dynamic_modint &a) {
     os >> a._val;
-    a._val = modint_utils::normalize(a._val, MOD);
+    a._val = normalize(a._val, MOD);
     return os;
   }
 };
-
-// using modint998 = modint<998244353>;
-
-template <int MOD>
-ostream &operator<<(ostream &os, const dynamic_modint<MOD> &i) {
-  os << i.val();
-  return os;
-}
-
-template <int MOD>
-ostream &operator<<(ostream &os, const vector<dynamic_modint<MOD>> &v) {
-  for (int i = 0; i < (int)v.size(); i++) {
-    os << v[i].val() << (i + 1 != (int)v.size() ? " " : "");
-  }
-  return os;
-}
 
 template <const int32_t MOD> struct modint {
 private:
@@ -129,17 +118,17 @@ private:
 public:
   consteval inline modint() noexcept : _val(0) {}
   constexpr inline modint(int val) noexcept
-      : _val(modint_utils::normalize(val, MOD)) {}
+      : _val(normalize(val, MOD)) {}
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 
   // logic
   constexpr i32 val() const noexcept { return _val; }
-  constexpr modint pow(const int n) const { return modint(powm(_val, n, MOD)); }
+  constexpr modint pow(const int n) const { return modint(util::powm(_val, n, MOD)); }
   constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));
   }
   constexpr inline modint inv() const noexcept {
-    return modint(modint_utils::inv(_val, MOD));
+    return modint(inv(_val, MOD));
   }
 
   // op
@@ -186,24 +175,47 @@ public:
     return *this;
   }
   constexpr inline modint &operator*=(const modint &a) noexcept {
-    _val = (ll)_val * a._val % MOD;
+    _val = (int64_t)_val * a._val % MOD;
     return *this;
   }
   constexpr inline modint &operator/=(const modint &a) noexcept {
-    *this *= modint_utils::inv(a.val(), MOD);
+    *this *= inv(a.val(), MOD);
     return *this;
   }
 
   explicit operator int() const noexcept { return _val; }
 
   // io
-  friend ostream &operator<<(ostream &os, const modint &a) noexcept {
+  friend std::ostream &operator<<(std::ostream &os, const modint &a) noexcept {
     return os << a._val;
   }
-  friend istream &operator>>(istream &os, modint &a) noexcept {
+  friend std::istream &operator>>(std::istream &os, modint &a) noexcept {
     os >> a._val;
-    a._val = modint_utils::normalize(a._val, MOD);
+    a._val = normalize(a._val, MOD);
     return os;
   }
 };
+
+} // namespace _modint
+
+template <int MOD> using dynamic_modint = _modint::dynamic_modint<MOD>;
+template <int MOD> using modint = _modint::modint<MOD>;
+
+template <int MOD>
+std::ostream &operator<<(std::ostream &os, const dynamic_modint<MOD> &i) {
+  os << i.val();
+  return os;
+}
+
+template <int MOD>
+std::ostream &operator<<(std::ostream &os, const std::vector<dynamic_modint<MOD>> &v) {
+  for (int i = 0; i < (int)v.size(); i++) {
+    os << v[i].val() << (i + 1 != (int)v.size() ? " " : "");
+  }
+  return os;
+}
+
 using mint998 = modint<998244353>;
+
+} // namespace math
+} // namespace zoi

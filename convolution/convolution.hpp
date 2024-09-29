@@ -2,10 +2,13 @@
 
 #include "../math/modint.hpp"
 
+namespace zoi {
+namespace convolution {
+
 // https://qiita.com/izu_nori/items/17efc243468b1e1bd2b0
 // https://qiita.com/Sen_comp/items/9401382df736e51564c1
 
-namespace Convolution {
+namespace __convolution {
 constinit const int MOD = 998244353;
 constinit const int ROOT = 31;         // Q
 constinit const int DIVIDE_LIMIT = 23; // M
@@ -90,5 +93,8 @@ inline void calc(vec<mint> &f, vec<mint> &g) noexcept {
 // Convolution *Convolution::instance = nullptr;
 
 inline void convolution(vec<mint998> &f, vec<mint998> &g) {
-  Convolution::calc(f, g);
+  __convolution::calc(f, g);
 }
+
+} // namespace convolution
+} // namespace zoi

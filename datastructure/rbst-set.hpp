@@ -2,6 +2,9 @@
 
 #include "rbst-multiset.hpp"
 
+namespace zoi {
+namespace datastructure {
+
 template <typename T> struct RBSTSet : public RBSTMultiSet<T> {
 public:
   inline RBSTSet() : RBSTMultiSet<T>() {}
@@ -11,3 +14,6 @@ public:
     this->insert(val, lower_bound(val));
   }
 };
+
+} // namespace datastructure
+} // namespace zoi

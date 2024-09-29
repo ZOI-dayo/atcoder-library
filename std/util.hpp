@@ -1,11 +1,14 @@
 #pragma once
 
 #include <algorithm>
+#include <cstdint>
 #include <numeric>
 #include "concepts.hpp"
+#include "int128.hpp"
 
 namespace zoi {
 namespace util {
+using int128::int128_t;
 
 // 可変引数min
 template <class... T> auto min(const T... a) {
@@ -72,5 +75,31 @@ T floor(T x, T base) {
   return x / base;
 }
 
+// 繰り返し2乗法
+template <std::integral T, std::integral F> constexpr T powi(T a, F n) {
+  T ans = 1;
+  while (n > 0) {
+    if (n & 1)
+      ans *= a;
+    a *= a;
+    n >>= 1;
+  }
+  return ans;
 }
+template <std::integral T, std::integral F> constexpr T pow(T a, F n) {
+  return powi(a, n);
 }
+
+constexpr int64_t powm(int64_t a, int32_t n, const uint64_t mod) {
+  int128_t ans = 1;
+  while (n > 0) {
+    if (n & 1)
+      ans = ans * a % mod;
+    a = ((int128_t)a) * a % mod;
+    n >>= 1;
+  }
+  return ans;
+}
+
+} // namespace util
+} // namespace zoi

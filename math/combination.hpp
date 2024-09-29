@@ -2,6 +2,9 @@
 
 #include "modint.hpp"
 
+namespace zoi {
+namespace math {
+
 template <int32_t MOD = 998244353, int32_t MAX = 100010> class Combination {
 private:
   using mint = modint<MOD>;
@@ -58,3 +61,6 @@ Combination<MOD>::invfact = [](){
   return invfact;
 }();
   */
+
+} // namespace math
+} // namespace zoi

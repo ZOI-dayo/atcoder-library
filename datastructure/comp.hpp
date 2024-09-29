@@ -1,20 +1,26 @@
 #pragma once
 
+#include <vector>
+#include <cassert>
+
 // https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A
+
+namespace zoi {
+namespace datastructure {
 
 template <typename T> struct comp {
 private:
   const int _n;
   int _cmp_n;
-  vec<T> _raw, _comp;
+  std::vector<T> _raw, _comp;
 
 public:
-  explicit comp(const vec<T> &src)
+  explicit comp(const std::vector<T> &src)
       : _n(src.size()), _cmp_n(0), _raw(src), _comp(_n, 0) {
     sort(_raw.begin(), _raw.end());
     _raw.erase(unique(_raw.begin(), _raw.end()), _raw.end());
     _cmp_n = _raw.size();
-    rep(i, _n) _comp[i] =
+     for(int i=0; i<_n; ++i) _comp[i] =
         lower_bound(_raw.begin(), _raw.end(), src[i]) - _raw.begin();
   }
   inline int size() const { return _n; }
@@ -31,3 +37,6 @@ public:
     return lower_bound(_raw.begin(), _raw.end(), raw) - _raw.begin();
   }
 };
+
+} // namespace datastructure
+} // namespace zoi

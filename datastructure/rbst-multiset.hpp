@@ -2,6 +2,9 @@
 
 #include "rbst.hpp"
 
+namespace zoi {
+namespace datastructure {
+
 template <typename T> struct RBSTMultiSet : public RBST<T> {
 private:
   using node_t = typename RBST<T>::node_t;
@@ -44,3 +47,6 @@ public:
     }
   }
 };
+
+} // namespace datastructure
+} // namespace zoi

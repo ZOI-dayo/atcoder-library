@@ -1,5 +1,11 @@
 #pragma once
 
+#include <functional>
+#include <bit>
+
+namespace zoi {
+namespace datastructure {
+
 /**
  * @brief セグメント木
  *
@@ -11,7 +17,7 @@ private:
   /// 単位元
   T e;
   /// 演算
-  function<T(T, T)> op;
+  std::function<T(T, T)> op;
 
   /// 要素数
   int n;
@@ -74,8 +80,8 @@ public:
    * @param e 単位元
    * @param op 演算
    */
-  inline explicit DynamicSegmentTree(int length, T e, function<T(T, T)> op)
-      : e(e), op(op), n(bit_ceil(length)), root(new Node(e, e, 0, n)) {}
+  inline explicit DynamicSegmentTree(int length, T e, std::function<T(T, T)> op)
+      : e(e), op(op), n(std::bit_ceil((unsigned)length)), root(new Node(e, e, 0, n)) {}
 
   /**
    * @brief i番目の要素を取得する O(log n)
@@ -137,3 +143,6 @@ private:
     return op(_query(node->child(0), l, r), _query(node->child(1), l, r));
   }
 };
+
+} // namespace datastructure
+} // namespace zoi

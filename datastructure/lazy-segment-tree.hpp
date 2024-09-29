@@ -1,5 +1,12 @@
 #pragma once
 
+#include <cstdint>
+#include <functional>
+#include <bit>
+
+namespace zoi {
+namespace datastructure {
+
 // 参考 https://qiita.com/ningenMe/items/bf66de877e3b97d35862
 
 /**
@@ -16,20 +23,20 @@ private:
   const F id;
 
   /// データの演算(ノードのマージ)
-  const function<T(T, T)> op;
+  const std::function<T(T, T)> op;
   /// ノードの更新 (操作の適用)
-  const function<T(F, T)> apply;
+  const std::function<T(F, T)> apply;
   /// 操作のマージ
-  const function<F(F, F)> merge;
+  const std::function<F(F, F)> merge;
 
   // 要素数
-  int32_t _n;
-  int32_t _height;
+  uint32_t _n;
+  uint32_t _height;
 
   /// セグ木のノード情報
-  vec<T> _data;
+  std::vector<T> _data;
   /// セグ木の遅延情報
-  vec<F> _lazy;
+  std::vector<F> _lazy;
 
   /// 左の子のインデックスを返す
 #define L(i) (i << 1)
@@ -70,12 +77,12 @@ public:
    * @param apply 操作の適用
    * @param merge 操作のマージ
    */
-  explicit inline LazySegmentTree(const int32_t length, const T e, const F id,
-                                  const function<T(T, T)> op,
-                                  const function<T(F, T)> apply,
-                                  const function<F(F, F)> merge)
-      : e(e), id(id), op(op), apply(apply), merge(merge), _n(bit_ceil(length)),
-        _height(bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
+  explicit inline LazySegmentTree(const uint32_t length, const T e, const F id,
+                                  const std::function<T(T, T)> op,
+                                  const std::function<T(F, T)> apply,
+                                  const std::function<F(F, F)> merge)
+      : e(e), id(id), op(op), apply(apply), merge(merge), _n(std::bit_ceil(length)),
+        _height(std::bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
    * @brief 既存のベクトルからLazySegmentTreeを生成する O(length) * op
@@ -87,14 +94,14 @@ public:
    * @param apply 操作の適用
    * @param merge 操作のマージ
    */
-  explicit inline LazySegmentTree(vec<T> &data, const T e, const F id,
-                                  const function<T(T, T)> op,
-                                  const function<T(F, T)> apply,
-                                  const function<F(F, F)> merge)
+  explicit inline LazySegmentTree(std::vector<T> &data, const T e, const F id,
+                                  const std::function<T(T, T)> op,
+                                  const std::function<T(F, T)> apply,
+                                  const std::function<F(F, F)> merge)
       : e(e), id(id), op(op), apply(apply), merge(merge),
-        _n(bit_ceil(data.size())), _height(bit_width(_n) - 1), _data(2 * _n, e),
+        _n(bit_ceil(data.size())), _height(std::bit_width(_n) - 1), _data(2 * _n, e),
         _lazy(2 * _n, id) {
-    rep(i, data.size()) _data[i + _n] = data[i];
+    for(int i=0; i<data.size(); ++i) _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
       _data[i] = op(_data[L(i)], _data[R(i)]);
   }
@@ -171,3 +178,6 @@ public:
 #undef R
 #undef P
 };
+
+} // namespace datastructure
+} // namespace zoi

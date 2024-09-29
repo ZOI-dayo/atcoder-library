@@ -3,6 +3,7 @@
 namespace zoi {
 namespace graph {
 namespace __lca {
+
 struct LCA {
 private:
   std::vector<std::vector<int>> graph;

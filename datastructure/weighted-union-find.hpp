@@ -1,13 +1,20 @@
 #pragma once
 
-#include "../common/concepts.hpp"
+#include "../std/concepts.hpp"
+#include <numeric>
+#include <vector>
+
+namespace zoi {
+namespace datastructure {
+
+using concepts::addable;
 
 template <addable T> struct WeightedUnionFind {
 private:
   int _n;
-  vec<int> _parents;
-  vec<int> _size;
-  vec<T> _weight;
+  std::vector<int> _parents;
+  std::vector<int> _size;
+  std::vector<T> _weight;
 
   T weight(int i) {
     find(i);
@@ -17,7 +24,7 @@ private:
 public:
   explicit WeightedUnionFind(int n)
       : _n(n), _parents(n), _size(n, 1), _weight(n) {
-    iota(all(_parents), 0);
+    std::iota(_parents.begin(), _parents.end(), 0);
   }
 
   int find(int i) {
@@ -52,3 +59,6 @@ public:
 };
 
 template <addable T> using WUF = WeightedUnionFind<T>;
+
+} // namespace datastructure
+} // namespace zoi
