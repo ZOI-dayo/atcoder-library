@@ -51,9 +51,11 @@ public:
    * @param e 単位元
    * @param op 演算
    */
-  inline explicit SegmentTree(const std::vector<T> &v, T e, std::function<T(T, T)> op)
+  inline explicit SegmentTree(const std::vector<T> &v, T e,
+                              std::function<T(T, T)> op)
       : e(e), op(op), n(bit_ceil(v.size())), data(2 * n, e) {
-    for(int i=0; i<v.size(); ++i) data[i + n] = v[i];
+    for (int i = 0; i < v.size(); ++i)
+      data[i + n] = v[i];
     for (int i = n - 1; i > 0; --i)
       data[i] = op(data[L(i)], data[R(i)]);
   }

@@ -1,8 +1,8 @@
 #pragma once
 
+#include <algorithm>
 #include <numeric>
 #include <vector>
-#include <algorithm>
 
 namespace zoi {
 namespace datastructure {
@@ -39,11 +39,16 @@ public:
   bool same(int a, int b) { return find(a) == find(b); }
   std::vector<std::vector<int>> groups() {
     std::vector<int> leaders(_n);
-    for(int i=0; i<_n; ++i) { leaders[i] = find(i); }
+    for (int i = 0; i < _n; ++i) {
+      leaders[i] = find(i);
+    }
     std::vector<std::vector<int>> res(_n);
-    for(int i=0; i<_n; ++i) res[i].reserve(_size[i]);
-    for(int i=0; i<_n; ++i) res[leaders[i]].push_back(i);
-    res.erase(remove_if(res.begin(), res.end(), [&](const std::vector<int> &v) { return v.empty(); }),
+    for (int i = 0; i < _n; ++i)
+      res[i].reserve(_size[i]);
+    for (int i = 0; i < _n; ++i)
+      res[leaders[i]].push_back(i);
+    res.erase(remove_if(res.begin(), res.end(),
+                        [&](const std::vector<int> &v) { return v.empty(); }),
               res.end());
     return res;
   }

@@ -1,8 +1,8 @@
 #pragma once
 
+#include "../std/util.hpp"
 #include <iostream>
 #include <vector>
-#include "../std/util.hpp"
 
 namespace zoi {
 namespace math {
@@ -38,9 +38,7 @@ public:
 
   // logic
   int val() const { return _val; }
-  inline dynamic_modint inv() const {
-    return dynamic_modint(inv(_val, MOD));
-  }
+  inline dynamic_modint inv() const { return dynamic_modint(inv(_val, MOD)); }
   inline dynamic_modint pow(const int n) const {
     return dynamic_modint(util::powm(_val, n, MOD));
   }
@@ -117,13 +115,14 @@ private:
 
 public:
   consteval inline modint() noexcept : _val(0) {}
-  constexpr inline modint(int val) noexcept
-      : _val(normalize(val, MOD)) {}
+  constexpr inline modint(int val) noexcept : _val(normalize(val, MOD)) {}
   constexpr inline modint(modint const &val) noexcept : _val(val._val) {}
 
   // logic
   constexpr i32 val() const noexcept { return _val; }
-  constexpr modint pow(const int n) const { return modint(util::powm(_val, n, MOD)); }
+  constexpr modint pow(const int n) const {
+    return modint(util::powm(_val, n, MOD));
+  }
   constexpr inline static modint pow(const modint &a, const int n) noexcept {
     return modint(mod_pow(a._val, n, a.MOD));
   }
@@ -208,7 +207,8 @@ std::ostream &operator<<(std::ostream &os, const dynamic_modint<MOD> &i) {
 }
 
 template <int MOD>
-std::ostream &operator<<(std::ostream &os, const std::vector<dynamic_modint<MOD>> &v) {
+std::ostream &operator<<(std::ostream &os,
+                         const std::vector<dynamic_modint<MOD>> &v) {
   for (int i = 0; i < (int)v.size(); i++) {
     os << v[i].val() << (i + 1 != (int)v.size() ? " " : "");
   }

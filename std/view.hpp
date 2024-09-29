@@ -13,5 +13,5 @@ struct to_vec_adoptor {
 };
 inline constexpr to_vec_adoptor to_vec;
 
-}
-}
+} // namespace view
+} // namespace zoi

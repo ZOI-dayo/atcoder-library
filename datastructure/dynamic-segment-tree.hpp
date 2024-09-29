@@ -1,7 +1,7 @@
 #pragma once
 
-#include <functional>
 #include <bit>
+#include <functional>
 
 namespace zoi {
 namespace datastructure {
@@ -81,7 +81,8 @@ public:
    * @param op 演算
    */
   inline explicit DynamicSegmentTree(int length, T e, std::function<T(T, T)> op)
-      : e(e), op(op), n(std::bit_ceil((unsigned)length)), root(new Node(e, e, 0, n)) {}
+      : e(e), op(op), n(std::bit_ceil((unsigned)length)),
+        root(new Node(e, e, 0, n)) {}
 
   /**
    * @brief i番目の要素を取得する O(log n)

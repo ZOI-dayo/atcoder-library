@@ -1,8 +1,8 @@
 #pragma once
 
+#include "weighted-graph.hpp"
 #include <queue>
 #include <vector>
-#include "weighted-graph.hpp"
 
 namespace zoi {
 namespace graph {
@@ -13,15 +13,16 @@ template <class T = int64_t> struct state {
 public:
   int location;
   T used_cost;
-  state(int location, T used_cost)
-      : location(location), used_cost(used_cost) {}
+  state(int location, T used_cost) : location(location), used_cost(used_cost) {}
   bool operator<(const state &n) const { return used_cost < n.used_cost; }
   bool operator>(const state &n) const { return used_cost > n.used_cost; }
 };
 
-template <typename T = int64_t> std::vector<T> dijkstra(WGraph<T> &graph, int start) {
+template <typename T = int64_t>
+std::vector<T> dijkstra(WGraph<T> &graph, int start) {
   std::vector<T> way(graph.size(), std::numeric_limits<T>::max());
-  std::priority_queue<state<T>, std::vector<state<T>>, std::greater<state<T>>> q;
+  std::priority_queue<state<T>, std::vector<state<T>>, std::greater<state<T>>>
+      q;
   q.push(state<T>(start, 0));
   way[start] = 0;
   while (!q.empty()) {

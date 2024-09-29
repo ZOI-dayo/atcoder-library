@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
 #include <cassert>
 #include <iostream>
+#include <vector>
 
 namespace zoi {
 namespace datastructure {
@@ -16,7 +16,8 @@ private:
 public:
   explicit imos(int n) : _n(n), _data(_n + 1, 0) {}
   explicit imos(std::vector<T> src) : _n(src.size()), _data(_n + 1, 0) {
-    for(int i=0; i<_n; ++i) add(i, src[i]);
+    for (int i = 0; i < _n; ++i)
+      add(i, src[i]);
   }
   inline int size() const { return _n; }
   inline void add(int l, int r, T x) {
@@ -32,7 +33,8 @@ public:
     add(i, i + 1, x);
   }
   inline void build() {
-    for(int i=0; i<_n; ++i) _data[i + 1] += _data[i];
+    for (int i = 0; i < _n; ++i)
+      _data[i + 1] += _data[i];
     _is_build = true;
   }
   inline T get(int i) {

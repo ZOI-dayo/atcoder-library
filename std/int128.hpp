@@ -51,5 +51,5 @@ inline std::istream &operator>>(std::istream &src, int128_t &value) {
   return src;
 }
 
-} // namespace int128_t
+} // namespace int128
 } // namespace zoi

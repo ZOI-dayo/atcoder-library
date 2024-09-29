@@ -31,8 +31,7 @@ public:
   inline int size() const { return n; }
 };
 
-template <class T = int64_t>
-using WGraph = WeightedGraph<T>;
+template <class T = int64_t> using WGraph = WeightedGraph<T>;
 
 } // namespace graph
 } // namespace zoi

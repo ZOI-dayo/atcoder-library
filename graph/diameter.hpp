@@ -1,30 +1,28 @@
 #pragma once
 
-#include <vector>
-#include <stack>
 #include "../std/util.hpp"
+#include <stack>
+#include <vector>
 
-namespace zoi{
-namespace graph{
+namespace zoi {
+namespace graph {
 
-template <typename T = long long>
-struct wedge_t {
+template <typename T = long long> struct wedge_t {
   int to;
   T cost;
   wedge_t(int to, T cost) : to(to), cost(cost) {}
 };
 
-namespace __diameter{
+namespace __diameter {
 
 [[nodiscard]]
-inline int diameter(const std::vector<std::vector<int>> &graph, const int start = 0) {
+inline int diameter(const std::vector<std::vector<int>> &graph,
+                    const int start = 0) {
   std::vector<int> seen(graph.size(), 0);
   struct result_t {
     int cost;
     int index;
-    bool operator<(const result_t &rhs) const {
-      return cost < rhs.cost;
-    }
+    bool operator<(const result_t &rhs) const { return cost < rhs.cost; }
   };
   auto dfs = [&](auto fn, int index) -> result_t {
     result_t result = {0, index};
@@ -44,7 +42,8 @@ inline int diameter(const std::vector<std::vector<int>> &graph, const int start 
   return result.cost;
 }
 
-template <typename T = long long> [[nodiscard]] int diameter(std::vector<std::vector<T>> &graph, int start = 0) {
+template <typename T = long long>
+[[nodiscard]] int diameter(std::vector<std::vector<T>> &graph, int start = 0) {
   struct result_t {
     T cost;
     int index;
@@ -82,4 +81,3 @@ using __diameter::diameter;
 
 } // namespace graph
 } // namespace zoi
-

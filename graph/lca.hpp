@@ -38,7 +38,7 @@ public:
       std::swap(u, v);
     int logn = parent.size();
     // uとvの深さが同じになるまで親を辿る
-    for(int k=0; k<logn; ++k) {
+    for (int k = 0; k < logn; ++k) {
       if ((depth_data[v].depth - depth_data[u].depth) >> k & 1) {
         v = parent[k][v];
       }

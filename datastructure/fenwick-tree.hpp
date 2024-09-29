@@ -12,8 +12,10 @@ private:
 
 public:
   explicit FenwickTree(T n) : _n(n), _data(n + 1, 0) {}
-  explicit FenwickTree(const std::vector<T> &src) : _n(src.size()), _data(_n + 1, 0) {
-    for(int i=0; i<_n; ++i) add(i, src[i]);
+  explicit FenwickTree(const std::vector<T> &src)
+      : _n(src.size()), _data(_n + 1, 0) {
+    for (int i = 0; i < _n; ++i)
+      add(i, src[i]);
   }
 
   void add(int i, T val) {

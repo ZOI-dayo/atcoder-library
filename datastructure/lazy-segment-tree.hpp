@@ -1,8 +1,8 @@
 #pragma once
 
+#include <bit>
 #include <cstdint>
 #include <functional>
-#include <bit>
 
 namespace zoi {
 namespace datastructure {
@@ -81,8 +81,9 @@ public:
                                   const std::function<T(T, T)> op,
                                   const std::function<T(F, T)> apply,
                                   const std::function<F(F, F)> merge)
-      : e(e), id(id), op(op), apply(apply), merge(merge), _n(std::bit_ceil(length)),
-        _height(std::bit_width(_n) - 1), _data(2 * _n, e), _lazy(2 * _n, id) {}
+      : e(e), id(id), op(op), apply(apply), merge(merge),
+        _n(std::bit_ceil(length)), _height(std::bit_width(_n) - 1),
+        _data(2 * _n, e), _lazy(2 * _n, id) {}
 
   /**
    * @brief 既存のベクトルからLazySegmentTreeを生成する O(length) * op
@@ -99,9 +100,10 @@ public:
                                   const std::function<T(F, T)> apply,
                                   const std::function<F(F, F)> merge)
       : e(e), id(id), op(op), apply(apply), merge(merge),
-        _n(bit_ceil(data.size())), _height(std::bit_width(_n) - 1), _data(2 * _n, e),
-        _lazy(2 * _n, id) {
-    for(int i=0; i<data.size(); ++i) _data[i + _n] = data[i];
+        _n(bit_ceil(data.size())), _height(std::bit_width(_n) - 1),
+        _data(2 * _n, e), _lazy(2 * _n, id) {
+    for (int i = 0; i < data.size(); ++i)
+      _data[i + _n] = data[i];
     for (int i = _n - 1; i > 0; --i)
       _data[i] = op(_data[L(i)], _data[R(i)]);
   }

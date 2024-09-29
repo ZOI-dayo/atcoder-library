@@ -123,7 +123,8 @@ public:
   inline size_t size() const { return size(root); }
 };
 
-template <typename T> std::ostream &operator<<(std::ostream &os, const RBST<T> &t) {
+template <typename T>
+std::ostream &operator<<(std::ostream &os, const RBST<T> &t) {
   using node_t = typename RBST<T>::node_t;
   auto dump = [&os](auto fn, node_t *t) {
     if (!t)

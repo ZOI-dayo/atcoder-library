@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <cassert>
+#include <vector>
 
 // https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A
 
@@ -20,8 +20,8 @@ public:
     sort(_raw.begin(), _raw.end());
     _raw.erase(unique(_raw.begin(), _raw.end()), _raw.end());
     _cmp_n = _raw.size();
-     for(int i=0; i<_n; ++i) _comp[i] =
-        lower_bound(_raw.begin(), _raw.end(), src[i]) - _raw.begin();
+    for (int i = 0; i < _n; ++i)
+      _comp[i] = lower_bound(_raw.begin(), _raw.end(), src[i]) - _raw.begin();
   }
   inline int size() const { return _n; }
   inline int cmp_size() const { return _cmp_n; }

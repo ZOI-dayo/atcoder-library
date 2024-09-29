@@ -5,7 +5,6 @@
 
 // --- Utils ---
 
-
 // 順列全探索
 inline void rep_perm(int n, function<void(vec<int> &)> f) {
   vec<int> v(n);
@@ -40,7 +39,6 @@ inline void transform(vec<T> &src, function<void(T &)> f) {
 inline ll ceil(ll x, ll base) { return (x + base - 1) / base * base; }
 // ベース指定floor
 inline ll floor(ll x, ll base) { return x / base * base; }
-
 
 // 3項間不等式
 // 広義単調増加

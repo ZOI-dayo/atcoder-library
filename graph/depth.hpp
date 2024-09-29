@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <stack>
+#include <vector>
 
 namespace zoi {
 namespace graph {
@@ -15,7 +15,8 @@ public:
 };
 
 [[nodiscard]]
-inline std::vector<node_t> depth(const std::vector<std::vector<int>> &graph, const int root = 0) {
+inline std::vector<node_t> depth(const std::vector<std::vector<int>> &graph,
+                                 const int root = 0) {
   std::vector<node_t> result(graph.size(), node_t(-1, -1));
   std::stack<int, std::vector<int>> st;
   st.push(root);
@@ -32,7 +33,7 @@ inline std::vector<node_t> depth(const std::vector<std::vector<int>> &graph, con
   }
   return result;
 }
-} // namespace depth_impl
+} // namespace __depth
 
 using __depth::depth;
 

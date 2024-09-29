@@ -88,7 +88,7 @@ inline void calc(vec<mint> &f, vec<mint> &g) noexcept {
   inv_ntt(f);
   f.resize(m);
 }
-}; // namespace Convolution
+}; // namespace __convolution
 
 // Convolution *Convolution::instance = nullptr;
 

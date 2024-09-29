@@ -21,7 +21,9 @@ public:
       : _H(H), _W(W), _data(_H + 1, vec<T>(_W + 1, 0)) {}
   explicit imos2d(std::vector<std::vector<T>> src)
       : _H(src.size()), _W(src[0].size()), _data(_H + 1, vec<T>(_W + 1, 0)) {
-    for(int x=0; x<_H; ++x) for(int y=0; y<_W; ++y) add({x, y}, src[x][y]);
+    for (int x = 0; x < _H; ++x)
+      for (int y = 0; y < _W; ++y)
+        add({x, y}, src[x][y]);
   }
   inline std::pair<int, int> size() const { return {_H, _W}; }
   // 半開区間
@@ -40,8 +42,12 @@ public:
     add(a, a.lower_right(), x);
   }
   inline void build() {
-    for(int x=0; x<_H; ++x) for(int y=0; y<_W; ++y) _data[x][y + 1] += _data[x][y];
-    for(int y=0; y<_W; ++y) for(int x=0; x<_H; ++x) _data[x + 1][y] += _data[x][y];
+    for (int x = 0; x < _H; ++x)
+      for (int y = 0; y < _W; ++y)
+        _data[x][y + 1] += _data[x][y];
+    for (int y = 0; y < _W; ++y)
+      for (int x = 0; x < _H; ++x)
+        _data[x + 1][y] += _data[x][y];
     _is_build = true;
   }
   inline T get(point_t p) const {
@@ -51,9 +57,11 @@ public:
   }
 };
 
-template <typename T> std::ostream &operator<<(std::ostream &os, const imos2d<T> &im) {
-  for(int x=0; x<im.size().first; ++x) {
-    for(int y=0; y<im.size().second; ++y) os << im.get({x, y}) << " ";
+template <typename T>
+std::ostream &operator<<(std::ostream &os, const imos2d<T> &im) {
+  for (int x = 0; x < im.size().first; ++x) {
+    for (int y = 0; y < im.size().second; ++y)
+      os << im.get({x, y}) << " ";
     os << std::endl;
   }
   return os;

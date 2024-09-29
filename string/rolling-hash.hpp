@@ -130,12 +130,12 @@ public:
    */
   explicit inline RollingHash(std::string s) {
     hashes.resize(pow_cache.size());
-    for(int i=0; i<pow_cache.size(); ++i) {
+    for (int i = 0; i < pow_cache.size(); ++i) {
       hashes[i].reserve(s.size() + 1);
       hashes[i].emplace_back(rolling_hash::Hash(&pow_cache[i], 0, 0));
     }
-    for(int i=0; i<pow_cache.size(); ++i) {
-      for(int j=0; j<s.size(); ++j) {
+    for (int i = 0; i < pow_cache.size(); ++i) {
+      for (int j = 0; j < s.size(); ++j) {
         hashes[i].emplace_back(hashes[i][j] + s[j]);
       }
     }
@@ -156,7 +156,7 @@ public:
     assert(r <= length());
     std::vector<rolling_hash::Hash> ret;
     ret.reserve(pow_cache.size());
-    for(int i=0; i<pow_cache.size(); ++i) {
+    for (int i = 0; i < pow_cache.size(); ++i) {
       ret.emplace_back(hashes[i][r] - hashes[i][l]);
     }
     return ret;
@@ -171,8 +171,8 @@ public:
 };
 
 // 初期化
-std::vector<rolling_hash::PowCache> RollingHash::pow_cache = {{1'000'000'007, 1007},
-                                                      {1'000'000'009, 1009}};
+std::vector<rolling_hash::PowCache> RollingHash::pow_cache = {
+    {1'000'000'007, 1007}, {1'000'000'009, 1009}};
 
 } // namespace string
 } // namespace zoi

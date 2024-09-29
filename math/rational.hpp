@@ -71,4 +71,3 @@ template <typename T = long long> struct Rational {
 
 } // namespace math
 } // namespace zoi
-

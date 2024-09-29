@@ -1,10 +1,10 @@
 #pragma once
 
+#include "concepts.hpp"
+#include "int128.hpp"
 #include <algorithm>
 #include <cstdint>
 #include <numeric>
-#include "concepts.hpp"
-#include "int128.hpp"
 
 namespace zoi {
 namespace util {
@@ -36,7 +36,9 @@ template <class T> bool chmin(T &a, const T &b) {
 }
 
 // 合計値を求める
-template <concepts::iterable C, concepts::addable T > T sum(const C &c) { return std::reduce(c.begin(), c.end()); }
+template <concepts::iterable C, concepts::addable T> T sum(const C &c) {
+  return std::reduce(c.begin(), c.end());
+}
 
 // 二分探索
 template <typename T, concepts::lambda<bool, T> F>
@@ -54,22 +56,17 @@ inline T bin_search(T ok, T ng, const F is_ok) {
   return ok;
 }
 
-template<std::integral T>
-T sign(T x) {
-  return x < 0 ? -1 : x > 0 ? 1 : 0;
-}
+template <std::integral T> T sign(T x) { return x < 0 ? -1 : x > 0 ? 1 : 0; }
 
-template<std::integral T>
-T ceil(T x, T base) {
+template <std::integral T> T ceil(T x, T base) {
   assert(base != 0);
   return (x + base - 1) / base;
 }
 
 // 負の数も考えて
-template<std::integral T>
-T floor(T x, T base) {
+template <std::integral T> T floor(T x, T base) {
   assert(base != 0);
-  if(-sign(x) == sign(base)) {
+  if (-sign(x) == sign(base)) {
     return (x - base + 1) / base;
   }
   return x / base;

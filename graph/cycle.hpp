@@ -6,7 +6,8 @@ namespace zoi {
 namespace graph {
 
 [[nodiscard]]
-inline bool has_cycle(const std::vector<std::vector<int>> &g, const int start = 0) {
+inline bool has_cycle(const std::vector<std::vector<int>> &g,
+                      const int start = 0) {
   std::vector<int> seen(g.size(), 0);
   std::vector<int> finished(g.size(), 0);
   auto dfs = [&](auto fn, int index) {
@@ -25,5 +26,5 @@ inline bool has_cycle(const std::vector<std::vector<int>> &g, const int start = 
   return dfs(dfs, start);
 }
 
-}
-}
+} // namespace graph
+} // namespace zoi

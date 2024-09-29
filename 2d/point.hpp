@@ -22,7 +22,9 @@ public:
   point_t lower_left() const { return point_t(x + 1, y - 1); }
   point_t lower_right() const { return point_t(x + 1, y + 1); }
 
-  std::vector<point_t> around4() const { return {up(), down(), left(), right()}; }
+  std::vector<point_t> around4() const {
+    return {up(), down(), left(), right()};
+  }
   std::vector<point_t> around8() const {
     return {up(),   up().right(),  right(), right().down(),
             down(), down().left(), left(),  left().up()};
@@ -42,11 +44,19 @@ public:
     y -= p.y;
   }
 
-  point_t operator+(const point_t &p) const { return point_t(x + p.x, y + p.y); }
-  point_t operator-(const point_t &p) const { return point_t(x - p.x, y - p.y); }
+  point_t operator+(const point_t &p) const {
+    return point_t(x + p.x, y + p.y);
+  }
+  point_t operator-(const point_t &p) const {
+    return point_t(x - p.x, y - p.y);
+  }
 
-  bool operator<(const point_t &p) const { return x == p.x ? y < p.y : x < p.x; }
-  bool operator>(const point_t &p) const { return x == p.x ? y > p.y : x > p.x; }
+  bool operator<(const point_t &p) const {
+    return x == p.x ? y < p.y : x < p.x;
+  }
+  bool operator>(const point_t &p) const {
+    return x == p.x ? y > p.y : x > p.x;
+  }
 };
 inline std::ostream &operator<<(std::ostream &os, const point_t &p) {
   os << p.x << p.y;
@@ -58,8 +68,10 @@ inline std::istream &operator>>(std::istream &is, point_t &p) {
 }
 
 inline bool is_contained(int H, int W, point_t p) {
-  if(p.x < 0 || H <= p.x) return false;
-  if(p.y < 0 || W <= p.y) return false;
+  if (p.x < 0 || H <= p.x)
+    return false;
+  if (p.y < 0 || W <= p.y)
+    return false;
   return true;
 }
 
