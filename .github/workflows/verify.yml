@@ -26,9 +26,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: install
-        uses: KyleMayes/install-llvm-action@v2
-        with:
-          version: "10.0"
+        run: |
+          sudo apt install clang-format
       - name: lint
         run: |
           clang-format --dry-run -style=file --Werror ${{ matrix.target }}
