@@ -43,7 +43,7 @@ public:
     if (a != b) {
       // merge後の親はa
       if (_size[a] < _size[b])
-        swap(a, b), w = -w;
+        std::swap(a, b), w = -w;
       _size[a] += _size[b];
       _size[b] = 0;
       _parents[b] = a;

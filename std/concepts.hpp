@@ -1,6 +1,7 @@
 #pragma once
 
 #include <concepts>
+#include <iterator>
 
 namespace zoi {
 namespace concepts {
