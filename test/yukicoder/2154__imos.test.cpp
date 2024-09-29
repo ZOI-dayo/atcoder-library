@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2154"
 
-#include "../../common/template.hpp"
-#include "../../datastructure/imos.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

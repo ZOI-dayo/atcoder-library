@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/789"
 
-#include "../../common/util.hpp"
-#include "../../datastructure/dynamic-segment-tree.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

@@ -1,9 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 
-#include "../../common/template.hpp"
-#include "../../datastructure/affine.hpp"
-#include "../../datastructure/lazy-segment-tree.hpp"
-#include "../../math/modint.hpp"
+#include "../../common/templates.hpp"
 
 using mint = mint998;
 

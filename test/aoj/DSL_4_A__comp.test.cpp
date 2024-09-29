@@ -1,10 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A"
 
-#include "../../2d/point.hpp"
-#include "../../common/template.hpp"
-#include "../../datastructure/comp.hpp"
-#include "../../datastructure/imos2d.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();
@@ -22,13 +19,13 @@ signed main() {
   comp<int> cx(xs), cy(ys);
   imos2d<int> imos(cx.cmp_size(), cy.cmp_size());
   rep(i, N) {
-    Point a(cx[2 * i], cy[2 * i]), b(cx[2 * i + 1], cy[2 * i + 1]);
+    point_t a(cx[2 * i], cy[2 * i]), b(cx[2 * i + 1], cy[2 * i + 1]);
     imos.add(a, b, 1);
   }
   imos.build();
   int ans = 0;
   rep(x, cx.cmp_size() - 1) rep(y, cy.cmp_size() - 1) {
-    ans += (imos.get(Point(x, y)) > 0) * (cx.get_raw(x + 1) - cx.get_raw(x)) *
+    ans += (imos.get(point_t(x, y)) > 0) * (cx.get_raw(x + 1) - cx.get_raw(x)) *
            (cy.get_raw(y + 1) - cy.get_raw(y));
   }
   cout << ans << endl;

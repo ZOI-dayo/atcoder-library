@@ -36,7 +36,9 @@ using bint = boost::multiprecision::cpp_int;
 
 // --- 定数 ---
 constexpr ll INF = 1LL << 60;
+
 // constexpr ll INF = numeric_limits<ll>::max();
 
 inline signed bit_width(ll x) { return bit_width((ull)x); }
+
 inline ull bit_ceil(ll x) { return bit_ceil((ull)x); }

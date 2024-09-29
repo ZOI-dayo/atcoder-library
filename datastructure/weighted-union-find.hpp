@@ -1,55 +1,63 @@
 #pragma once
 
-#include "../common/alias.hpp"
-#include "../common/concepts.hpp"
+#include "../std/concepts.hpp"
 
-template <addable T> struct WeightedUnionFind {
-private:
-  int _n;
-  vec<int> _parents;
-  vec<int> _size;
-  vec<T> _weight;
+#include <numeric>
+#include <vector>
 
-  T weight(int i) {
-    find(i);
-    return _weight[i];
-  }
+namespace zoi {
+  namespace datastructure {
 
-public:
-  explicit WeightedUnionFind(int n)
-      : _n(n), _parents(n), _size(n, 1), _weight(n) {
-    iota(all(_parents), 0);
-  }
+    using concepts::addable;
 
-  int find(int i) {
-    if (_parents[i] == i)
-      return i;
-    const int root = find(_parents[i]);
-    _weight[i] += _weight[_parents[i]];
-    return _parents[i] = root;
-  }
+    template <addable T> struct WeightedUnionFind {
+    private:
+      int _n;
+      std::vector<int> _parents;
+      std::vector<int> _size;
+      std::vector<T> _weight;
 
-  void merge(int a, int b, T w) {
-    w += weight(a);
-    w -= weight(b);
-    a = find(a);
-    b = find(b);
-    if (a != b) {
-      // merge後の親はa
-      if (_size[a] < _size[b])
-        swap(a, b), w = -w;
-      _size[a] += _size[b];
-      _size[b] = 0;
-      _parents[b] = a;
-      _weight[b] = w;
-    }
-  }
+      T weight(int i) {
+        find(i);
+        return _weight[i];
+      }
 
-  T diff(int a, int b) { return weight(b) - weight(a); }
+    public:
+      explicit WeightedUnionFind(int n) :
+          _n(n), _parents(n), _size(n, 1), _weight(n) {
+        std::iota(_parents.begin(), _parents.end(), 0);
+      }
 
-  int size(int a) { return _size[find(a)]; }
+      int find(int i) {
+        if (_parents[i] == i) return i;
+        const int root = find(_parents[i]);
+        _weight[i] += _weight[_parents[i]];
+        return _parents[i] = root;
+      }
 
-  bool same(int a, int b) { return find(a) == find(b); }
-};
+      void merge(int a, int b, T w) {
+        w += weight(a);
+        w -= weight(b);
+        a = find(a);
+        b = find(b);
+        if (a != b) {
+          // merge後の親はa
+          if (_size[a] < _size[b]) std::swap(a, b), w = -w;
+          _size[a] += _size[b];
+          _size[b] = 0;
+          _parents[b] = a;
+          _weight[b] = w;
+        }
+      }
 
-template <addable T> using WUF = WeightedUnionFind<T>;
+      T diff(int a, int b) { return weight(b) - weight(a); }
+
+      int size(int a) { return _size[find(a)]; }
+
+      bool same(int a, int b) { return find(a) == find(b); }
+    };
+
+    template <addable T> using WUF = WeightedUnionFind<T>;
+
+  } // namespace datastructure
+} // namespace zoi

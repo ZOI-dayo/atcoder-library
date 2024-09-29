@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/117"
 
-#include "../../common/template.hpp"
-#include "../../math/combination.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();
