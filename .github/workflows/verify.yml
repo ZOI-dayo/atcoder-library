@@ -28,7 +28,7 @@ jobs:
       - name: install
         run: |
           sudo apt update; \
-          sudo apt install clang-format;
+          sudo apt install clang-format-18;
       - name: lint
         run: |
           clang-format --dry-run -style=file --Werror ${{ matrix.target }}
