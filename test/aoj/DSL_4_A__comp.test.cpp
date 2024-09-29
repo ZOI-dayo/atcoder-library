@@ -2,27 +2,6 @@
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/4/DSL_4_A"
 
 #include "../../common/templates.hpp"
-#include "../../graph/diameter.hpp"
-
-// --- TODO : del
-// #include "../../2d/point.hpp"
-#include "../../datastructure/comp.hpp"
-#include "../../datastructure/imos2d.hpp"
-// ---
-
-using namespace std;
-using namespace zoi;
-using namespace graph;
-using namespace datastructure;
-using namespace geometory;
-
-using ll = long long;
-
-template <typename T> using vec = vector<T>;
-template <typename T> using vvec = vec<vec<T>>;
-
-#define rep(i, n) for (ll i = 0; i < n; ++i)
-
 
 signed main() {
   io_setup();

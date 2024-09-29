@@ -1,8 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B"
 
-#include "../../common/template.hpp"
-#include "../../datastructure/fenwick-tree.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

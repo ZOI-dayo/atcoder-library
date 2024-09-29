@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace zoi {
-namespace geometory {
+namespace geometry {
 
 class point_t {
 public:
@@ -63,5 +63,5 @@ inline bool is_contained(int H, int W, point_t p) {
   return true;
 }
 
-} // namespace geometory
+} // namespace geometry
 } // namespace zoi

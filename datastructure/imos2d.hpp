@@ -8,7 +8,7 @@ namespace zoi {
 namespace datastructure {
 namespace __imos2d {
 
-using geometory::point_t;
+using geometry::point_t;
 
 template <typename T> struct imos2d {
 private:

@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#include "../../common/print.hpp"
-#include "../../common/util.hpp"
-#include "../../datastructure/dynamic-segment-tree.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

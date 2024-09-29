@@ -2,18 +2,6 @@
   "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A"
 
 #include "../../common/templates.hpp"
-#include "../../graph/diameter.hpp"
-
-using namespace std;
-using namespace zoi;
-using namespace graph;
-
-using ll = long long;
-
-template <typename T> using vec = vector<T>;
-template <typename T> using vvec = vec<vec<T>>;
-
-#define rep(i, n) for (ll i = 0; i < n; ++i)
 
 signed main() {
   io_setup();

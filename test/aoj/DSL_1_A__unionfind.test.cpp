@@ -1,8 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 
-#include "../../common/template.hpp"
-#include "../../datastructure/union-find.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

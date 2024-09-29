@@ -1,8 +1,7 @@
 #define PROBLEM                                                                \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
-#include "../../common/template.hpp"
-#include "../../math/prime.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

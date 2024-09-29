@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/649"
 
-#include "../../common/util.hpp"
-#include "../../datastructure/rbst-multiset.hpp"
+#include "../../common/templates.hpp"
 
 signed main() {
   io_setup();

@@ -4,7 +4,7 @@
 #include "point.hpp"
 
 namespace zoi {
-namespace geometory {
+namespace geometry {
 
 class Area {
 public:
@@ -61,6 +61,6 @@ inline std::istream &operator>>(std::istream &is, Area &a) {
   for(int i=0; i<a.H; ++i) is >> a[i];
   return is;
 }
-} // namespace geometory
+} // namespace geometry
 } // namespace zoi
 
