@@ -3,26 +3,57 @@ name: Verify Code
 on: pull_request
 
 jobs:
-  set-matrix:
+  set-lint-matrix:
     runs-on: ubuntu-latest
     outputs:
-      something: ${{ steps.set-matrix.outputs.value }}
+      lint-matrix: ${{ steps.set-lint-matrix.outputs.value }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: make values
-        id: set-matrix
+        id: set-lint-matrix
+        run: |
+          list=$(find test/ -type f -name *.hpp -print0 | jq -R 'split("\u0000") | .[] | select(length > 0)' | jq -sc ".")
+          echo "value=${list}" >> $GITHUB_OUTPUT
+  lint:
+    runs-on: ubuntu-latest
+    needs: [lint-matrix]
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{fromJson(needs.set-lint-matrix.outputs.lint-matrix)}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install
+        run: |
+          sudo add-apt-repository 'deb http://apt.llvm.org/noble/ llvm-toolchain-noble main'
+          sudo apt update
+          sudo apt install clang-format
+      - name: lint
+        run: |
+          clang-format --dry-run -style=file --Werror ${{ matrix.target }}
+  set-run-matrix:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    outputs:
+      run-matrix: ${{ steps.set-run-matrix.outputs.value }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: make values
+        id: set-run-matrix
         run: |
           list=$(find test/ -type f -name *.test.cpp -print0 | jq -R 'split("\u0000") | .[] | select(length > 0)' | jq -sc ".")
           echo "value=${list}" >> $GITHUB_OUTPUT
   build:
     runs-on: ubuntu-latest
-    needs: [set-matrix]
+    needs: [set-run-matrix]
     timeout-minutes: 7
     strategy:
       fail-fast: false
       matrix:
-        testcase: ${{fromJson(needs.set-matrix.outputs.something)}}
+        testcase: ${{fromJson(needs.set-run-matrix.outputs.run-matrix)}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
