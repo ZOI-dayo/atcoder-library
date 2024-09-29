@@ -26,10 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: install
-        run: |
-          sudo add-apt-repository 'deb http://apt.llvm.org/noble/ llvm-toolchain-noble main'
-          sudo apt update
-          sudo apt install clang-format
+        uses: KyleMayes/install-llvm-action@v2
       - name: lint
         run: |
           clang-format --dry-run -style=file --Werror ${{ matrix.target }}
