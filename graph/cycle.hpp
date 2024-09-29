@@ -2,12 +2,11 @@
 
 #include <vector>
 
-namespace zoi {
+namespace  zoi {
 namespace graph {
 
-[[nodiscard]]
-inline bool has_cycle(const std::vector<std::vector<int>> &g,
-                      const int start = 0) {
+[[nodiscard]] inline bool has_cycle(const std::vector<std::vector<int>> &g,
+                                    const int start = 0) {
   std::vector<int> seen(g.size(), 0);
   std::vector<int> finished(g.size(), 0);
   auto dfs = [&](auto fn, int index) {
