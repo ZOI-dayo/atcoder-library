@@ -17,7 +17,7 @@ inline std::vector<int> topological_sort(const std::vector<std::vector<int>> &gr
       in_count[next]++;
     }
   }
-  std::queue<int, std::vector<int>> q;
+  std::queue<int> q;
   for(int i=0; i<graph.size(); i++) {
     if (in_count[i] == 0) {
       q.push(i);

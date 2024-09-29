@@ -8,7 +8,6 @@ namespace concepts {
 
 template <class T>
 concept iterable = requires (T& x) {
-T::iterator -> std::input_iterator;
 x.begin();
 x.end();
 };
