@@ -17,5 +17,7 @@ using vvvec = vector<vector<vector<T>>>;
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
 
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define rep(i, n) for (ll i = 0; i < (ll)(n); ++i)
 
+constexpr int INF = 1<<30;
+constexpr ll LLINF = 1LL<<60;
