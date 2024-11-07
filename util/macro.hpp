@@ -21,3 +21,13 @@ using vvvec = vector<vector<vector<T>>>;
 
 constexpr int INF = 1<<30;
 constexpr ll LLINF = 1LL<<60;
+
+inline int pow_mod(int x, int n, int mod) {
+  int res = 1;
+  while(n > 0) {
+    if(n & 1) res = (ll)res * x % mod;
+    x = (ll)x * x % mod;
+    n >>= 1;
+  }
+  return res;
+}
