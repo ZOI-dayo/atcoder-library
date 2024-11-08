@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../util/all.hpp"
+#include "util/all.hpp"
 
 template <typename M>
 concept MonoidConcept = requires(M m, M::value_type a, M::value_type b) {

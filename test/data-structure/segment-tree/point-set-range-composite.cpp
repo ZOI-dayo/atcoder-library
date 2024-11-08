@@ -1,4 +1,4 @@
-#include "../../../all.hpp"
+#include "all.hpp"
 
 using mint = modint<998'244'353>;
 

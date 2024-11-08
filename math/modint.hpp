@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./all.hpp"
+#include "util/all.hpp"
 
 template <int MOD>
 class modint {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../util/all.hpp"
-#include "./segment-tree/monoid.hpp"
+#include "util/all.hpp"
+#include "segment-tree/monoid.hpp"
 
 template <MonoidConcept M>
 class SegmentTree {

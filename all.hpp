@@ -1,4 +1,5 @@
 #pragma once
 
-#include "./util/all.hpp"
-#include "./data-structure/segment-tree.hpp"
+#include "data-structure/all.hpp"
+#include "math/all.hpp"
+#include "util/all.hpp"

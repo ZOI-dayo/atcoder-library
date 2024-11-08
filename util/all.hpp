@@ -1,4 +1,7 @@
 #pragma once
-#include "./std.hpp"
-#include "./macro.hpp"
-#include "./modint.hpp"
+
+#include "macro.hpp"
+#include "std.hpp"
+#include "types.hpp"
+
+#include "ext_lib/all.hpp"
