@@ -8,7 +8,7 @@ int main() {
   rep(i, n) {
     cin >> a[i];
   };
-  SegmentTree<SumMonoid<ll>> st(a);
+  SumSegmentTree<ll> st(a);
   rep(Q, q) {
     int type;
     cin >> type;

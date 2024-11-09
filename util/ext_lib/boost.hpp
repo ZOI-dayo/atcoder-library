@@ -1,6 +1,9 @@
 #pragma once
 
-#include <boost/multiprecision/cpp_int.hpp>
+#if __has_include(<boost/multiprecision/cpp_int.hpp>)
 
+#include <boost/multiprecision/cpp_int.hpp>
 using namespace boost::multiprecision;
+
+#endif
 

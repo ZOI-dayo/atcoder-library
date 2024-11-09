@@ -1,59 +1,80 @@
 #pragma once
 
 #include "util/all.hpp"
-#include "segment-tree/monoid.hpp"
 
-template <MonoidConcept M>
+template <typename T>
 class SegmentTree {
 private:
-  using T = typename M::value_type;
-  int n;
+  const int n;
+  const T e;
+  const function<T(T, T)> op;
   vector<T> data;
-  M monoid;
 
 public:
-  inline SegmentTree(size_t _n) : n(bit_ceil(_n)), monoid(M()) {
-    data.assign(2 * n, monoid.e());
+  SegmentTree(const size_t n, const function<T(T,T)> &op, const T &e) : n(bit_ceil(n)), op(op), e(e) {
+    data.assign(2 * this->n, e);
   }
 
-  inline SegmentTree(vec<T> v) : SegmentTree(v.size()) {
-    rep(i, v.size()) data[i + n] = v[i];
+  SegmentTree(const vec<T> &v, const function<T(T,T)> &op, const T &e) : SegmentTree(v.size(), op, e) {
+    memcpy(&data[n], v.data(), v.size() * sizeof(T));
     for (int i = n - 1; i > 0; --i)
-      data[i] = monoid.op(data[2 * i], data[2 * i + 1]);
+      data[i] = op(data[2 * i], data[2 * i + 1]);
   }
 
-  inline T get(size_t i) {
+  T get(const size_t i) const {
     return data[i + n];
   }
 
-  inline T set(size_t i, T x) {
+  void set(size_t i, const T &x) {
     i += n;
     data[i] = x;
     for (i /= 2; i > 0; i /= 2) {
-      data[i] = monoid.op(data[2 * i], data[2 * i + 1]);
+      data[i] = op(data[2 * i], data[2 * i + 1]);
     }
-    return data[1];
+    return;
   }
 
-  inline T query(size_t l, size_t r) {
-    T res_l = monoid.e(), res_r = monoid.e();
+  T query(size_t l, size_t r) const {
+    T res_l = e, res_r = e;
     for (l += n, r += n; l < r; l /= 2, r /= 2) {
       if (l % 2 == 1) {
-        res_l = monoid.op(res_l, data[l++]);
+        res_l = op(res_l, data[l++]);
       }
       if (r % 2 == 1) {
-        res_r = monoid.op(data[--r], res_r);
+        res_r = op(data[--r], res_r);
       }
     }
-    return monoid.op(res_l, res_r);
+    return op(res_l, res_r);
   }
 
-  inline T operator[](size_t i) {
+  T operator[](const size_t i) const {
     return get(i);
   }
 
-  inline T operator[](size_t l, size_t r) {
+  T operator[](const size_t l, const size_t r) const {
     return query(l, r);
   }
 
 };
+
+template <typename T>
+class SumSegmentTree : public SegmentTree<T> {
+public:
+  SumSegmentTree(const size_t n) : SegmentTree<T>(n, plus<T>(), 0) {}
+  SumSegmentTree(const vec<T> &v) : SegmentTree<T>(v, plus<T>(), 0) {}
+};
+
+template <typename T>
+class MinSegmentTree : public SegmentTree<T> {
+public:
+  MinSegmentTree(const size_t n) : SegmentTree<T>(n, [](T a,T b) { return min(a, b); }, numeric_limits<T>::max()) {}
+  MinSegmentTree(const vec<T> &v) : SegmentTree<T>(v, [](T a, T b) { return min(a, b); }, numeric_limits<T>::max()) {}
+};
+
+template <typename T>
+class MaxSegmentTree : public SegmentTree<T> {
+public:
+  MaxSegmentTree(const size_t n) : SegmentTree<T>(n, [](T a, T b) { return max(a, b); }, numeric_limits<T>::min()) {}
+  MaxSegmentTree(const vec<T> &v) : SegmentTree<T>(v, [](T a, T b) { return max(a, b); }, numeric_limits<T>::min()) {}
+};
+

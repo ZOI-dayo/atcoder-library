@@ -4,21 +4,11 @@ using mint = modint<998'244'353>;
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
-  class FnMonoid {
-  public:
-    using value_type = pair<mint, mint>;
-    inline value_type op(value_type a, value_type b) {
-      return {a.first * b.first, a.second * b.first + b.second};
-    }
-    inline constexpr value_type e() {
-      return {1, 0};
-    }
-  };
   int n, q;
   cin >> n >> q;
   vec<pair<mint, mint>> ab(n);
   rep(i, n) cin >> ab[i].first >> ab[i].second;
-  SegmentTree<FnMonoid> seg(ab);
+  SegmentTree<pair<mint,mint>> seg(ab, [](auto a, auto b) { return pair{a.first * b.first, a.second * b.first + b.second};}, {1, 0});
   rep(Q, q) {
     int type;
     cin >> type;

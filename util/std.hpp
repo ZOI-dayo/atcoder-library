@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <cstring>
 #include <deque>
 #include <fstream>
 #include <functional>
@@ -20,7 +21,6 @@
 #include <sstream>
 #include <stack>
 #include <string>
-#include <tuple>
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>

@@ -4,19 +4,9 @@
 
 #include <cpp-dump.hpp>
 #define dump(...) cpp_dump(__VA_ARGS__)
-#define DEF_CPP_DUMP(...) CPP_DUMP_DEFINE_EXPORT_OBJECT(__VA_ARGS__)
 namespace cp = cpp_dump;
 
-#else
-
-#define dump(...)
-#define CPP_DUMP_SET_OPTION(...)
-#define CPP_DUMP_SET_OPTION_GLOBAL(...)
-#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
-#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
-#define CPP_DUMP_DEFINE_EXPORT_OBJECT_GENERIC(...)
-
-#endif
+#define DEF_CPP_DUMP(...) CPP_DUMP_DEFINE_EXPORT_OBJECT(__VA_ARGS__)
 
 inline void init_cpp_dump() {
   // ログのラベルを行番号にする
@@ -48,3 +38,19 @@ inline void init_cpp_dump() {
   CPP_DUMP_SET_OPTION(detailed_number_es, true);
   CPP_DUMP_SET_OPTION(es_style, cp::types::es_style_t::by_syntax);
 }
+
+#else
+
+#define dump(...)
+#define CPP_DUMP_SET_OPTION(...)
+#define CPP_DUMP_SET_OPTION_GLOBAL(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
+#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT_GENERIC(...)
+#define DEF_CPP_DUMP(...)
+
+inline void init_cpp_dump() {}
+
+#endif
+
+
