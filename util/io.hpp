@@ -8,12 +8,24 @@ void io_setup() {
   cout << fixed << setprecision(16);
 }
 
+template <typename T>
+struct is_string
+{
+    static const bool value = false;
+};
+
+template <class T, class Traits, class Alloc>
+struct is_string<std::basic_string<T, Traits, Alloc>>
+{
+    static const bool value = true;
+};
+
 template <typename C>
 requires requires(C container) {
 begin(container);
 end(container);
 next(begin(container));
-}
+} && (!is_string<C>::value)
 istream& operator>>(istream& is, C& container) {
   for(auto&& x : container) {
     is >> x;
