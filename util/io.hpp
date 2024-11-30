@@ -20,6 +20,11 @@ struct is_string<std::basic_string<T, Traits, Alloc>>
     static const bool value = true;
 };
 
+template <typename F, typename S>
+istream& operator>>(istream& is, pair<F, S>& p) {
+  return is >> p.first >> p.second;
+}
+
 template <typename C>
 requires requires(C container) {
 begin(container);
@@ -33,7 +38,3 @@ istream& operator>>(istream& is, C& container) {
   return is;
 }
 
-template <typename F, typename S>
-istream& operator>>(istream& is, pair<F, S>& p) {
-  return is >> p.first >> p.second;
-}
