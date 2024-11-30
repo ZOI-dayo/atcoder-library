@@ -3,7 +3,7 @@
 #include "util/all.hpp"
 
 template <typename T, typename U>
-inline T pow(T x, U n) {
+inline T powi(T x, U n) {
   T res = 1;
   while(n > 0) {
     if(n & 1) res *= x;
