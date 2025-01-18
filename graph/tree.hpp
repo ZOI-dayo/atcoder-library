@@ -4,9 +4,9 @@
 
 class Tree {
   int age = 0;
-  optional<pair<int, vec<int>>> depth_cache;
-  optional<pair<int, vec<int>>> euler_tour_cache;
-  optional<pair<int, vvec<int>>> doubling_cache;
+  nullable<pair<int, vec<int>>> depth_cache;
+  nullable<pair<int, vec<int>>> euler_tour_cache;
+  nullable<pair<int, vvec<int>>> doubling_cache;
 public:
   int n;
   vec<int> parent;
@@ -80,6 +80,7 @@ public:
         }
       }
     }
+    return doubling;
   }
 
   // O(log n)
