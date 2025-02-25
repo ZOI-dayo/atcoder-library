@@ -44,6 +44,7 @@ public:
   }
 
   void set(size_t l, size_t r, F f) {
+    if(l == r) return;
     l += n;
     r += n;
     size_t l0 = l, r0 = r;

@@ -39,6 +39,32 @@ inline void init_cpp_dump() {
   CPP_DUMP_SET_OPTION(es_style, cp::types::es_style_t::by_syntax);
 }
 
+#if __has_include(<atcoder/modint>)
+
+#include <atcoder/modint>
+
+namespace cpp_dump::_detail {
+
+template <int m>
+inline std::string export_var(
+    const atcoder::static_modint<m> &mint, const std::string &indent, std::size_t last_line_length,
+    std::size_t current_depth, bool fail_on_newline, const export_command &command
+) {
+  return export_var(mint.val(), indent, last_line_length, current_depth, fail_on_newline, command);
+}
+
+template <int m>
+inline std::string export_var(
+    const atcoder::dynamic_modint<m> &mint, const std::string &indent, std::size_t last_line_length,
+    std::size_t current_depth, bool fail_on_newline, const export_command &command
+) {
+  return export_var(mint.val(), indent, last_line_length, current_depth, fail_on_newline, command);
+}
+
+}  // namespace cpp_dump::_detail
+
+#endif
+
 #else
 
 #define dump(...)

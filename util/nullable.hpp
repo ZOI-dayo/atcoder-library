@@ -10,6 +10,7 @@ private:
   bool exists;
 public:
   nullable() : exists(false) {}
+  nullable(nullptr_t) : exists(false) {}
   nullable(T value) : exists(true), value(value) {}
   nullable(const nullable<T>& other) : exists(other.exists), value(other.value) {}
   nullable(initializer_list<T> il) : exists(il.size() > 0), value(il) {}
