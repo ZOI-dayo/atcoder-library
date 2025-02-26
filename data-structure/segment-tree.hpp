@@ -55,6 +55,19 @@ public:
     return query(l, r);
   }
 
+  // f(op([0...i])) == false となる最小の i を返す
+  // f(op(a, b)) == f(a) && f(b) となるように設計してください
+  size_t bin_search(const function<bool(T)> &f) const {
+    auto find = [&](auto&& find, size_t i, size_t l, size_t r, T offset) -> size_t {
+      if (f(op(offset, data[i]))) return r;
+      if (l + 1 == r) return l + f(op(offset, data[i]));
+      size_t m = midpoint(l, r);
+      size_t res = find(find, 2 * i, l, m, offset);
+      if (res != m) return res;
+      return find(find, 2 * i + 1, m, r, op(offset, data[2*i]));
+    };
+    return find(find, 1, 0, n, e);
+  }
 };
 
 template <typename T>
