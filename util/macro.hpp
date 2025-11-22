@@ -7,8 +7,8 @@
 #define rall(x) rbegin(x), rend(x)
 
 #define rep(i, n) for (ll i = 0; i < (ll)(n); ++i)
-#define rrep(i, n) for (ll i = (ll)(n) - 1; i >= 0; --i)
+#define reps(i, l, r) for (ll i = (ll)(l); i < (ll)(r); ++i)
+#define rrep(i, l, r) for (ll i = (ll)(r) - 1; i >= l; --i)
 
-constexpr int INF = 1<<30;
-constexpr ll LLINF = 1LL<<60;
+constexpr ll INF = 1LL<<60;
 

@@ -45,6 +45,6 @@ bool chmin(T& a, const T& b) {
     return false;
 }
 
-inline int bit_width(int x) {
-  return bit_width(static_cast<unsigned>(x));
+inline ll bit_width(ll x) {
+  return bit_width(static_cast<ull>(x));
 }

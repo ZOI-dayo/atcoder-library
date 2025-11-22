@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL
 
 #include <cpp-dump.hpp>
 #define dump(...) cpp_dump(__VA_ARGS__)

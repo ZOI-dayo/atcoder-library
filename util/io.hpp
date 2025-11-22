@@ -2,11 +2,13 @@
 
 #include "std.hpp"
 
-void io_setup() {
-  cin.tie(0);
-  ios::sync_with_stdio(0);
-  cout << fixed << setprecision(16);
-}
+struct IOSetup{
+  IOSetup(){
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    cout << fixed << setprecision(16);
+  }
+} io_setup;
 
 template <typename T>
 struct is_string
