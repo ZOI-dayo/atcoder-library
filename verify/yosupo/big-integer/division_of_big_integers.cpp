@@ -1,4 +1,4 @@
-//@yopupo division_of_big_integers
+//@yosupo division_of_big_integers
 
 #include "../../../all.hpp"
 

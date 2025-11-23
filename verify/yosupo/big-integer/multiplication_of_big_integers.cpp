@@ -1,4 +1,4 @@
-//@yopupo multiplication_of_big_integers
+//@yosupo multiplication_of_big_integers
 
 #include "../../../all.hpp"
 
