@@ -1,44 +1,65 @@
 #pragma once
 
-#include "util/all.hpp"
+#include "../util/all.hpp"
 
 class UnionFind {
-  size_t n;
-  vec<size_t> par;
-  vec<size_t> sz;
+  uint n;
+  vec<int> par;
 
 public:
-  UnionFind(size_t n) : n(n), par(n), sz(n, 1) {
-    iota(all(par), 0);
-  }
+  UnionFind(uint n) : n(n), par(n, -1) {}
 
-  size_t find(size_t x) {
-    if (par[x] == x) return x;
+  uint find(uint x) {
+    if (par[x] < 0) return x;
     return par[x] = find(par[x]);
   }
 
-  bool same(size_t x, size_t y) {
+  bool same(uint x, uint y) {
     return find(x) == find(y);
   }
 
-  void merge(size_t x, size_t y) {
+  void merge(uint x, uint y) {
     x = find(x);
     y = find(y);
     if (x == y) return;
-    if (sz[x] < sz[y]) swap(x, y);
+    if (-par[x] < -par[y]) swap(x, y);
+    par[x] += par[y];
     par[y] = x;
-    sz[x] += sz[y];
+    n--;
   }
 
-  size_t size(size_t x) {
-    return sz[find(x)];
+  uint size(uint x) {
+    return -par[find(x)];
   }
 
-  size_t count() {
-    size_t res = 0;
-    for (size_t i = 0; i < n; ++i) {
-      if (par[i] == i) ++res;
+  uint count() {
+    return n;
+  }
+
+  vv<uint> groups() {
+    vv<uint> g(par.size());
+    vec<uint> starts;
+    rep(i, par.size()) {
+      if(par[i] < 0) {
+        starts.emplace_back(i);
+      } else {
+        g[par[i]].emplace_back(i);
+      }
     }
-    return res;
+    vv<uint> ans;
+    ans.reserve(n);
+    vec<uint> st;
+    for(auto s : starts) {
+      ans.push_back({s});
+      st.emplace_back(s);
+      while(!st.empty()) {
+        auto v = st.back(); st.pop_back();
+        ans.back().emplace_back(v);
+        for(auto c : g[s]) {
+          st.emplace_back(c);
+        }
+      }
+    }
+    return ans;
   }
 };

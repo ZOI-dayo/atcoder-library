@@ -6,6 +6,16 @@ using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 
+#ifdef EXIST_BOOST
+
+using lll = int128_t;
+
+#else
+
+using lll = __int128_t;
+
+#endif
+
 template <typename T>
 using vec = vector<T>;
 

@@ -1,8 +1,9 @@
--std=c++2b
+-std=gnu++2b
 -Wall
 -Wextra
 -g
 -O0
+-lgmp
 -fconstexpr-depth=2147483647
 -fconstexpr-steps=2147483647
 -fsanitize=address,undefined
