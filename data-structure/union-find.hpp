@@ -3,22 +3,22 @@
 #include "../util/all.hpp"
 
 class UnionFind {
-  uint n;
+  int n;
   vec<int> par;
 
 public:
-  UnionFind(uint n) : n(n), par(n, -1) {}
+  UnionFind(int n) : n(n), par(n, -1) {}
 
-  uint find(uint x) {
+  int find(int x) {
     if (par[x] < 0) return x;
     return par[x] = find(par[x]);
   }
 
-  bool same(uint x, uint y) {
+  bool same(int x, int y) {
     return find(x) == find(y);
   }
 
-  void merge(uint x, uint y) {
+  void merge(int x, int y) {
     x = find(x);
     y = find(y);
     if (x == y) return;
@@ -28,17 +28,17 @@ public:
     n--;
   }
 
-  uint size(uint x) {
+  int size(int x) {
     return -par[find(x)];
   }
 
-  uint count() {
+  int count() {
     return n;
   }
 
-  vv<uint> groups() {
-    vv<uint> g(par.size());
-    vec<uint> starts;
+  vv<int> groups() {
+    vv<int> g(par.size());
+    vec<int> starts;
     rep(i, par.size()) {
       if(par[i] < 0) {
         starts.emplace_back(i);
@@ -46,9 +46,9 @@ public:
         g[par[i]].emplace_back(i);
       }
     }
-    vv<uint> ans;
+    vv<int> ans;
     ans.reserve(n);
-    vec<uint> st;
+    vec<int> st;
     for(auto s : starts) {
       ans.push_back({s});
       st.emplace_back(s);

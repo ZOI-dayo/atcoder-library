@@ -1,6 +1,7 @@
 #pragma once
 
 #include "macro.hpp"
+#include "constants.hpp"
 
 template <typename T>
 T sum(const vec<T>& v) {
@@ -47,4 +48,12 @@ bool chmin(T& a, const T& b) {
 
 inline ll bit_width(ll x) {
   return bit_width(static_cast<ull>(x));
+}
+
+inline ll bit_ceil(ll x) {
+  return bit_ceil(static_cast<ull>(x));
+}
+
+inline string YesNo(bool b) {
+  return b ? Yes : No;
 }
