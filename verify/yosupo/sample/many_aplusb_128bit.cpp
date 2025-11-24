@@ -4,8 +4,8 @@
 
 void solve() {
   lll a, b;
-  cin >> a >> b;
-  cout << a + b << '\n';
+  fin >> a >> b;
+  fout << a + b << '\n';
 }
 
 int main() {

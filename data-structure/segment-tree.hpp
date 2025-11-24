@@ -16,30 +16,30 @@ public:
     const int i;
   public:
     pointer(SegmentTree<T, e, op> &seg, int i): parent(seg), i(i + seg.n) {}
-    operator T() const {
+    inline operator T() const {
       return parent.data[i];
     }
-    pointer& operator=(const T &other) {
+    inline pointer& operator=(const T &other) {
       auto idx = i;
       parent.data[idx] = other;
       while(idx) {
         idx >>= 1;
-        parent.data[idx] = op(parent.data[2 * idx], parent.data[2 * idx + 1]);
+        parent.data[idx] = op(parent.data[idx << 1], parent.data[(idx << 1) | 1]);
       }
       return *this;
     }
   };
 
-  SegmentTree(const int n) : n(bit_ceil(n)) {
+  inline explicit SegmentTree(const int n) : n(bit_ceil(n)) {
     data.resize(2 * this->n, e);
   }
 
-  SegmentTree(const vec<T> &v) : SegmentTree(v.size()) {
+  inline explicit SegmentTree(const vec<T> &v) : SegmentTree(v.size()) {
     memcpy(&data[n], v.data(), v.size() * sizeof(T));
-    rrep(i, 0, n) data[i] = op(data[2 * i], data[2 * i + 1]);
+    rrep(i, 0, n) data[i] = op(data[i<<1], data[(i<<1) | 1]);
   }
 
-  T query(size_t l, size_t r) const {
+  inline T query(int l, int r) const {
     T res_l = e, res_r = e;
     for (l += n, r += n; l < r; l /= 2, r /= 2) {
       if (l % 2 == 1) {
@@ -52,22 +52,22 @@ public:
     return op(res_l, res_r);
   }
 
-  inline pointer operator[](int idx) {
+  inline pointer operator[](const int idx) {
     return pointer(*this, idx);
   }
 
-  T operator[](const size_t l, const size_t r) const {
+  inline T operator[](const int l, const int r) const {
     return query(l, r);
   }
 
   // f(op([0...i])) == false となる最小の i を返す
   // f(op(a, b)) == f(a) && f(b) となるように設計してください
-  size_t bin_search(const function<bool(T)> &f) const {
-    auto find = [&](auto&& find, size_t i, size_t l, size_t r, T offset) -> size_t {
+  inline int bin_search(const function<bool(T)> &f) const {
+    auto find = [&](auto&& find, int i, int l, int r, T offset) -> int {
       if (f(op(offset, data[i]))) return r;
       if (l + 1 == r) return l + f(op(offset, data[i]));
-      size_t m = midpoint(l, r);
-      size_t res = find(find, 2 * i, l, m, offset);
+      int m = midpoint(l, r);
+      int res = find(find, 2 * i, l, m, offset);
       if (res != m) return res;
       return find(find, 2 * i + 1, m, r, op(offset, data[2*i]));
     };

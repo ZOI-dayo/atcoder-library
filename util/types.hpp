@@ -9,10 +9,12 @@ using ld = long double;
 #ifdef EXIST_BOOST
 
 using lll = int128_t;
+using ulll = uint128_t;
 
 #else
 
 using lll = __int128_t;
+using ulll = __uint128_t;
 
 #endif
 

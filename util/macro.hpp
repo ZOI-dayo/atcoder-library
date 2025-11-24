@@ -11,4 +11,3 @@
 #define rrep(i, l, r) for (ll i = (ll)(r) - 1; i >= l; --i)
 
 constexpr ll INF = 1LL<<60;
-

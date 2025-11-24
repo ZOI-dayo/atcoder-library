@@ -5,30 +5,26 @@
 void solve()
 {
   int n, q;
-  cin >> n >> q;
+  fin >> n >> q;
   vl a(n);
-  cin >> a;
-  SegmentTree<
-      ll,
-      0,
-      [](ll a, ll b)
-      { return a + b; }>
-      seg(a);
+  fin >> a;
+  BIT<>
+      bit(a);
   while (q--)
   {
     bool t;
-    cin >> t;
+    fin >> t;
     if (!t)
     {
       ll p, x;
-      cin >> p >> x;
-      seg[p] = seg[p] + x;
+      fin >> p >> x;
+      bit.apply(p, x);
     }
     else
     {
-      ll l, r;
-      cin >> l >> r;
-      cout << seg[l, r] << '\n';
+      int l, r;
+      fin >> l >> r;
+      fout << bit.prod(l, r) << '\n';
     }
   }
 }
