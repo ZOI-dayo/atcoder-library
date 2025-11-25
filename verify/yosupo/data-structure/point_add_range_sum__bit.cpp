@@ -18,13 +18,13 @@ void solve()
     {
       ll p, x;
       fin >> p >> x;
-      bit.apply(p, x);
+      bit[p] += x;
     }
     else
     {
       int l, r;
       fin >> l >> r;
-      fout << bit.prod(l, r) << '\n';
+      fout << bit[l, r] << '\n';
     }
   }
 }

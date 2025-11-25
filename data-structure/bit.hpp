@@ -3,21 +3,35 @@
 #include "../util/all.hpp"
 
 template <typename T = ll, const T e = 0,
-          const auto op = [](ll a, ll b)
-          { return a + b; },
-          const auto rop = [](ll a, ll b)
-          { return a - b; }>
+          const auto op = plus<T>{},
+          const auto rop = minus<T>{}>
 class BIT
 {
-  int n;
+  const int n;
   vec<T> data;
 
 public:
+  class pointer
+  {
+  private:
+    BIT<T, e, op> &parent;
+    const int i;
+
+  public:
+    pointer(BIT<T, e, op> &bit, int i) : parent(bit), i(i) {}
+    inline operator T() const
+    {
+      return parent[i, i + 1];
+    }
+    inline pointer &operator+=(const T &other)
+    {
+      parent.add(i, other);
+      return *this;
+    }
+  };
 
   explicit inline BIT(const int N) : n(N), data(n + 1, e) {}
-  explicit inline BIT(const vec<T> &v) : BIT(v.size()) { build(v); }
-
-  inline void build(const vec<T> &v)
+  explicit inline BIT(const vec<T> &v) : BIT(v.size())
   {
     memcpy(&data[1], v.data(), v.size() * sizeof(T));
     reps(i, 1, n + 1)
@@ -28,7 +42,7 @@ public:
     }
   }
 
-  inline void apply(int k, T x)
+  inline void add(int k, T x)
   {
     for (++k; k <= n; k += k & -k)
       data[k] = op(data[k], x);
@@ -44,7 +58,12 @@ public:
     return ret;
   }
 
-  inline T prod(int l, int r) const
+  inline pointer operator[](int i)
+  {
+    return pointer(*this, i);
+  }
+
+  inline T operator[](int l, int r) const
   {
     if (l >= r)
       return e;

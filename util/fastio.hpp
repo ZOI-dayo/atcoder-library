@@ -91,6 +91,45 @@ public:
     return *this;
   }
 
+  inline FastIn &operator>>(lll &dst)
+  {
+    seek();
+    dst = 0;
+    if (*beg == '-')
+    {
+      ++beg;
+      while (*beg > ' ')
+      {
+        dst *= 10;
+        dst -= *beg - '0';
+        ++beg;
+      }
+    }
+    else
+    {
+      while (*beg > ' ')
+      {
+        dst *= 10;
+        dst += *beg - '0';
+        ++beg;
+      }
+    }
+    return *this;
+  }
+
+  inline FastIn &operator>>(ulll &dst)
+  {
+    seek();
+    dst = 0;
+    while (*beg > ' ')
+    {
+      dst *= 10;
+      dst += *beg - '0';
+      ++beg;
+    }
+    return *this;
+  }
+
   inline FastIn &operator>>(char &dst)
   {
     seek();
@@ -133,7 +172,8 @@ public:
     if (*beg == '-')
     {
       ++beg;
-      while(*beg > ' ') {
+      while (*beg > ' ')
+      {
         dst *= 10;
         dst += *beg - '0';
         ++beg;
@@ -142,7 +182,8 @@ public:
     }
     else
     {
-      while(*beg > ' ') {
+      while (*beg > ' ')
+      {
         dst *= 10;
         dst += *beg - '0';
         ++beg;
@@ -235,9 +276,16 @@ class FastOut
     ++end;
   }
 
+  inline void write(const char* s)
+  {
+    int n = strlen(s);
+    memcpy(end, s, n);
+    end += n;
+  }
+
   inline void write(const string &s)
   {
-    memcpy(end, s.c_str(), s.size());
+    memcpy(end, s.data(), s.size());
     end += s.size();
   }
 
@@ -299,7 +347,14 @@ public:
 
 #endif
 
-#undef defout
+#undef defout_num
+#undef defout_num_unsigned
+
+  inline FastOut &operator<<(const char* src)
+  {
+    write(src);
+    return *this;
+  }
 
   inline FastOut &operator<<(const char &src)
   {

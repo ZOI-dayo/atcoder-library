@@ -10,7 +10,7 @@ void solve() {
 
 int main() {
   int t;
-  cin >> t;
+  fin >> t;
   while(t--) {
     solve();
   }

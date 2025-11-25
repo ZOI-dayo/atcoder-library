@@ -4,14 +4,14 @@
 
 void solve() {
   bint a, b;
-  cin >> a >> b;
+  fin >> a >> b;
   bint x = a / b, y = a - x * b;
-  cout << x << ' ' << y << '\n';
+  fout << x << ' ' << y << '\n';
 }
 
 int main() {
   int t;
-  cin >> t;
+  fin >> t;
   while(t--) {
     solve();
   }

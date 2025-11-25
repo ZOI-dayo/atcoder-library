@@ -11,8 +11,7 @@ void solve()
   SegmentTree<
       ll,
       0,
-      [](ll a, ll b)
-      { return a + b; }>
+      plus<ll>{}>
       seg(a);
   while (q--)
   {
