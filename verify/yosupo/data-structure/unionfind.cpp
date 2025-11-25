@@ -4,15 +4,15 @@
 
 void solve() {
   int n, q;
-  fin >> n >> q;
+  cin >> n >> q;
   UnionFind uf(n);
   while(q--) {
     int t, u, v;
-    fin >> t >> u >> v;
+    cin >> t >> u >> v;
     if(t == 0) {
       uf.merge(u, v);
     } else {
-      fout << (int) uf.same(u, v) << '\n';
+      cout << uf.same(u, v) << '\n';
     }
   }
 }

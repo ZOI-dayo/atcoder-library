@@ -4,6 +4,8 @@
 #include "types.hpp"
 #include "ext_lib/boost.hpp"
 
+#ifndef NO_FASTIO
+
 class FastIn
 {
   static const int buf_siz = (1 << 25);
@@ -165,6 +167,30 @@ public:
     return *this;
   }
 
+  inline FastIn &operator>>(ld &dst)
+  {
+    seek();
+    dst = 0;
+    while (*beg >= '0')
+    {
+      dst *= 10;
+      dst += *beg - '0';
+      ++beg;
+    }
+    if (beg != end && *beg == '.')
+    {
+      ld k = 0.1;
+      ++beg;
+      while (*beg >= '0')
+      {
+        dst += k * (*beg - '0');
+        k /= 10;
+        ++beg;
+      }
+    }
+    return *this;
+  }
+
 #ifdef EXIST_BOOST
   inline FastIn &operator>>(bint &dst)
   {
@@ -194,6 +220,8 @@ public:
 
 #endif
 } fin;
+
+#define cin fin
 
 class FastOut
 {
@@ -258,6 +286,12 @@ class FastOut
   template <typename T, int N = 0>
   inline void write(const T x)
   {
+    if (x == 0) [[unlikely]]
+    {
+      *end = '0';
+      ++end;
+      return;
+    }
     if constexpr (N < DIGITS<T>)
     {
       if (POW10<T>[N] <= x)
@@ -276,7 +310,7 @@ class FastOut
     ++end;
   }
 
-  inline void write(const char* s)
+  inline void write(const char *s)
   {
     int n = strlen(s);
     memcpy(end, s, n);
@@ -287,6 +321,11 @@ class FastOut
   {
     memcpy(end, s.data(), s.size());
     end += s.size();
+  }
+
+  inline void write(const ld s)
+  {
+    write(to_string(s));
   }
 
 public:
@@ -306,29 +345,28 @@ public:
     fflush(stdout);
   }
 
-#define defout_num(T)                      \
-  inline FastOut &operator<<(const T &src) \
-  {                                        \
-    if (src < 0)                           \
-    {                                      \
-      write('-');                          \
-      write(-src);                         \
-    }                                      \
-    else                                   \
-    {                                      \
-      write(src);                          \
-    }                                      \
-    return *this;                          \
+#define defout_num(T)                     \
+  inline FastOut &operator<<(const T src) \
+  {                                       \
+    if (src < 0)                          \
+    {                                     \
+      write('-');                         \
+      write(-src);                        \
+    }                                     \
+    else                                  \
+    {                                     \
+      write(src);                         \
+    }                                     \
+    return *this;                         \
   }
 
-#define defout_num_unsigned(T)             \
-  inline FastOut &operator<<(const T &src) \
-  {                                        \
-    write(src);                            \
-    return *this;                          \
+#define defout_num_unsigned(T)            \
+  inline FastOut &operator<<(const T src) \
+  {                                       \
+    write(src);                           \
+    return *this;                         \
   }
 
-  defout_num_unsigned(bool);
   defout_num(short);
   defout_num_unsigned(unsigned short);
   defout_num(int);
@@ -350,13 +388,13 @@ public:
 #undef defout_num
 #undef defout_num_unsigned
 
-  inline FastOut &operator<<(const char* src)
+  inline FastOut &operator<<(const char *src)
   {
     write(src);
     return *this;
   }
 
-  inline FastOut &operator<<(const char &src)
+  inline FastOut &operator<<(const char src)
   {
     write(src);
     return *this;
@@ -368,4 +406,20 @@ public:
     return *this;
   }
 
+  inline FastOut &operator<<(const ld &src)
+  {
+    write(src);
+    return *this;
+  }
+
+  inline FastOut &operator<<(const bool src)
+  {
+    write(src ? '1' : '0');
+    return *this;
+  }
+
 } fout;
+
+#define cout fout
+
+#endif

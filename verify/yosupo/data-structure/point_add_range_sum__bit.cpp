@@ -5,25 +5,25 @@
 void solve()
 {
   int n, q;
-  fin >> n >> q;
+  cin >> n >> q;
   vl a(n);
-  fin >> a;
+  cin >> a;
   BIT<>
       bit(a);
   while (q--)
   {
     bool t;
-    fin >> t;
+    cin >> t;
     if (!t)
     {
       ll p, x;
-      fin >> p >> x;
+      cin >> p >> x;
       bit[p] += x;
     }
     else
     {
       int l, r;
-      fin >> l >> r;
+      cin >> l >> r;
       fout << bit[l, r] << '\n';
     }
   }

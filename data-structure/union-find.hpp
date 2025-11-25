@@ -7,18 +7,18 @@ class UnionFind {
   vec<int> par;
 
 public:
-  UnionFind(int n) : n(n), par(n, -1) {}
+  inline explicit UnionFind(int n) : n(n), par(n, -1) {}
 
-  int find(int x) {
+  inline int find(int x) {
     if (par[x] < 0) return x;
     return par[x] = find(par[x]);
   }
 
-  bool same(int x, int y) {
+  inline bool same(int x, int y) {
     return find(x) == find(y);
   }
 
-  void merge(int x, int y) {
+  inline void merge(int x, int y) {
     x = find(x);
     y = find(y);
     if (x == y) return;
@@ -28,15 +28,15 @@ public:
     n--;
   }
 
-  int size(int x) {
+  inline int size(int x) {
     return -par[find(x)];
   }
 
-  int count() {
+  inline int count() {
     return n;
   }
 
-  vv<int> groups() {
+  inline vv<int> groups() {
     vv<int> g(par.size());
     vec<int> starts;
     rep(i, par.size()) {

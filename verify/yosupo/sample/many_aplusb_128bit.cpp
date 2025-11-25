@@ -4,13 +4,13 @@
 
 void solve() {
   lll a, b;
-  fin >> a >> b;
-  fout << a + b << '\n';
+  cin >> a >> b;
+  cout << a + b << '\n';
 }
 
 int main() {
   int t;
-  fin >> t;
+  cin >> t;
   while(t--) {
     solve();
   }
