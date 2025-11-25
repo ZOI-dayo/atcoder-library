@@ -8,7 +8,7 @@
 
 class FastIn
 {
-  static const int buf_siz = (1 << 25);
+  static const int buf_siz = (1 << 26);
   char buf[buf_siz], *beg, *end;
 
   // 64bit以下の整数型について、string->numberのパースを行う
@@ -225,7 +225,7 @@ public:
 
 class FastOut
 {
-  static const int buf_siz = (1 << 25);
+  static const int buf_siz = (1 << 26);
   char buf[buf_siz], *beg, *end;
 
   template <class T>
