@@ -1,5 +1,7 @@
 //@yosupo division_of_big_integers
 
+#define NO_FASTIO
+
 #include "../../../all.hpp"
 
 void solve() {
