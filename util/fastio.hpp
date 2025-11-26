@@ -144,11 +144,12 @@ public:
   {
     seek();
     dst.clear();
+    auto left = beg;
     while (*beg > ' ')
     {
-      dst.push_back(*beg);
       ++beg;
     }
+    dst = string(left, beg);
     return *this;
   }
 
@@ -195,26 +196,9 @@ public:
   inline FastIn &operator>>(bint &dst)
   {
     seek();
-    if (*beg == '-')
-    {
-      ++beg;
-      while (*beg > ' ')
-      {
-        dst *= 10;
-        dst += *beg - '0';
-        ++beg;
-      }
-      dst = -dst;
-    }
-    else
-    {
-      while (*beg > ' ')
-      {
-        dst *= 10;
-        dst += *beg - '0';
-        ++beg;
-      }
-    }
+    string s;
+    *this >> s;
+    dst.assign(s);
     return *this;
   }
 
