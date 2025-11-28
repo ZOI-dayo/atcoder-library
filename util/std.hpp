@@ -26,7 +26,11 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <valarray>
 #include <vector>
+
+#include <sys/mman.h>
+#include <sys/stat.h>
 
 using namespace std;
 

@@ -8,8 +8,7 @@
 
 class FastIn
 {
-  static const int buf_siz = (1 << 26);
-  char buf[buf_siz], *beg, *end;
+  char *buf, *beg, *end;
 
   // 64bit以下の整数型について、string->numberのパースを行う
   template <typename T>
@@ -62,8 +61,11 @@ class FastIn
 public:
   inline FastIn()
   {
+    struct stat st;
+    fstat(0, &st);
+    buf = reinterpret_cast<char *>(mmap(nullptr, st.st_size, PROT_READ, MAP_PRIVATE, 0, 0));
     beg = buf;
-    end = beg + fread(buf, 1, buf_siz, stdin);
+    end = buf + st.st_size;
   }
 
   template <unsigned_integral T>
@@ -325,7 +327,7 @@ public:
 
   inline void flush()
   {
-    beg += fwrite(beg, 1, end - beg, stdout);
+    beg += fwrite_unlocked(beg, 1, end - beg, stdout);
     fflush(stdout);
   }
 
